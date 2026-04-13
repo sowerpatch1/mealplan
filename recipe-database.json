@@ -1,0 +1,14 @@
+{
+  "meta": {
+    "description": "Recipe URLs and free-form notes for the meal plan. Edit this file; keep valid JSON. IDs are stable dish names (no day of week) so entries can be reused or moved on the calendar. Optional field \"url\" may be null or omitted when there is no recipe page yet.",
+    "version": 1
+  },
+  "recipes": [
+    {
+      "id": "lemon-pepper-tofu-asparagus",
+      "title": "Lemon Pepper Tofu and Asparagus",
+      "url": "https://plantbasedrdblog.com/2022/02/lemon-pepper-tofu-and-asparagus/",
+      "notes": "Recipe uses super firm tofu; meal plan adds brown rice for portions."
+    }
+  ]
+}
