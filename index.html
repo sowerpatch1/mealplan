@@ -428,75 +428,82 @@
   <script>
     const dailyTarget = 100;
 
+    const weekdayBreakfast = {
+      name: "Steel-Cut Oats Bowl (Weekday)",
+      ingredients: "1/3 cup steel-cut oats (dry), 1/2 apple, 1 tbsp chia, 1 tbsp flaxseed meal, 1 tbsp almonds, 1 tbsp peanut butter, coffee + 1/4 cup lowfat milk",
+      protein: 17,
+      link: "https://cookieandkate.com/steel-cut-oatmeal-recipe/"
+    };
+
     const weekPlan = [
       {
         day: "Monday",
         meals: [
-          { type: "Breakfast", name: "Greek Yogurt Protein Bowl", ingredients: "3/4 cup nonfat greek yogurt, 1/3 cup berries, 1 tsp chia, 2 tsp walnuts", protein: 20, link: "https://www.eatingwell.com/recipe/275668/greek-yogurt-with-fruit-nuts/" },
+          { type: "Breakfast", ...weekdayBreakfast },
           { type: "Lunch", name: "Salmon Salad with Avocado", ingredients: "5 oz salmon raw, 1/3 avocado, 1.5 cups greens, 1/3 cup cucumber", protein: 27, link: "https://www.eatingwell.com/recipe/269832/salmon-salad-stuffed-avocado/" },
           { type: "Dinner", name: "Lentil Soup with Veggies", ingredients: "1/2 cup lentils dry, 1 carrot, 1 celery stalk, 1/2 onion", protein: 26, link: "https://cookieandkate.com/best-lentil-soup-recipe/" },
           { type: "Snack", name: "Peanut Butter Energy Bites", ingredients: "1/3 cup oats dry, 1.5 tbsp peanut butter, 1 tsp flax, 1 tsp honey", protein: 9, link: "https://www.ambitiouskitchen.com/protein-peanut-butter-energy-bites/" },
-          { type: "Snack 2", name: "Cottage Cheese + Berries", ingredients: "1/2 cup 1% cottage cheese, 1/3 cup berries", protein: 18, link: "https://www.eatingwell.com/recipe/266458/cottage-cheese-bowl/" }
+          { type: "Snack 2", name: "Cottage Cheese + Berries", ingredients: "3/4 cup 1% cottage cheese, 1/3 cup berries", protein: 21, link: "https://www.eatingwell.com/recipe/266458/cottage-cheese-bowl/" }
         ]
       },
       {
         day: "Tuesday",
         meals: [
-          { type: "Breakfast", name: "Overnight Oats with Chia and Protein", ingredients: "1/4 cup oats dry, 1 tsp chia, 3/4 cup milk, 1/2 scoop protein powder", protein: 18, link: "https://www.eatingbirdfood.com/protein-overnight-oats/" },
+          { type: "Breakfast", ...weekdayBreakfast },
           { type: "Lunch", name: "Chickpea Tuna Salad Bowl", ingredients: "1/3 cup chickpeas, 3 oz tuna canned drained, 1/3 cup tomato, 2 tsp olive oil", protein: 23, link: "https://www.themediterraneandish.com/chickpea-salad/" },
           { type: "Dinner", name: "Turkey and Bean Chili", ingredients: "5 oz ground turkey 93% lean, 1/3 cup beans, 3/4 cup tomato, 1/3 cup peppers", protein: 34, link: "https://www.skinnytaste.com/turkey-chili-taco-soup/" },
-          { type: "Snack", name: "Chocolate Banana Protein Shake", ingredients: "1/2 banana, 1 tsp cocoa, 3/4 cup milk, 1/2 scoop protein powder", protein: 14, link: "https://www.allrecipes.com/recipe/244959/chocolate-banana-peanut-butter-protein-shake/" },
+          { type: "Snack", name: "Chocolate Banana Protein Shake", ingredients: "1/2 banana, 1 tsp cocoa, 3/4 cup milk, 1/2 scoop protein powder", protein: 15, link: "https://www.allrecipes.com/recipe/244959/chocolate-banana-peanut-butter-protein-shake/" },
           { type: "Snack 2", name: "Edamame", ingredients: "2/3 cup shelled edamame, pinch sea salt", protein: 11, link: "https://www.loveandlemons.com/edamame/" }
         ]
       },
       {
         day: "Wednesday",
         meals: [
-          { type: "Breakfast", name: "Egg White Veggie Scramble + Toast", ingredients: "3/4 cup egg whites, 1 cup spinach, 1/3 cup tomato, 1 slice whole grain toast", protein: 20, link: "https://www.eatingwell.com/recipe/252451/veggie-egg-white-scramble/" },
+          { type: "Breakfast", ...weekdayBreakfast },
           { type: "Lunch", name: "Mediterranean Quinoa Chickpea Bowl", ingredients: "1/4 cup quinoa dry, 1/2 cup chickpeas, 1/3 cup cucumber, 2 tsp lemon juice", protein: 20, link: "https://www.loveandlemons.com/quinoa-salad/" },
           { type: "Dinner", name: "Baked Cod with Roasted Broccoli", ingredients: "5 oz cod raw, 1.5 cups broccoli, 2 garlic cloves, 2 tsp olive oil", protein: 30, link: "https://www.eatingwell.com/recipe/269838/garlic-butter-roasted-salmon-with-potatoes-asparagus/" },
           { type: "Snack", name: "Greek Yogurt", ingredients: "1/2 cup nonfat greek yogurt, cinnamon", protein: 14, link: "https://www.eatingwell.com/recipe/275668/greek-yogurt-with-fruit-nuts/" },
-          { type: "Snack 2", name: "Cottage Cheese + Cucumber", ingredients: "1/2 cup 1% cottage cheese, 1/3 cup cucumber", protein: 16, link: "https://www.eatingwell.com/recipe/266458/cottage-cheese-bowl/" }
+          { type: "Snack 2", name: "Cottage Cheese + Cucumber", ingredients: "3/4 cup 1% cottage cheese, 1/3 cup cucumber", protein: 19, link: "https://www.eatingwell.com/recipe/266458/cottage-cheese-bowl/" }
         ]
       },
       {
         day: "Thursday",
         meals: [
-          { type: "Breakfast", name: "Protein Smoothie with Flax", ingredients: "3/4 cup berries, 3/4 cup spinach, 1 tsp flax, 1/2 scoop protein powder, water", protein: 18, link: "https://www.eatingwell.com/recipe/274913/strawberry-peach-smoothie/" },
+          { type: "Breakfast", ...weekdayBreakfast },
           { type: "Lunch", name: "Chicken and White Bean Soup", ingredients: "4 oz chicken breast raw, 1/3 cup white beans, 3/4 cup kale, 1.5 cups broth", protein: 28, link: "https://www.skinnytaste.com/chicken-and-white-bean-soup/" },
           { type: "Dinner", name: "Tofu Stir-Fry with Brown Rice", ingredients: "5 oz firm tofu, 1.5 cups broccoli, 3 tbsp brown rice dry, 1 tbsp tamari", protein: 26, link: "https://minimalistbaker.com/easy-tofu-stir-fry/" },
           { type: "Snack", name: "Apple + Peanut Butter", ingredients: "1 small apple, 1 tbsp natural peanut butter", protein: 6, link: "https://www.ambitiouskitchen.com/protein-peanut-butter-energy-bites/" },
-          { type: "Snack 2", name: "Cottage Cheese", ingredients: "1/2 cup 1% cottage cheese, black pepper", protein: 22, link: "https://www.eatingwell.com/recipe/266458/cottage-cheese-bowl/" }
+          { type: "Snack 2", name: "Cottage Cheese", ingredients: "1/2 cup 1% cottage cheese, black pepper", protein: 23, link: "https://www.eatingwell.com/recipe/266458/cottage-cheese-bowl/" }
         ]
       },
       {
         day: "Friday",
         meals: [
-          { type: "Breakfast", name: "High-Protein Oatmeal Bowl", ingredients: "1/4 cup oats dry, 1 tsp chia, 3/4 cup milk, 1/3 cup nonfat greek yogurt", protein: 18, link: "https://www.eatingbirdfood.com/protein-oatmeal/" },
+          { type: "Breakfast", ...weekdayBreakfast },
           { type: "Lunch", name: "Turkey Hummus Veggie Wrap", ingredients: "4 oz turkey breast, 2 tbsp hummus, 3/4 cup spinach, 1 small whole wheat wrap", protein: 28, link: "https://www.eatingwell.com/recipe/262389/turkey-veggie-wrap/" },
           { type: "Dinner", name: "Shrimp and Vegetable Quinoa Skillet", ingredients: "5 oz shrimp raw, 3 tbsp quinoa dry, 3/4 cup zucchini, 1 garlic clove", protein: 28, link: "https://www.eatingwell.com/recipe/250222/one-pot-garlicky-shrimp-broccoli/" },
-          { type: "Snack", name: "Roasted Chickpeas", ingredients: "1/2 cup chickpeas, 1/2 tsp paprika, 1 tsp olive oil", protein: 10, link: "https://www.loveandlemons.com/roasted-chickpeas/" },
+          { type: "Snack", name: "Roasted Chickpeas", ingredients: "1/2 cup chickpeas, 1/2 tsp paprika, 1 tsp olive oil", protein: 11, link: "https://www.loveandlemons.com/roasted-chickpeas/" },
           { type: "Snack 2", name: "Protein Shake (small)", ingredients: "3/4 cup milk, 1/2 scoop protein powder", protein: 16, link: "https://www.loveandlemons.com/protein-shake/" }
         ]
       },
       {
         day: "Saturday",
         meals: [
-          { type: "Breakfast", name: "Greek Yogurt Chia Parfait", ingredients: "3/4 cup nonfat greek yogurt, 1 tsp chia, 1/3 cup berries, 2 tsp almonds", protein: 17, link: "https://www.eatingwell.com/recipe/250216/blueberry-almond-chia-pudding/" },
+          { type: "Breakfast", name: "Veggie Egg Scramble + Toast", ingredients: "1 whole egg + 2/3 cup egg whites, 1/2 cup bell pepper + mushrooms, 1 slice whole grain toast, 2 tsp olive oil, coffee + 1/4 cup lowfat milk", protein: 22, link: "https://www.eatingwell.com/recipe/252451/veggie-egg-white-scramble/" },
           { type: "Lunch", name: "Black Bean and Sweet Potato Bowl", ingredients: "1/3 cup black beans, 1/2 medium sweet potato, 3/4 cup greens, 2 tbsp avocado", protein: 17, link: "https://cookieandkate.com/black-bean-sweet-potato-enchiladas/" },
           { type: "Dinner", name: "Grilled Chicken with Farro Salad", ingredients: "5 oz chicken breast raw, 3 tbsp farro dry, 1.5 cups arugula, 2 tsp pistachios", protein: 38, link: "https://www.eatingwell.com/recipe/7904853/farro-salad-with-arugula-artichokes-pistachios/" },
           { type: "Snack", name: "Protein Shake (small)", ingredients: "3/4 cup milk, 1/2 banana, 1/2 scoop protein powder", protein: 16, link: "https://www.loveandlemons.com/protein-shake/" },
-          { type: "Snack 2", name: "Carrots + Hummus + Cottage Cheese", ingredients: "1 cup baby carrots, 2 tbsp hummus, 1/4 cup 1% cottage cheese", protein: 12, link: "https://www.eatingwell.com/recipe/266458/cottage-cheese-bowl/" }
+          { type: "Snack 2", name: "Carrots + Hummus + Cottage Cheese", ingredients: "1 cup baby carrots, 2 tbsp hummus, 1/4 cup 1% cottage cheese", protein: 7, link: "https://www.eatingwell.com/recipe/266458/cottage-cheese-bowl/" }
         ]
       },
       {
         day: "Sunday",
         meals: [
-          { type: "Breakfast", name: "Egg and Avocado Toast", ingredients: "2 eggs, 2 tbsp avocado, 1 slice whole grain bread, 1/3 tomato", protein: 16, link: "https://www.eatingwell.com/recipe/273978/avocado-toast-with-burrata/" },
+          { type: "Breakfast", name: "Open-Faced Egg & Avocado Toast", ingredients: "1 whole egg + 1/2 cup egg whites, 1 slice whole grain bread, 2 tbsp avocado, 1/3 tomato, coffee + 1/4 cup lowfat milk", protein: 20, link: "https://www.eatingwell.com/recipe/273978/avocado-toast-with-burrata/" },
           { type: "Lunch", name: "Lentil and Tuna Salad", ingredients: "1/3 cup lentils cooked, 3 oz tuna, 1/3 cup cucumber, 2 tsp lemon juice", protein: 24, link: "https://www.themediterraneandish.com/lentil-salad-recipe/" },
           { type: "Dinner", name: "Baked Salmon and Brussels Sprouts", ingredients: "5 oz salmon raw, 1.5 cups brussels sprouts, 2 garlic cloves, 2 tsp olive oil", protein: 30, link: "https://www.eatingwell.com/recipe/274037/roasted-salmon-with-smoky-chickpeas-greens/" },
           { type: "Snack", name: "Pumpkin Seeds + Fruit", ingredients: "1 tbsp pumpkin seeds, 1/2 apple", protein: 6, link: "https://www.eatingwell.com/recipe/250591/pumpkin-seed-trail-mix/" },
-          { type: "Snack 2", name: "Skyr or Greek Yogurt", ingredients: "3/4 cup nonfat greek yogurt or skyr", protein: 24, link: "https://www.eatingwell.com/recipe/275668/greek-yogurt-with-fruit-nuts/" }
+          { type: "Snack 2", name: "Skyr or Greek Yogurt", ingredients: "2/3 cup nonfat greek yogurt or skyr", protein: 20, link: "https://www.eatingwell.com/recipe/275668/greek-yogurt-with-fruit-nuts/" }
         ]
       }
     ];
