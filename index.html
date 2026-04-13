@@ -127,6 +127,10 @@
       margin-bottom: 24px;
     }
 
+    .day-section.hidden {
+      display: none;
+    }
+
     .day-title {
       margin: 0 0 10px;
       font-size: 38px;
@@ -383,6 +387,14 @@
 
     const dayTabs = document.getElementById("dayTabs");
     const planContainer = document.getElementById("planContainer");
+    const daySections = {};
+
+    const setActiveDay = (dayId) => {
+      Object.entries(daySections).forEach(([id, section]) => {
+        const isActive = id === dayId;
+        section.classList.toggle("hidden", !isActive);
+      });
+    };
 
     weekPlan.forEach((entry, idx) => {
       const dayId = entry.day.toLowerCase();
@@ -395,10 +407,7 @@
       tab.addEventListener("click", () => {
         document.querySelectorAll(".day-tab").forEach((el) => el.classList.remove("active"));
         tab.classList.add("active");
-        const target = document.getElementById(dayId);
-        if (target) {
-          target.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
+        setActiveDay(dayId);
       });
       dayTabs.appendChild(tab);
 
@@ -435,7 +444,10 @@
       `;
 
       planContainer.appendChild(section);
+      daySections[dayId] = section;
     });
+
+    setActiveDay(weekPlan[0].day.toLowerCase());
   </script>
 </body>
 </html>
