@@ -420,7 +420,7 @@
       <div class="hero-eyebrow">4-Week Program</div>
       <h1>Week 1 Cholesterol-Friendly Meal Plan</h1>
       <p class="hero-sub">
-        Per-meal estimates (USDA-style portions) · two snacks · Fresh fish only · Cook once, eat twice
+        Targets ~2000 kcal · ~100g protein (estimates) · USDA-style portions · two snacks · Fresh fish at dinner · Lunch &amp; dinner: cook once, eat next day (Sun pairs with Mon week 2)
       </p>
       <div class="hero-points">
         <span>🍲 Cook double</span>
@@ -455,75 +455,193 @@
       nutrition: WKOATS
     };
 
+    const satEggs = {
+      name: "Veggie Egg Scramble + Toast",
+      ingredients: "1 whole egg + 2/3 cup egg whites, 1/2 cup bell pepper + mushrooms, 1 slice whole grain toast, 2 tsp olive oil, coffee + 1/4 cup lowfat milk",
+      link: "https://www.eatingwell.com/recipe/252451/veggie-egg-white-scramble/",
+      nutrition: { calories: 285, protein: 23, carbs: 26, fat: 12, satFat: 3, fiber: 4, sodium: 380 }
+    };
+
+    const sunEggs = {
+      name: "Open-Faced Egg & Avocado Toast",
+      ingredients: "1 whole egg + 1/2 cup egg whites, 1 slice whole grain bread, 2 tbsp avocado, 1/3 tomato, coffee + 1/4 cup lowfat milk",
+      link: "https://www.eatingwell.com/recipe/273978/avocado-toast-with-burrata/",
+      nutrition: { calories: 265, protein: 21, carbs: 22, fat: 13, satFat: 3, fiber: 5, sodium: 410 }
+    };
+
+    /** Shared nutrition for cook + leftover pairs (do not edit one without the other). */
+    const N = {
+      monWedSnack: { calories: 235, protein: 22, carbs: 26, fat: 4, satFat: 2, fiber: 2, sodium: 120 },
+      monWedSnack2: { calories: 188, protein: 19, carbs: 7, fat: 2.5, satFat: 1, fiber: 0, sodium: 490 },
+      thuFriSnack: { calories: 210, protein: 20, carbs: 12, fat: 4, satFat: 1, fiber: 0, sodium: 110 },
+      thuFriSnack2: { calories: 218, protein: 18, carbs: 14, fat: 7.5, satFat: 0.5, fiber: 4, sodium: 280 },
+      weekendSnack: { calories: 328, protein: 24, carbs: 28, fat: 7, satFat: 1.5, fiber: 3, sodium: 150 },
+      weekendSnack2: { calories: 327, protein: 24, carbs: 26, fat: 6.5, satFat: 1.5, fiber: 3, sodium: 340 },
+      sunSnack: { calories: 330, protein: 21, carbs: 28, fat: 10, satFat: 1.5, fiber: 4, sodium: 140 },
+      sunSnack2: { calories: 330, protein: 21, carbs: 26, fat: 9, satFat: 1, fiber: 3, sodium: 95 }
+    };
+
+    const monLunch = {
+      name: "Thai Peanut Quinoa Salad",
+      ingredients: "1/3 cup quinoa (dry), cooked; 3/4 cup chickpeas; 1.5 cups shredded cabbage + carrot slaw; dressing: 1.5 tbsp natural peanut butter, 1.5 tsp soy sauce, lime, ginger (recipe: Cookie and Kate). Cook once → eat Tuesday lunch.",
+      link: "https://cookieandkate.com/thai-peanut-quinoa-salad-recipe/",
+      nutrition: { calories: 555, protein: 23, carbs: 70, fat: 18, satFat: 2.5, fiber: 12, sodium: 420 }
+    };
+
+    const monDinner = {
+      name: "Moroccan Chickpea Soup",
+      ingredients: "1.75 cups soup (chickpeas, tomatoes, broth, spices; use low-sodium broth). Serve with 1 small whole-wheat roll. Cook once → eat Tuesday dinner.",
+      link: "https://www.gimmesomeoven.com/moroccan-chickpea-soup/",
+      nutrition: { calories: 510, protein: 20, carbs: 74, fat: 12, satFat: 1.5, fiber: 14, sodium: 780 }
+    };
+
+    const wedLunch = {
+      name: "Chicken Shawarma Quinoa Bowls",
+      ingredients: "4 oz cooked chicken breast, 1/3 cup dry quinoa cooked, 1 cup cucumber/tomato salad, 2 tbsp plain yogurt sauce, 1 tsp olive oil, shawarma spices. Cook once → eat Thursday lunch.",
+      link: "https://peasandcrayons.com/healthy-chicken-shawarma-quinoa-bowls/",
+      nutrition: { calories: 525, protein: 31, carbs: 40, fat: 17, satFat: 3.5, fiber: 5, sodium: 520 }
+    };
+
+    const wedDinner = {
+      name: "Lemon Pepper Tofu and Asparagus",
+      ingredients: "6 oz firm tofu, 1.5 cups asparagus, 2 tsp olive oil, lemon, black pepper, 2/3 cup cooked brown rice. Cook once → eat Thursday dinner.",
+      link: "https://plantbasedrdblog.com/2022/02/lemon-pepper-tofu-and-asparagus/",
+      nutrition: { calories: 540, protein: 26, carbs: 51, fat: 23, satFat: 3.5, fiber: 7, sodium: 380 }
+    };
+
+    const friLunch = {
+      name: "Chicken thigh salad (meal-prep)",
+      ingredients: "4 oz skinless chicken thigh meat (grilled), 2 cups mixed greens, tomato, cucumber, 1/3 cup white beans, 1/4 avocado, 1 tbsp pepitas, 2 tbsp Dijon vinaigrette (1.5 tsp olive oil + vinegar + mustard). Cook once → eat Saturday lunch.",
+      link: "https://allthehealthythings.com/healthy-chicken-taco-salad/",
+      nutrition: { calories: 515, protein: 36, carbs: 28, fat: 22, satFat: 3.5, fiber: 10, sodium: 520 }
+    };
+
+    const friDinner = {
+      name: "Lemon Garlic Herb Grilled Salmon",
+      ingredients: "5 oz salmon raw, 1.5 cups zucchini + bell pepper, 2 tsp olive oil, lemon, herbs (grill; avoid extra butter). Fresh fish at dinner. Cook once → eat Saturday dinner.",
+      link: "https://www.cookingclassy.com/lemon-garlic-herb-grilled-salmon/",
+      nutrition: { calories: 545, protein: 35, carbs: 14, fat: 30, satFat: 4, fiber: 4, sodium: 125 }
+    };
+
+    const sunLunch = {
+      name: "Spiced Sweet Potato Lentil Soup",
+      ingredients: "2 cups soup (red lentils, sweet potato; use light coconut milk or omit to keep sat fat lower). Side: 1/2 cup cucumber. Same batch feeds Monday week 2 lunch (leftover).",
+      link: "https://minimalistbaker.com/1-pot-spiced-sweet-potato-lentil-soup/",
+      nutrition: { calories: 510, protein: 18, carbs: 66, fat: 14, satFat: 5, fiber: 14, sodium: 620 }
+    };
+
+    const sunDinner = {
+      name: "Blackened Tilapia with Avocado Cucumber Salsa",
+      ingredients: "5 oz tilapia raw, avocado-cucumber salsa (1/4 avocado), 2 tsp olive oil for fish, 1/2 cup brown rice cooked, light oil spray for blackening spice. Fresh fish. Same batch feeds Monday week 2 dinner (leftover).",
+      link: "https://www.bowlofdelicious.com/10-minute-blackened-tilapia-with-avocado-cucumber-salsa/",
+      nutrition: { calories: 565, protein: 39, carbs: 50, fat: 20, satFat: 3.5, fiber: 6, sodium: 720 }
+    };
+
     const weekPlan = [
       {
         day: "Monday",
         meals: [
           { type: "Breakfast", ...weekdayBreakfast },
-          { type: "Lunch", name: "Salmon Salad with Avocado", ingredients: "5 oz salmon raw, 1/3 avocado, 1.5 cups greens, 1/3 cup cucumber", link: "https://www.eatingwell.com/recipe/269832/salmon-salad-stuffed-avocado/", nutrition: { calories: 285, protein: 30, carbs: 10, fat: 16, satFat: 3, fiber: 7, sodium: 88 } },
-          { type: "Dinner", name: "Lentil Soup with Veggies", ingredients: "1/2 cup lentils dry, 1 carrot, 1 celery stalk, 1/2 onion", link: "https://cookieandkate.com/best-lentil-soup-recipe/", nutrition: { calories: 392, protein: 25, carbs: 57, fat: 3, satFat: 0.5, fiber: 17, sodium: 415 } },
-          { type: "Snack", name: "Peanut Butter Energy Bites", ingredients: "1/3 cup oats dry, 1.5 tbsp peanut butter, 1 tsp flax, 1 tsp honey", link: "https://www.ambitiouskitchen.com/protein-peanut-butter-energy-bites/", nutrition: { calories: 284, protein: 10, carbs: 23, fat: 14, satFat: 2.5, fiber: 4, sodium: 75 } },
-          { type: "Snack 2", name: "Cottage Cheese + Berries", ingredients: "3/4 cup 1% cottage cheese, 1/3 cup berries", link: "https://www.eatingwell.com/recipe/266458/cottage-cheese-bowl/", nutrition: { calories: 142, protein: 21, carbs: 8, fat: 2, satFat: 1, fiber: 1, sodium: 520 } }
+          { type: "Lunch", ...monLunch },
+          { type: "Dinner", ...monDinner },
+          { type: "Snack", name: "Chocolate protein shake", ingredients: "1/2 banana, 1 tsp cocoa, 3/4 cup 1% milk, 1/2 scoop whey protein", link: "https://www.allrecipes.com/recipe/244959/chocolate-banana-peanut-butter-protein-shake/", nutrition: N.monWedSnack },
+          { type: "Snack 2", name: "Cottage cheese", ingredients: "3/4 cup 1% cottage cheese, black pepper", link: "https://www.eatingwell.com/recipe/266458/cottage-cheese-bowl/", nutrition: N.monWedSnack2 }
         ]
       },
       {
         day: "Tuesday",
         meals: [
           { type: "Breakfast", ...weekdayBreakfast },
-          { type: "Lunch", name: "Chickpea Tuna Salad Bowl", ingredients: "1/3 cup chickpeas, 3 oz tuna canned drained, 1/3 cup tomato, 2 tsp olive oil", link: "https://www.themediterraneandish.com/chickpea-salad/", nutrition: { calories: 305, protein: 27, carbs: 14, fat: 12, satFat: 2, fiber: 8, sodium: 320 } },
-          { type: "Dinner", name: "Turkey and Bean Chili", ingredients: "5 oz ground turkey 93% lean, 1/3 cup beans, 3/4 cup tomato, 1/3 cup peppers", link: "https://www.skinnytaste.com/turkey-chili-taco-soup/", nutrition: { calories: 435, protein: 35, carbs: 28, fat: 14, satFat: 4, fiber: 10, sodium: 580 } },
-          { type: "Snack", name: "Chocolate Banana Protein Shake", ingredients: "1/2 banana, 1 tsp cocoa, 3/4 cup milk, 1/2 scoop protein powder", link: "https://www.allrecipes.com/recipe/244959/chocolate-banana-peanut-butter-protein-shake/", nutrition: { calories: 205, protein: 20, carbs: 24, fat: 3, satFat: 2, fiber: 2, sodium: 105 } },
-          { type: "Snack 2", name: "Edamame", ingredients: "2/3 cup shelled edamame, pinch sea salt", link: "https://www.loveandlemons.com/edamame/", nutrition: { calories: 120, protein: 11, carbs: 10, fat: 5, satFat: 0.5, fiber: 5, sodium: 5 } }
+          {
+            type: "Lunch",
+            name: "Thai Peanut Quinoa Salad (leftover)",
+            ingredients: `${monLunch.ingredients.split(" Cook once")[0].trim()} · Leftover: same portions as Monday.`,
+            link: monLunch.link,
+            nutrition: monLunch.nutrition
+          },
+          {
+            type: "Dinner",
+            name: "Moroccan Chickpea Soup (leftover)",
+            ingredients: `${monDinner.ingredients.split(" Cook once")[0].trim()} · Leftover: same portions as Monday.`,
+            link: monDinner.link,
+            nutrition: monDinner.nutrition
+          },
+          { type: "Snack", name: "Chocolate protein shake", ingredients: "1/2 banana, 1 tsp cocoa, 3/4 cup 1% milk, 1/2 scoop whey protein", link: "https://www.allrecipes.com/recipe/244959/chocolate-banana-peanut-butter-protein-shake/", nutrition: N.monWedSnack },
+          { type: "Snack 2", name: "Cottage cheese", ingredients: "3/4 cup 1% cottage cheese, black pepper", link: "https://www.eatingwell.com/recipe/266458/cottage-cheese-bowl/", nutrition: N.monWedSnack2 }
         ]
       },
       {
         day: "Wednesday",
         meals: [
           { type: "Breakfast", ...weekdayBreakfast },
-          { type: "Lunch", name: "Mediterranean Quinoa Chickpea Bowl", ingredients: "1/4 cup quinoa dry, 1/2 cup chickpeas, 1/3 cup cucumber, 2 tsp lemon juice", link: "https://www.loveandlemons.com/quinoa-salad/", nutrition: { calories: 300, protein: 14, carbs: 48, fat: 5, satFat: 1, fiber: 9, sodium: 25 } },
-          { type: "Dinner", name: "Baked Cod with Roasted Broccoli", ingredients: "5 oz cod raw, 1.5 cups broccoli, 2 garlic cloves, 2 tsp olive oil", link: "https://www.eatingwell.com/recipe/269838/garlic-butter-roasted-salmon-with-potatoes-asparagus/", nutrition: { calories: 265, protein: 28, carbs: 12, fat: 11, satFat: 2, fiber: 5, sodium: 95 } },
-          { type: "Snack", name: "Greek Yogurt", ingredients: "1/2 cup nonfat greek yogurt, cinnamon", link: "https://www.eatingwell.com/recipe/275668/greek-yogurt-with-fruit-nuts/", nutrition: { calories: 62, protein: 11, carbs: 4, fat: 0.2, satFat: 0, fiber: 0, sodium: 68 } },
-          { type: "Snack 2", name: "Cottage Cheese + Cucumber", ingredients: "3/4 cup 1% cottage cheese, 1/3 cup cucumber", link: "https://www.eatingwell.com/recipe/266458/cottage-cheese-bowl/", nutrition: { calories: 125, protein: 18, carbs: 5, fat: 2, satFat: 1, fiber: 0, sodium: 480 } }
+          { type: "Lunch", ...wedLunch },
+          { type: "Dinner", ...wedDinner },
+          { type: "Snack", name: "Chocolate protein shake", ingredients: "1/2 banana, 1 tsp cocoa, 3/4 cup 1% milk, 1/2 scoop whey protein", link: "https://www.allrecipes.com/recipe/244959/chocolate-banana-peanut-butter-protein-shake/", nutrition: N.monWedSnack },
+          { type: "Snack 2", name: "Cottage cheese", ingredients: "3/4 cup 1% cottage cheese, black pepper", link: "https://www.eatingwell.com/recipe/266458/cottage-cheese-bowl/", nutrition: N.monWedSnack2 }
         ]
       },
       {
         day: "Thursday",
         meals: [
           { type: "Breakfast", ...weekdayBreakfast },
-          { type: "Lunch", name: "Chicken and White Bean Soup", ingredients: "4 oz chicken breast raw, 1/3 cup white beans, 3/4 cup kale, 1.5 cups broth", link: "https://www.skinnytaste.com/chicken-and-white-bean-soup/", nutrition: { calories: 285, protein: 28, carbs: 18, fat: 6, satFat: 1, fiber: 6, sodium: 680 } },
-          { type: "Dinner", name: "Tofu Stir-Fry with Brown Rice", ingredients: "5 oz firm tofu, 1.5 cups broccoli, 3 tbsp brown rice dry, 1 tbsp tamari", link: "https://minimalistbaker.com/easy-tofu-stir-fry/", nutrition: { calories: 445, protein: 23, carbs: 48, fat: 18, satFat: 3, fiber: 7, sodium: 620 } },
-          { type: "Snack", name: "Apple + Peanut Butter", ingredients: "1 small apple, 1 tbsp natural peanut butter", link: "https://www.ambitiouskitchen.com/protein-peanut-butter-energy-bites/", nutrition: { calories: 155, protein: 4, carbs: 20, fat: 8, satFat: 1.5, fiber: 4, sodium: 2 } },
-          { type: "Snack 2", name: "Cottage Cheese", ingredients: "1/2 cup 1% cottage cheese, black pepper", link: "https://www.eatingwell.com/recipe/266458/cottage-cheese-bowl/", nutrition: { calories: 92, protein: 14, carbs: 4, fat: 2, satFat: 1, fiber: 0, sodium: 390 } }
+          {
+            type: "Lunch",
+            name: "Chicken Shawarma Quinoa Bowls (leftover)",
+            ingredients: `${wedLunch.ingredients.split(" Cook once")[0].trim()} · Leftover: same portions as Wednesday.`,
+            link: wedLunch.link,
+            nutrition: wedLunch.nutrition
+          },
+          {
+            type: "Dinner",
+            name: "Lemon Pepper Tofu and Asparagus (leftover)",
+            ingredients: `${wedDinner.ingredients.split(" Cook once")[0].trim()} · Leftover: same portions as Wednesday.`,
+            link: wedDinner.link,
+            nutrition: wedDinner.nutrition
+          },
+          { type: "Snack", name: "Chocolate protein shake", ingredients: "1/2 banana, 1 tsp cocoa, 3/4 cup 1% milk, 1/2 scoop whey protein", link: "https://www.allrecipes.com/recipe/244959/chocolate-banana-peanut-butter-protein-shake/", nutrition: N.monWedSnack },
+          { type: "Snack 2", name: "Cottage cheese", ingredients: "3/4 cup 1% cottage cheese, black pepper", link: "https://www.eatingwell.com/recipe/266458/cottage-cheese-bowl/", nutrition: N.monWedSnack2 }
         ]
       },
       {
         day: "Friday",
         meals: [
           { type: "Breakfast", ...weekdayBreakfast },
-          { type: "Lunch", name: "Turkey Hummus Veggie Wrap", ingredients: "4 oz turkey breast, 2 tbsp hummus, 3/4 cup spinach, 1 small whole wheat wrap", link: "https://www.eatingwell.com/recipe/262389/turkey-veggie-wrap/", nutrition: { calories: 345, protein: 28, carbs: 30, fat: 12, satFat: 3, fiber: 4, sodium: 620 } },
-          { type: "Dinner", name: "Shrimp and Vegetable Quinoa Skillet", ingredients: "5 oz shrimp raw, 3 tbsp quinoa dry, 3/4 cup zucchini, 1 garlic clove", link: "https://www.eatingwell.com/recipe/250222/one-pot-garlicky-shrimp-broccoli/", nutrition: { calories: 385, protein: 28, carbs: 32, fat: 12, satFat: 2, fiber: 4, sodium: 520 } },
-          { type: "Snack", name: "Roasted Chickpeas", ingredients: "1/2 cup chickpeas, 1/2 tsp paprika, 1 tsp olive oil", link: "https://www.loveandlemons.com/roasted-chickpeas/", nutrition: { calories: 185, protein: 8, carbs: 22, fat: 8, satFat: 1, fiber: 6, sodium: 220 } },
-          { type: "Snack 2", name: "Protein Shake (small)", ingredients: "3/4 cup milk, 1/2 scoop protein powder", link: "https://www.loveandlemons.com/protein-shake/", nutrition: { calories: 175, protein: 16, carbs: 8, fat: 4, satFat: 2, fiber: 0, sodium: 95 } }
+          { type: "Lunch", ...friLunch },
+          { type: "Dinner", ...friDinner },
+          { type: "Snack", name: "Protein shake (small)", ingredients: "3/4 cup 1% milk, 1/2 scoop whey protein, ice", link: "https://www.loveandlemons.com/protein-shake/", nutrition: N.thuFriSnack },
+          { type: "Snack 2", name: "Baby carrots + hummus", ingredients: "1 cup baby carrots, 3 tbsp hummus", link: "https://cookieandkate.com/how-to-make-hummus/", nutrition: N.thuFriSnack2 }
         ]
       },
       {
         day: "Saturday",
         meals: [
-          { type: "Breakfast", name: "Veggie Egg Scramble + Toast", ingredients: "1 whole egg + 2/3 cup egg whites, 1/2 cup bell pepper + mushrooms, 1 slice whole grain toast, 2 tsp olive oil, coffee + 1/4 cup lowfat milk", link: "https://www.eatingwell.com/recipe/252451/veggie-egg-white-scramble/", nutrition: { calories: 285, protein: 23, carbs: 26, fat: 12, satFat: 3, fiber: 4, sodium: 380 } },
-          { type: "Lunch", name: "Black Bean and Sweet Potato Bowl", ingredients: "1/3 cup black beans, 1/2 medium sweet potato, 3/4 cup greens, 2 tbsp avocado", link: "https://cookieandkate.com/black-bean-sweet-potato-enchiladas/", nutrition: { calories: 265, protein: 13, carbs: 42, fat: 8, satFat: 1, fiber: 10, sodium: 95 } },
-          { type: "Dinner", name: "Grilled Chicken with Farro Salad", ingredients: "5 oz chicken breast raw, 3 tbsp farro dry, 1.5 cups arugula, 2 tsp pistachios", link: "https://www.eatingwell.com/recipe/7904853/farro-salad-with-arugula-artichokes-pistachios/", nutrition: { calories: 485, protein: 38, carbs: 35, fat: 18, satFat: 4, fiber: 6, sodium: 120 } },
-          { type: "Snack", name: "Protein Shake (small)", ingredients: "3/4 cup milk, 1/2 banana, 1/2 scoop protein powder", link: "https://www.loveandlemons.com/protein-shake/", nutrition: { calories: 245, protein: 18, carbs: 28, fat: 5, satFat: 2, fiber: 3, sodium: 135 } },
-          { type: "Snack 2", name: "Carrots + Hummus + Cottage Cheese", ingredients: "1 cup baby carrots, 2 tbsp hummus, 1/4 cup 1% cottage cheese", link: "https://www.eatingwell.com/recipe/266458/cottage-cheese-bowl/", nutrition: { calories: 125, protein: 9, carbs: 15, fat: 5, satFat: 2, fiber: 4, sodium: 280 } }
+          { type: "Breakfast", ...satEggs },
+          {
+            type: "Lunch",
+            name: "Chicken Taco Salad (leftover)",
+            ingredients: `${friLunch.ingredients.split(" Cook once")[0].trim()} · Leftover: same portions as Friday.`,
+            link: friLunch.link,
+            nutrition: friLunch.nutrition
+          },
+          {
+            type: "Dinner",
+            name: "Lemon Garlic Herb Grilled Salmon (leftover)",
+            ingredients: `${friDinner.ingredients.split(" Cook once")[0].trim()} · Leftover: same portions as Friday.`,
+            link: friDinner.link,
+            nutrition: friDinner.nutrition
+          },
+          { type: "Snack", name: "Protein shake + fruit", ingredients: "3/4 cup 1% milk, 1/2 scoop whey protein, 1/2 banana", link: "https://www.loveandlemons.com/protein-shake/", nutrition: N.weekendSnack },
+          { type: "Snack 2", name: "Trail mix + cottage cheese", ingredients: "1/4 cup lowfat cottage cheese, 1/4 cup whole-grain cereal, 2 tbsp mixed nuts, dried fruit", link: "https://www.eatingwell.com/recipe/266458/cottage-cheese-bowl/", nutrition: N.weekendSnack2 }
         ]
       },
       {
         day: "Sunday",
         meals: [
-          { type: "Breakfast", name: "Open-Faced Egg & Avocado Toast", ingredients: "1 whole egg + 1/2 cup egg whites, 1 slice whole grain bread, 2 tbsp avocado, 1/3 tomato, coffee + 1/4 cup lowfat milk", link: "https://www.eatingwell.com/recipe/273978/avocado-toast-with-burrata/", nutrition: { calories: 265, protein: 21, carbs: 22, fat: 13, satFat: 3, fiber: 5, sodium: 410 } },
-          { type: "Lunch", name: "Lentil and Tuna Salad", ingredients: "1/3 cup lentils cooked, 3 oz tuna, 1/3 cup cucumber, 2 tsp lemon juice", link: "https://www.themediterraneandish.com/lentil-salad-recipe/", nutrition: { calories: 315, protein: 25, carbs: 28, fat: 8, satFat: 1, fiber: 8, sodium: 420 } },
-          { type: "Dinner", name: "Baked Salmon and Brussels Sprouts", ingredients: "5 oz salmon raw, 1.5 cups brussels sprouts, 2 garlic cloves, 2 tsp olive oil", link: "https://www.eatingwell.com/recipe/274037/roasted-salmon-with-smoky-chickpeas-greens/", nutrition: { calories: 410, protein: 30, carbs: 12, fat: 26, satFat: 5, fiber: 6, sodium: 115 } },
-          { type: "Snack", name: "Pumpkin Seeds + Fruit", ingredients: "1 tbsp pumpkin seeds, 1/2 apple", link: "https://www.eatingwell.com/recipe/250591/pumpkin-seed-trail-mix/", nutrition: { calories: 72, protein: 3, carbs: 9, fat: 3, satFat: 1, fiber: 2, sodium: 2 } },
-          { type: "Snack 2", name: "Skyr or Greek Yogurt", ingredients: "2/3 cup nonfat greek yogurt or skyr", link: "https://www.eatingwell.com/recipe/275668/greek-yogurt-with-fruit-nuts/", nutrition: { calories: 105, protein: 18, carbs: 6, fat: 0, satFat: 0, fiber: 0, sodium: 55 } }
+          { type: "Breakfast", ...sunEggs },
+          { type: "Lunch", ...sunLunch },
+          { type: "Dinner", ...sunDinner },
+          { type: "Snack", name: "Apple + peanut butter", ingredients: "1 small apple, 1 tbsp natural peanut butter", link: "https://www.ambitiouskitchen.com/protein-peanut-butter-energy-bites/", nutrition: N.sunSnack },
+          { type: "Snack 2", name: "Skyr or Greek yogurt", ingredients: "3/4 cup nonfat Greek yogurt", link: "https://www.eatingwell.com/recipe/275668/greek-yogurt-with-fruit-nuts/", nutrition: N.sunSnack2 }
         ]
       }
     ];
@@ -660,8 +778,10 @@
       const satOk = stats.satFat < 15;
       const fiberOk = stats.fiber >= 25;
       const sodiumOk = stats.sodium < 2300;
+      const kcalInRange = stats.calories >= 1890 && stats.calories <= 2110;
+      const proteinInRange = stats.protein >= 88 && stats.protein <= 145;
       const dayNote =
-        "Daily totals sum the meal rows above (same USDA-style assumptions). Use nutrition labels and a scale for your exact foods.";
+        "Daily totals sum the meal rows above (same USDA-style assumptions). Lunch and dinner repeat the next calendar day when marked leftover; Sunday’s cook also supplies Monday week 2. Use nutrition labels and a scale for your exact foods.";
 
       section.innerHTML = `
         <h2 class="day-title">Week 1 · ${entry.day}</h2>
@@ -682,7 +802,8 @@
           </div>
           ${metricsMarkup}
           <div class="badges">
-            <span class="goal-badge">Protein (day) ${fmtP(totalProtein)}g</span>
+            <span class="goal-badge ${kcalInRange ? "" : "warn"}">${kcalInRange ? "✓" : "!"} ~2000 kcal (${Math.round(stats.calories)} kcal)</span>
+            <span class="goal-badge ${proteinInRange ? "" : "warn"}">${proteinInRange ? "✓" : "!"} ~100g protein (${fmtP(totalProtein)}g)</span>
             <span class="goal-badge ${satOk ? "" : "warn"}">${satOk ? "✓" : "!"} Sat fat &lt;15g (${fmtP(stats.satFat)}g)</span>
             <span class="goal-badge ${fiberOk ? "" : "warn"}">${fiberOk ? "✓" : "!"} Fiber ≥25g (${fmtP(stats.fiber)}g)</span>
             <span class="goal-badge ${sodiumOk ? "" : "warn"}">${sodiumOk ? "✓" : "!"} Sodium &lt;2300mg (${Math.round(stats.sodium)}mg)</span>
