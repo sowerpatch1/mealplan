@@ -2,90 +2,279 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Meal Planner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 1 Cholesterol-Friendly Meal Plan</title>
   <style>
+    :root {
+      color-scheme: light;
+      --bg: #f4f7f4;
+      --card: #ffffff;
+      --ink: #1f2937;
+      --muted: #4b5563;
+      --primary: #1d4ed8;
+      --accent: #e5f4ea;
+      --border: #d1d5db;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      padding: 20px;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.45;
     }
+
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
     h1 {
-      text-align: center;
+      margin: 0 0 8px;
+      font-size: 30px;
     }
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 15px;
+
+    h2 {
+      margin: 0;
+      font-size: 22px;
     }
-    .card {
-      background: white;
-      padding: 15px;
+
+    p {
+      margin: 0 0 12px;
+      color: var(--muted);
+    }
+
+    .intro {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+
+    .note {
+      background: var(--accent);
       border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 12px;
+      margin-top: 12px;
+      color: #0f5132;
     }
-    .card h3 {
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 14px;
+    }
+
+    .day-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .day-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      gap: 10px;
+    }
+
+    .protein-pill {
+      font-size: 13px;
+      border-radius: 999px;
+      padding: 4px 10px;
+      border: 1px solid #86efac;
+      background: #f0fdf4;
+      color: #166534;
+      white-space: nowrap;
+    }
+
+    .protein-pill.low {
+      border-color: #fcd34d;
+      background: #fffbeb;
+      color: #92400e;
+    }
+
+    .meal {
+      border-top: 1px solid #edf2f7;
+      padding-top: 10px;
+      margin-top: 10px;
+    }
+
+    .meal:first-of-type {
+      border-top: none;
       margin-top: 0;
+      padding-top: 0;
     }
-    .tag {
-      display: inline-block;
-      background: #e0f2f1;
-      padding: 3px 8px;
-      margin: 2px;
-      border-radius: 5px;
+
+    .meal-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: baseline;
+      margin-bottom: 4px;
+    }
+
+    .meal-type {
       font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
+
+    .meal-protein {
+      font-size: 13px;
+      color: #14532d;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
     a {
-      color: #0077cc;
+      color: var(--primary);
       text-decoration: none;
+      font-weight: 600;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 13px;
+      color: #374151;
     }
   </style>
 </head>
 <body>
+  <main>
+    <section class="intro">
+      <h1>Week 1 Cholesterol-Friendly Meal Plan</h1>
+      <p>
+        This plan emphasizes cholesterol-supportive eating with high-fiber foods, lean proteins, legumes, whole grains,
+        nuts/seeds, and unsaturated fats.
+      </p>
+      <p>
+        Protein values are approximate and aimed at supporting around <strong>100g protein per day</strong>.
+      </p>
+      <div class="note">
+        Educational use only. This is not medical advice. Adjust meals for your personal needs and clinician guidance.
+      </div>
+    </section>
 
-<h1>My Meal Planner</h1>
+    <section class="grid" id="planContainer"></section>
 
-<div class="container" id="mealContainer"></div>
+    <footer>
+      Tip: update recipes anytime by editing the meal entries directly in <code>index.html</code>.
+    </footer>
+  </main>
 
-<script>
-const meals = [
-  {
-    name: "Peanut Butter Energy Bites",
-    calories: 150,
-    protein: 6,
-    fiber: 3,
-    tags: ["High Fiber", "Heart Healthy"],
-    link: "https://www.ambitiouskitchen.com/protein-peanut-butter-energy-bites/"
-  },
-  {
-    name: "Chocolate Banana Protein Shake",
-    calories: 300,
-    protein: 25,
-    fiber: 2,
-    tags: ["High Protein"],
-    link: "https://www.allrecipes.com/recipe/244959/chocolate-banana-peanut-butter-protein-shake/"
-  }
-];
+  <script>
+    const dailyTarget = 100;
 
-const container = document.getElementById("mealContainer");
+    const weekPlan = [
+      {
+        day: "Monday",
+        meals: [
+          { type: "Breakfast", name: "Greek Yogurt Protein Bowl", protein: 30, link: "https://www.eatingwell.com/recipe/275668/greek-yogurt-with-fruit-nuts/" },
+          { type: "Lunch", name: "Salmon Salad with Avocado", protein: 33, link: "https://www.eatingwell.com/recipe/269832/salmon-salad-stuffed-avocado/" },
+          { type: "Dinner", name: "Lentil Soup with Veggies", protein: 26, link: "https://cookieandkate.com/best-lentil-soup-recipe/" },
+          { type: "Snack", name: "Peanut Butter Energy Bites", protein: 12, link: "https://www.ambitiouskitchen.com/protein-peanut-butter-energy-bites/" }
+        ]
+      },
+      {
+        day: "Tuesday",
+        meals: [
+          { type: "Breakfast", name: "Overnight Oats with Chia and Protein", protein: 28, link: "https://www.eatingbirdfood.com/protein-overnight-oats/" },
+          { type: "Lunch", name: "Chickpea Tuna Salad Bowl", protein: 31, link: "https://www.themediterraneandish.com/chickpea-salad/" },
+          { type: "Dinner", name: "Turkey and Bean Chili", protein: 34, link: "https://www.skinnytaste.com/turkey-chili-taco-soup/" },
+          { type: "Snack", name: "Chocolate Banana Protein Shake", protein: 25, link: "https://www.allrecipes.com/recipe/244959/chocolate-banana-peanut-butter-protein-shake/" }
+        ]
+      },
+      {
+        day: "Wednesday",
+        meals: [
+          { type: "Breakfast", name: "Egg White Veggie Scramble + Toast", protein: 29, link: "https://www.eatingwell.com/recipe/252451/veggie-egg-white-scramble/" },
+          { type: "Lunch", name: "Mediterranean Quinoa Chickpea Bowl", protein: 27, link: "https://www.loveandlemons.com/quinoa-salad/" },
+          { type: "Dinner", name: "Baked Cod with Roasted Broccoli", protein: 35, link: "https://www.eatingwell.com/recipe/269838/garlic-butter-roasted-salmon-with-potatoes-asparagus/" },
+          { type: "Snack", name: "Cottage Cheese with Berries", protein: 14, link: "https://www.eatingwell.com/recipe/266458/cottage-cheese-bowl/" }
+        ]
+      },
+      {
+        day: "Thursday",
+        meals: [
+          { type: "Breakfast", name: "Protein Smoothie with Flax", protein: 32, link: "https://www.eatingwell.com/recipe/274913/strawberry-peach-smoothie/" },
+          { type: "Lunch", name: "Chicken and White Bean Soup", protein: 31, link: "https://www.skinnytaste.com/chicken-and-white-bean-soup/" },
+          { type: "Dinner", name: "Tofu Stir-Fry with Brown Rice", protein: 28, link: "https://minimalistbaker.com/easy-tofu-stir-fry/" },
+          { type: "Snack", name: "Edamame with Sea Salt", protein: 18, link: "https://www.loveandlemons.com/edamame/" }
+        ]
+      },
+      {
+        day: "Friday",
+        meals: [
+          { type: "Breakfast", name: "High-Protein Oatmeal Bowl", protein: 29, link: "https://www.eatingbirdfood.com/protein-oatmeal/" },
+          { type: "Lunch", name: "Turkey Hummus Veggie Wrap", protein: 30, link: "https://www.eatingwell.com/recipe/262389/turkey-veggie-wrap/" },
+          { type: "Dinner", name: "Shrimp and Vegetable Quinoa Skillet", protein: 33, link: "https://www.eatingwell.com/recipe/250222/one-pot-garlicky-shrimp-broccoli/" },
+          { type: "Snack", name: "Roasted Chickpeas", protein: 11, link: "https://www.loveandlemons.com/roasted-chickpeas/" }
+        ]
+      },
+      {
+        day: "Saturday",
+        meals: [
+          { type: "Breakfast", name: "Greek Yogurt Chia Parfait", protein: 27, link: "https://www.eatingwell.com/recipe/250216/blueberry-almond-chia-pudding/" },
+          { type: "Lunch", name: "Black Bean and Sweet Potato Bowl", protein: 24, link: "https://cookieandkate.com/black-bean-sweet-potato-enchiladas/" },
+          { type: "Dinner", name: "Grilled Chicken with Farro Salad", protein: 38, link: "https://www.eatingwell.com/recipe/7904853/farro-salad-with-arugula-artichokes-pistachios/" },
+          { type: "Snack", name: "Protein Shake", protein: 25, link: "https://www.loveandlemons.com/protein-shake/" }
+        ]
+      },
+      {
+        day: "Sunday",
+        meals: [
+          { type: "Breakfast", name: "Egg and Avocado Toast", protein: 25, link: "https://www.eatingwell.com/recipe/273978/avocado-toast-with-burrata/" },
+          { type: "Lunch", name: "Lentil and Tuna Salad", protein: 34, link: "https://www.themediterraneandish.com/lentil-salad-recipe/" },
+          { type: "Dinner", name: "Baked Salmon and Brussels Sprouts", protein: 35, link: "https://www.eatingwell.com/recipe/274037/roasted-salmon-with-smoky-chickpeas-greens/" },
+          { type: "Snack", name: "Pumpkin Seeds and Fruit", protein: 10, link: "https://www.eatingwell.com/recipe/250591/pumpkin-seed-trail-mix/" }
+        ]
+      }
+    ];
 
-meals.forEach(meal => {
-  const div = document.createElement("div");
-  div.className = "card";
+    const planContainer = document.getElementById("planContainer");
 
-  div.innerHTML = `
-    <h3>${meal.name}</h3>
-    <p>Calories: ${meal.calories}</p>
-    <p>Protein: ${meal.protein}g</p>
-    <p>Fiber: ${meal.fiber}g</p>
-    <div>
-      ${meal.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}
-    </div>
-    <p><a href="${meal.link}" target="_blank">View Recipe</a></p>
-  `;
+    weekPlan.forEach((entry) => {
+      const totalProtein = entry.meals.reduce((sum, meal) => sum + meal.protein, 0);
+      const onTarget = totalProtein >= dailyTarget - 5;
 
-  container.appendChild(div);
-});
-</script>
+      const card = document.createElement("article");
+      card.className = "day-card";
 
+      const proteinClass = onTarget ? "protein-pill" : "protein-pill low";
+      const mealsMarkup = entry.meals.map((meal) => `
+        <div class="meal">
+          <div class="meal-row">
+            <span class="meal-type">${meal.type}</span>
+            <span class="meal-protein">${meal.protein}g protein</span>
+          </div>
+          <a href="${meal.link}" target="_blank" rel="noopener noreferrer">${meal.name}</a>
+        </div>
+      `).join("");
+
+      card.innerHTML = `
+        <div class="day-header">
+          <h2>${entry.day}</h2>
+          <span class="${proteinClass}">${totalProtein}g / ${dailyTarget}g</span>
+        </div>
+        ${mealsMarkup}
+      `;
+
+      planContainer.appendChild(card);
+    });
+  </script>
 </body>
 </html>
