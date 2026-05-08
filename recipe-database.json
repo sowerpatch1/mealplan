@@ -494,10 +494,10 @@
     },
     {
       "id": "lemon-garlic-herb-grilled-salmon",
-      "title": "Lemon Garlic Herb Grilled Salmon",
+      "title": "Lemon Garlic Herb Grilled Salmon with Farro and Asparagus",
       "url": "https://www.cookingclassy.com/lemon-garlic-herb-grilled-salmon/",
       "meal": "dinner",
-      "notes": "Added quinoa side and roasted broccoli for carb and veggie. Salmon cholesterol is acceptable (omega-3 rich). Nutrition estimated.",
+      "notes": "Paired with farro and roasted asparagus. Salmon cholesterol is acceptable (omega-3 rich). Nutrition estimated.",
       "ingredients": [
         "4 (6-7 oz) skinless salmon fillets",
         "1/4 cup fresh lemon juice",
@@ -510,28 +510,28 @@
         "1 tsp Dijon mustard",
         "1 tsp honey",
         "Salt and freshly ground black pepper",
-        "1 cup dry quinoa",
-        "2 cups water",
-        "1 lb broccoli florets",
-        "1 tbsp olive oil (for broccoli)",
-        "Salt and pepper (for broccoli)"
+        "1 cup dry farro",
+        "3 cups water (for farro)",
+        "1 lb asparagus, woody ends trimmed",
+        "1 tbsp olive oil (for asparagus)",
+        "Salt and pepper (for asparagus)"
       ],
       "steps": [
-        "Cook quinoa: rinse, combine with 2 cups water, bring to boil, reduce heat, cover, simmer 15 minutes. Fluff and set aside.",
-        "Preheat oven to 425°F. Toss broccoli with 1 tbsp olive oil, salt, and pepper on a baking sheet. Roast 20 minutes until edges are crispy.",
+        "Cook farro: combine with 3 cups water and a pinch of salt, bring to boil, reduce heat, simmer 25-30 minutes until tender. Drain any excess water.",
+        "Preheat oven to 425°F. Toss asparagus with 1 tbsp olive oil, salt, and pepper on a baking sheet. Roast 12-15 minutes until tender and slightly charred.",
         "Whisk lemon juice, 1/4 cup olive oil, parsley, rosemary, thyme, garlic, lemon zest, Dijon, honey, 1 tsp salt, and 1/2 tsp pepper.",
         "Place salmon in a dish, pour marinade over, cover, and refrigerate 30 minutes (turn once halfway through).",
         "Preheat grill to medium-high. Clean and oil grates. Grill salmon 3-5 minutes per side until cooked to preference.",
-        "Serve salmon over quinoa with roasted broccoli alongside. Garnish with extra parsley."
+        "Serve salmon over farro with roasted asparagus alongside. Garnish with extra parsley."
       ],
       "nutrition_per_serving": {
         "servings": 4,
-        "calories": 530,
-        "protein_g": 43,
+        "calories": 540,
+        "protein_g": 44,
         "total_fat_g": 28,
         "saturated_fat_g": 4,
         "cholesterol_mg": 109,
-        "fiber_g": 5,
+        "fiber_g": 6,
         "sodium_mg": 350
       }
     },
@@ -711,6 +711,172 @@
         "cholesterol_mg": 10,
         "fiber_g": 3,
         "sodium_mg": 370
+      }
+    },
+    {
+      "id": "egg-avocado-toast",
+      "title": "Open-Faced Egg & Avocado Toast",
+      "url": null,
+      "meal": "breakfast",
+      "notes": "Quick high-protein breakfast. Nutrition estimated from USDA values.",
+      "ingredients": [
+        "1 whole egg",
+        "1/2 cup egg whites",
+        "1 slice whole grain bread",
+        "2 tbsp avocado, mashed",
+        "1/3 tomato, sliced",
+        "Salt and pepper to taste",
+        "Coffee",
+        "1/4 cup low-fat milk"
+      ],
+      "steps": [
+        "Toast whole grain bread.",
+        "Heat a nonstick skillet over medium heat. Cook egg and egg whites (scrambled or fried, as preferred).",
+        "Spread mashed avocado on toast. Top with cooked eggs and tomato slices. Season with salt and pepper.",
+        "Serve with coffee and low-fat milk."
+      ],
+      "nutrition_per_serving": {
+        "servings": 1,
+        "calories": 310,
+        "protein_g": 22,
+        "total_fat_g": 13,
+        "saturated_fat_g": 3,
+        "cholesterol_mg": 186,
+        "fiber_g": 5,
+        "sodium_mg": 380
+      }
+    },
+    {
+      "id": "veggie-egg-scramble-toast",
+      "title": "Veggie Egg Scramble + Toast",
+      "url": null,
+      "meal": "breakfast",
+      "notes": "High-protein veggie-packed breakfast. Nutrition estimated from USDA values.",
+      "ingredients": [
+        "1 whole egg",
+        "2/3 cup egg whites",
+        "1/2 cup diced bell pepper and mushrooms",
+        "2 tsp olive oil",
+        "1 slice whole grain bread, toasted",
+        "Salt and pepper to taste",
+        "Coffee",
+        "1/4 cup low-fat milk"
+      ],
+      "steps": [
+        "Heat olive oil in a nonstick skillet over medium heat.",
+        "Sauté bell pepper and mushrooms 3-4 minutes until softened.",
+        "Whisk egg and egg whites together. Pour into skillet with veggies and scramble until cooked through. Season with salt and pepper.",
+        "Serve scramble with whole grain toast alongside. Enjoy with coffee and low-fat milk."
+      ],
+      "nutrition_per_serving": {
+        "servings": 1,
+        "calories": 290,
+        "protein_g": 26,
+        "total_fat_g": 14,
+        "saturated_fat_g": 3,
+        "cholesterol_mg": 186,
+        "fiber_g": 3,
+        "sodium_mg": 420
+      }
+    },
+    {
+      "id": "red-lentil-dal",
+      "title": "Red Lentil Dal",
+      "url": null,
+      "meal": "dinner",
+      "notes": "Based on NYT recipe. Includes quinoa and roti for carbs, kale for greens, yogurt for extra protein. Nutrition estimated.",
+      "ingredients": [
+        "2 tbsp vegetable oil",
+        "1 cup finely chopped onion",
+        "1 medium sweet potato, finely diced",
+        "1 tbsp minced fresh ginger",
+        "2 garlic cloves, minced",
+        "1 serrano pepper, minced",
+        "1 cup red lentils",
+        "2 tsp ground coriander",
+        "2 tsp ground cumin",
+        "2 tsp turmeric",
+        "1 tsp ground ginger",
+        "1 (15 oz) can diced tomatoes",
+        "2 cups kale, chopped",
+        "Salt and pepper to taste",
+        "1 cup dry quinoa",
+        "2 cups water (for quinoa)",
+        "4 tbsp chopped cilantro",
+        "4 tbsp diced red onion",
+        "8 roti",
+        "1 cup plain nonfat Greek yogurt"
+      ],
+      "steps": [
+        "Cook quinoa: rinse, combine with 2 cups water, bring to boil, reduce heat, cover, simmer 15 minutes. Fluff and set aside.",
+        "Heat vegetable oil in a large pot over medium heat. Add onion and cook 5 minutes until softened.",
+        "Add sweet potato, fresh ginger, garlic, and serrano pepper. Cook 2-3 minutes until fragrant.",
+        "Stir in red lentils, coriander, cumin, turmeric, and ground ginger. Add diced tomatoes and 2 cups water. Bring to a boil, then reduce heat and simmer 20-25 minutes until lentils are soft and broken down.",
+        "Stir in chopped kale and cook 3-5 minutes until wilted. Season with salt and pepper.",
+        "Serve dal over quinoa with warmed roti on the side. Top each serving with 1 tbsp cilantro, 1 tbsp diced red onion, and 1/4 cup Greek yogurt."
+      ],
+      "nutrition_per_serving": {
+        "servings": 4,
+        "calories": 520,
+        "protein_g": 24,
+        "total_fat_g": 12,
+        "saturated_fat_g": 2,
+        "cholesterol_mg": 2,
+        "fiber_g": 14,
+        "sodium_mg": 450
+      }
+    },
+    {
+      "id": "hummus-and-carrots",
+      "title": "Hummus and Carrots",
+      "url": null,
+      "meal": "snack",
+      "notes": "Simple grab-and-go snack. Nutrition estimated from USDA values.",
+      "ingredients": [
+        "1/3 cup hummus",
+        "1 cup baby carrots (or carrot sticks)"
+      ],
+      "steps": [
+        "Portion hummus into a small bowl or container. Serve with carrots for dipping."
+      ],
+      "nutrition_per_serving": {
+        "servings": 1,
+        "calories": 180,
+        "protein_g": 6,
+        "total_fat_g": 9,
+        "saturated_fat_g": 1,
+        "cholesterol_mg": 0,
+        "fiber_g": 6,
+        "sodium_mg": 320
+      }
+    },
+    {
+      "id": "chocolate-peanut-butter-protein-shake",
+      "title": "Chocolate Peanut Butter Protein Shake",
+      "url": null,
+      "meal": "snack",
+      "notes": "Makes 2 servings. Nutrition is per serving. Estimated from USDA values.",
+      "ingredients": [
+        "3/4 cup almond milk",
+        "1/2 banana",
+        "1 scoop protein powder",
+        "1 tbsp cocoa powder",
+        "1/4 cup frozen blueberries",
+        "1 tbsp peanut butter"
+      ],
+      "steps": [
+        "Add almond milk, banana, protein powder, cocoa powder, frozen blueberries, and peanut butter to a blender.",
+        "Blend until smooth. Divide between two glasses."
+      ],
+      "nutrition_per_serving": {
+        "servings": 2,
+        "calories": 150,
+        "protein_g": 14,
+        "total_fat_g": 6,
+        "saturated_fat_g": 1,
+        "cholesterol_mg": 0,
+        "fiber_g": 3,
+        "sodium_mg": 130
       }
     }
   ]
