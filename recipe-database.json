@@ -1,14 +1,717 @@
 {
   "meta": {
-    "description": "Recipe URLs and free-form notes for the meal plan. Edit this file; keep valid JSON. IDs are stable dish names (no day of week) so entries can be reused or moved on the calendar. Optional field \"url\" may be null or omitted when there is no recipe page yet.",
-    "version": 1
+    "description": "Recipe database for the meal plan. Edit this file; keep valid JSON. IDs are stable dish names (no day of week) so entries can be reused or moved on the calendar.",
+    "version": 2
   },
   "recipes": [
     {
       "id": "lemon-pepper-tofu-asparagus",
       "title": "Lemon Pepper Tofu and Asparagus",
       "url": "https://plantbasedrdblog.com/2022/02/lemon-pepper-tofu-and-asparagus/",
-      "notes": "Recipe uses super firm tofu; meal plan adds brown rice for portions."
+      "meal": "dinner",
+      "notes": "Added brown rice as complex carb side. Nutrition estimated from USDA values.",
+      "ingredients": [
+        "1 (450g) block super firm tofu, cut into slabs",
+        "2 tbsp cornstarch",
+        "2 tbsp nutritional yeast",
+        "1/2 tsp dry thyme",
+        "1/2 tsp salt",
+        "1/2 tsp black pepper",
+        "1 tbsp avocado oil",
+        "1 lb asparagus, woody stems removed",
+        "1/2 tbsp nutritional yeast (for asparagus)",
+        "Juice and zest of 1.5 lemons",
+        "1-2 tsp maple syrup",
+        "1/2 cup vegetable broth",
+        "1 tsp cornstarch (for sauce)",
+        "1 tsp red pepper flakes (optional)",
+        "2 cloves garlic, crushed",
+        "Salt and pepper to taste",
+        "1 cup brown rice, dry"
+      ],
+      "steps": [
+        "Cook 1 cup brown rice according to package directions.",
+        "Set oven to 425°F. Add trimmed asparagus to a lined baking sheet and top with a small splash of avocado oil, 1/2 tbsp nutritional yeast, black pepper, salt, and juice of half a lemon. Toss to coat and bake for 10-12 minutes.",
+        "Combine cornstarch, 2 tbsp nutritional yeast, pepper, thyme, and salt in a dish. Coat tofu pieces in the mixture.",
+        "Warm avocado oil in a large skillet. When hot, add tofu and cook 3-5 minutes per side until golden.",
+        "While tofu cooks, combine lemon juice, zest, maple syrup, black pepper, vegetable broth, and 1 tsp cornstarch in a bowl.",
+        "Remove cooked tofu from pan. Add a teaspoon of oil and sauté garlic and red pepper flakes until fragrant. Pour in sauce and cook 2-3 minutes until slightly thickened. Add tofu back and coat with sauce.",
+        "Serve tofu and asparagus over brown rice."
+      ],
+      "nutrition_per_serving": {
+        "servings": 3,
+        "calories": 450,
+        "protein_g": 28,
+        "total_fat_g": 14,
+        "saturated_fat_g": 2,
+        "cholesterol_mg": 0,
+        "fiber_g": 8,
+        "sodium_mg": 620
+      }
+    },
+    {
+      "id": "thai-peanut-quinoa-salad",
+      "title": "Crunchy Thai Peanut & Quinoa Salad",
+      "url": "https://cookieandkate.com/thai-peanut-quinoa-salad-recipe/",
+      "meal": "dinner",
+      "notes": "Added pan-fried tofu for protein boost. Nutrition estimated from USDA values.",
+      "ingredients": [
+        "3/4 cup uncooked quinoa",
+        "1.5 cups water",
+        "1 (14 oz) block extra-firm tofu, pressed and cubed",
+        "1 tbsp avocado oil",
+        "2 cups shredded purple cabbage",
+        "1 cup grated carrot",
+        "1 cup thinly sliced snow peas",
+        "1/2 cup chopped cilantro",
+        "1/4 cup thinly sliced green onion",
+        "1/4 cup chopped roasted peanuts",
+        "1/4 cup smooth peanut butter",
+        "3 tbsp reduced-sodium tamari",
+        "1 tbsp maple syrup",
+        "1 tbsp rice vinegar",
+        "1 tsp toasted sesame oil",
+        "2 tsp grated fresh ginger",
+        "Juice of 1/2 lime",
+        "Pinch of red pepper flakes"
+      ],
+      "steps": [
+        "Rinse quinoa. Combine with 1.5 cups water in a pot, bring to a gentle boil, reduce heat and simmer 10-15 minutes until water is absorbed. Cover and rest 5 minutes, then fluff.",
+        "Press tofu and cut into cubes. Heat avocado oil in a skillet over medium-high heat. Pan-fry tofu 3-4 minutes per side until golden and crispy. Set aside.",
+        "Whisk peanut butter and tamari until smooth. Add maple syrup, rice vinegar, sesame oil, ginger, lime juice, and red pepper flakes. Whisk until smooth.",
+        "In a large bowl, combine cooked quinoa, cabbage, carrot, snow peas, cilantro, and green onion. Add tofu. Pour peanut sauce over and toss to coat.",
+        "Divide into bowls and garnish with chopped peanuts."
+      ],
+      "nutrition_per_serving": {
+        "servings": 4,
+        "calories": 420,
+        "protein_g": 22,
+        "total_fat_g": 20,
+        "saturated_fat_g": 3,
+        "cholesterol_mg": 0,
+        "fiber_g": 9,
+        "sodium_mg": 480
+      }
+    },
+    {
+      "id": "turkey-enchilada-quinoa-soup",
+      "title": "Turkey Enchilada Quinoa Soup",
+      "url": "https://www.halfbakedharvest.com/turkey-enchilada-quinoa-soup/",
+      "meal": "dinner",
+      "notes": "Reduced cheese to 1/2 cup reduced-fat cheddar. Added kale for extra greens. Nutrition estimated.",
+      "ingredients": [
+        "2 tbsp olive oil",
+        "1 small sweet onion, diced",
+        "1 sweet potato, chopped",
+        "3 cups low-sodium chicken broth",
+        "1 (10 oz) can enchilada sauce",
+        "1 (4 oz) can chopped green chiles",
+        "1/2 cup dry quinoa",
+        "2 cups shredded cooked turkey (or chicken breast)",
+        "1 (14 oz) can black beans, drained and rinsed",
+        "2 cups chopped kale",
+        "1/2 cup reduced-fat shredded cheddar cheese",
+        "1 cup water",
+        "Diced avocado, cilantro, and tortilla chips for serving"
+      ],
+      "steps": [
+        "Heat olive oil in a large stockpot over medium-high heat. Add onion and sweet potato, season with salt and pepper, and cook 5-8 minutes until softened.",
+        "Pour in chicken broth, enchilada sauce, green chiles, and 1 cup water. Bring to a boil.",
+        "Add quinoa, cover, reduce heat to low, and cook 15 minutes until quinoa is soft.",
+        "Stir in turkey, black beans, kale, and 1/2 cup cheddar. Cook until cheese is melted, kale is wilted, and turkey is warmed through, about 5 minutes.",
+        "Ladle into bowls and garnish with avocado, cilantro, and tortilla chips."
+      ],
+      "nutrition_per_serving": {
+        "servings": 6,
+        "calories": 350,
+        "protein_g": 26,
+        "total_fat_g": 10,
+        "saturated_fat_g": 3,
+        "cholesterol_mg": 55,
+        "fiber_g": 7,
+        "sodium_mg": 680
+      }
+    },
+    {
+      "id": "grilled-pork-tenderloin-peach-vinaigrette",
+      "title": "Grilled Pork Tenderloin with Wilted Greens & Peach Vinaigrette",
+      "url": "https://www.theclevercarrot.com/2014/07/grilled-pork-tenderloin-with-wilted-greens-sweet-onions-peach-vinaigrette/",
+      "meal": "dinner",
+      "notes": "Reduced vinaigrette oil to 1/3 cup, swapped vegetable oil in marinade to 2 tbsp avocado oil, added farro as complex carb. Nutrition estimated.",
+      "ingredients": [
+        "1-1.25 lb pork tenderloin, trimmed",
+        "1/3 cup soy sauce",
+        "2 tbsp avocado oil",
+        "1/4 cup honey",
+        "2 tbsp fresh grated ginger",
+        "2 garlic cloves, grated",
+        "Juice of 1 lemon",
+        "2 tbsp red wine vinegar",
+        "1 tsp Dijon mustard",
+        "1 tsp peach preserves",
+        "1/3 cup olive oil",
+        "Salt and pepper",
+        "1 large Vidalia onion, sliced thick",
+        "4 handfuls arugula",
+        "1 peach, diced",
+        "1 avocado, diced",
+        "1 cup farro, dry"
+      ],
+      "steps": [
+        "Cook farro according to package directions (typically simmer 25-30 minutes). Drain and set aside.",
+        "Whisk soy sauce, avocado oil, honey, ginger, and garlic for the marinade. Add pork, cover, and refrigerate 6 hours to overnight.",
+        "For vinaigrette, blend lemon juice, red wine vinegar, Dijon, and peach preserves. Slowly stream in 1/3 cup olive oil to emulsify. Season with salt and pepper.",
+        "Slice onion into thick rings. Brush with oil, season with salt and pepper.",
+        "Preheat grill to high (500-600°F). Grill pork and onions 7 minutes, flip, cook 6 more minutes, then turn off burners and rest with lid closed 5 minutes. Transfer to cutting board and rest 5 more minutes.",
+        "Toss warm onions, arugula, peach, and avocado with peach vinaigrette.",
+        "Slice pork against the grain. Serve over farro with salad alongside."
+      ],
+      "nutrition_per_serving": {
+        "servings": 4,
+        "calories": 440,
+        "protein_g": 34,
+        "total_fat_g": 18,
+        "saturated_fat_g": 3,
+        "cholesterol_mg": 75,
+        "fiber_g": 5,
+        "sodium_mg": 520
+      }
+    },
+    {
+      "id": "blackened-tilapia-avocado-cucumber-salsa",
+      "title": "Blackened Tilapia with Avocado Cucumber Salsa",
+      "url": "https://www.bowlofdelicious.com/10-minute-blackened-tilapia-with-avocado-cucumber-salsa/",
+      "meal": "dinner",
+      "notes": "Reduced butter to 2 tbsp. Added quinoa side and sautéed spinach. Nutrition estimated.",
+      "ingredients": [
+        "4 tilapia fillets",
+        "1/4 cup blackening seasoning",
+        "2 tbsp butter",
+        "1 large avocado, diced",
+        "1 cucumber, seeded and diced",
+        "1 tbsp fresh parsley, finely chopped",
+        "Juice of 1 lemon",
+        "Kosher salt to taste",
+        "1 cup dry quinoa",
+        "2 cups water",
+        "6 oz fresh spinach",
+        "1 tsp olive oil"
+      ],
+      "steps": [
+        "Cook quinoa: rinse 1 cup quinoa, combine with 2 cups water, bring to boil, reduce heat, cover, and simmer 15 minutes. Fluff with fork.",
+        "Heat a large cast iron skillet over high heat until smoking hot.",
+        "Pat tilapia dry. Coat each fillet in blackening seasoning, pressing spices into the fish.",
+        "Melt 2 tbsp butter in skillet. Cook tilapia 2 minutes per side until cooked through and flaky.",
+        "Mix avocado, cucumber, parsley, lemon juice, and salt in a small bowl for salsa.",
+        "In a separate pan, heat 1 tsp olive oil over medium heat. Add spinach and cook 2-3 minutes until wilted. Season with salt.",
+        "Serve blackened tilapia over quinoa with avocado cucumber salsa and sautéed spinach alongside."
+      ],
+      "nutrition_per_serving": {
+        "servings": 4,
+        "calories": 420,
+        "protein_g": 38,
+        "total_fat_g": 18,
+        "saturated_fat_g": 5,
+        "cholesterol_mg": 100,
+        "fiber_g": 6,
+        "sodium_mg": 350
+      }
+    },
+    {
+      "id": "mushroom-barley-soup",
+      "title": "Mushroom Barley Soup",
+      "url": "https://www.themediterraneandish.com/simple-mushroom-barley-soup/",
+      "meal": "dinner",
+      "notes": "Added cannellini beans for protein boost. Nutrition estimated.",
+      "ingredients": [
+        "Extra virgin olive oil",
+        "16 oz baby bella mushrooms, halved or sliced",
+        "Kosher salt",
+        "1 yellow onion, chopped",
+        "4 garlic cloves, chopped",
+        "2 celery stalks, chopped",
+        "1 carrot, chopped",
+        "8 oz white mushrooms, chopped",
+        "1/2 cup canned crushed tomatoes",
+        "Black pepper",
+        "1 tsp ground coriander",
+        "1/2 tsp smoked paprika",
+        "1/2 tsp ground cumin",
+        "6 cups low-sodium vegetable broth",
+        "1 cup pearl barley, rinsed",
+        "1 (15 oz) can cannellini beans, drained and rinsed",
+        "1/2 cup chopped fresh parsley"
+      ],
+      "steps": [
+        "Heat olive oil in a large Dutch oven over medium-high heat. Add baby bella mushrooms and cook until they gain color, about 5 minutes. Season with salt. Remove and set aside.",
+        "In the same pot, add more olive oil. Add onion, garlic, celery, carrot, and chopped white mushrooms. Cook 4-5 minutes. Season with salt and pepper.",
+        "Add crushed tomatoes, coriander, smoked paprika, and cumin. Cook 3 minutes, stirring regularly.",
+        "Add broth and pearl barley. Bring to a rolling boil for 5 minutes, then reduce heat, cover, and simmer 30 minutes until barley is tender.",
+        "Stir in cannellini beans and reserved bella mushrooms. Cook 5 minutes until warmed through.",
+        "Finish with fresh parsley. Serve warm."
+      ],
+      "nutrition_per_serving": {
+        "servings": 4,
+        "calories": 310,
+        "protein_g": 22,
+        "total_fat_g": 4,
+        "saturated_fat_g": 1,
+        "cholesterol_mg": 0,
+        "fiber_g": 9,
+        "sodium_mg": 400
+      }
+    },
+    {
+      "id": "lentil-stew-quinoa-mushrooms",
+      "title": "Lentil Stew with Quinoa and Mushrooms",
+      "url": "https://themodernproper.com/lentil-stew-with-quinoa-and-mushrooms",
+      "meal": "dinner",
+      "notes": "No tweaks needed. Nutrition sourced from recipe page.",
+      "ingredients": [
+        "3 tbsp extra-virgin olive oil",
+        "1 medium yellow onion, diced",
+        "3 celery ribs, sliced into 1/3-inch pieces",
+        "2 large carrots, peeled and cut into 1/3-inch rounds",
+        "8 oz cremini and/or shiitake mushrooms, sliced",
+        "4 garlic cloves, minced",
+        "1-2 sprigs fresh thyme",
+        "1 tsp sea salt",
+        "1/2 tsp freshly cracked black pepper",
+        "8 cups vegetable stock",
+        "1 (14 oz) can diced tomatoes",
+        "1 cup black or green lentils",
+        "3/4 cup quinoa",
+        "Balsamic vinegar for serving (optional)"
+      ],
+      "steps": [
+        "Heat olive oil in a large pot over medium heat. Add onion, celery, carrots, mushrooms, garlic, thyme, salt, and pepper. Cook, stirring occasionally, until vegetables are soft and beginning to brown, about 10 minutes.",
+        "Add stock, 2 cups water, and diced tomatoes. Increase heat to high and bring to a boil.",
+        "Add lentils, reduce heat to medium-low, and cook until lentils begin to soften, about 12 minutes.",
+        "Increase heat to high, add quinoa, and bring to a boil. Reduce heat to medium-low and cook until lentils and quinoa are tender, about 20 minutes more.",
+        "Discard thyme stems. Ladle into bowls. Drizzle with balsamic vinegar if desired."
+      ],
+      "nutrition_per_serving": {
+        "servings": 6,
+        "calories": 409,
+        "protein_g": 26,
+        "total_fat_g": 12,
+        "saturated_fat_g": 0,
+        "cholesterol_mg": 0,
+        "fiber_g": 26,
+        "sodium_mg": 672
+      }
+    },
+    {
+      "id": "moroccan-chickpea-soup",
+      "title": "20-Minute Moroccan Chickpea Soup",
+      "url": "https://www.gimmesomeoven.com/moroccan-chickpea-soup/",
+      "meal": "dinner",
+      "notes": "Added quinoa cooked in the broth for protein and carb boost. Nutrition estimated.",
+      "ingredients": [
+        "1 tbsp olive oil",
+        "1 small white onion, diced",
+        "1 large carrot, diced",
+        "4 cloves garlic, minced",
+        "4 cups vegetable stock",
+        "2 (15 oz) cans chickpeas, drained and rinsed",
+        "1 (15 oz) can fire-roasted diced tomatoes",
+        "3 tbsp tomato paste",
+        "1 tsp ground cumin",
+        "1/2 tsp ground cinnamon",
+        "1/2 tsp ground ginger",
+        "Pinch of crushed red pepper flakes",
+        "Kosher salt and black pepper to taste",
+        "3 cups roughly chopped kale",
+        "1/2 cup dry quinoa",
+        "Chopped fresh cilantro and lemon wedges for serving"
+      ],
+      "steps": [
+        "Heat oil in a large stockpot over medium-high heat. Add onion and carrot, sauté 5 minutes until onion is soft. Add garlic and sauté 1 more minute.",
+        "Add vegetable stock, chickpeas, tomatoes, tomato paste, cumin, cinnamon, ginger, and red pepper flakes. Stir in quinoa. Bring to a simmer.",
+        "Reduce heat to medium-low. Simmer 15 minutes until quinoa is cooked.",
+        "Stir in kale and continue simmering 3 minutes until kale softens.",
+        "Season with salt and pepper to taste. Serve garnished with cilantro and lemon wedges."
+      ],
+      "nutrition_per_serving": {
+        "servings": 4,
+        "calories": 380,
+        "protein_g": 21,
+        "total_fat_g": 8,
+        "saturated_fat_g": 1,
+        "cholesterol_mg": 0,
+        "fiber_g": 12,
+        "sodium_mg": 580
+      }
+    },
+    {
+      "id": "chicken-shawarma-quinoa-bowls",
+      "title": "Chicken Shawarma Quinoa Bowls",
+      "url": "https://peasandcrayons.com/healthy-chicken-shawarma-quinoa-bowls/",
+      "meal": "dinner",
+      "notes": "No tweaks needed. Already uses chicken breast, quinoa, and plenty of veggies. Nutrition estimated.",
+      "ingredients": [
+        "1 cup dry quinoa",
+        "1.5 cups water",
+        "2 boneless skinless chicken breasts",
+        "1 clove garlic, minced",
+        "2 tbsp extra virgin olive oil, divided",
+        "Juice of 1/2 lemon",
+        "1 tsp ground cumin",
+        "1/2 tsp smoked paprika",
+        "1/4 tsp ground turmeric",
+        "1/8 tsp cayenne pepper",
+        "1/2 tsp salt",
+        "Black pepper to taste",
+        "2 naan flatbreads",
+        "1/4 small red onion, sliced",
+        "1/2-3/4 bell pepper, sliced",
+        "1/2 English cucumber, diced",
+        "1 cup grape tomatoes, halved",
+        "Juice of 1 lemon (for veggies)",
+        "2 tbsp olive oil (for veggies)",
+        "1-2 tbsp fresh chopped parsley",
+        "1/4 cup tahini",
+        "1 clove garlic, minced (for sauce)",
+        "Juice of 1/2 lemon (for sauce)",
+        "3 tbsp warm water",
+        "1/8 tsp each: salt, pepper, paprika"
+      ],
+      "steps": [
+        "Rinse quinoa. Toast in a dry saucepan a few minutes, then add 1.5 cups water and bring to a boil. Reduce to low, cover with lid slightly ajar, and simmer 12-13 minutes until fluffy.",
+        "Pound chicken to 1/4-inch thickness. Combine cumin, paprika, turmeric, cayenne, lemon juice, garlic, and 1 tbsp olive oil. Coat chicken and marinate at least 10 minutes.",
+        "Season chicken with salt and pepper. Heat 1 tbsp olive oil in a pan over medium heat. Cook chicken 3-4 minutes per side until internal temp reaches 165°F. Rest, then slice.",
+        "Chop onion, bell pepper, cucumber, and tomatoes. Toss with lemon juice, 2 tbsp olive oil, and parsley.",
+        "Make tahini sauce: whisk tahini, lemon juice, garlic, then slowly add warm water until thin and saucy. Season with salt, pepper, and paprika.",
+        "Assemble bowls: quinoa base, topped with veggies and sliced chicken. Drizzle with tahini sauce. Serve with warmed naan."
+      ],
+      "nutrition_per_serving": {
+        "servings": 2,
+        "calories": 580,
+        "protein_g": 42,
+        "total_fat_g": 28,
+        "saturated_fat_g": 4,
+        "cholesterol_mg": 85,
+        "fiber_g": 6,
+        "sodium_mg": 520
+      }
+    },
+    {
+      "id": "southwest-chicken-taco-salad",
+      "title": "Healthy Southwest Chicken Taco Salad",
+      "url": "https://allthehealthythings.com/healthy-chicken-taco-salad/",
+      "meal": "dinner",
+      "notes": "Added quinoa as complex carb. Already uses chicken breast. Nutrition estimated.",
+      "ingredients": [
+        "1 lb boneless skinless chicken breast",
+        "1/4 cup olive oil",
+        "1/4 cup lime juice",
+        "1 tsp paprika",
+        "1 tsp cumin",
+        "1 tsp dried oregano",
+        "1 tsp onion powder",
+        "1 tsp garlic powder",
+        "1/2 tsp chili powder",
+        "1 cup dry quinoa",
+        "2 cups water",
+        "4 cups chopped romaine lettuce",
+        "1 cup corn",
+        "1 cup black beans, drained and rinsed",
+        "1 cup grape tomatoes, halved",
+        "1 large avocado, sliced",
+        "1/4 cup finely diced red onion",
+        "Cotija or feta cheese for topping",
+        "1/2 cup plain Greek yogurt",
+        "1 jalapeño, seeds removed",
+        "3 tbsp olive oil (for dressing)",
+        "1/4 cup lime juice (for dressing)",
+        "1/4 cup cilantro",
+        "1 tbsp fresh dill",
+        "1 clove garlic, minced",
+        "Salt and pepper to taste"
+      ],
+      "steps": [
+        "Cook quinoa: rinse 1 cup quinoa, combine with 2 cups water, bring to boil, reduce heat, cover, simmer 15 minutes. Fluff and set aside.",
+        "Whisk olive oil, lime juice, and all spices in a bowl. Add chicken, toss to coat, and marinate at least 20 minutes.",
+        "Heat a skillet over medium-high heat. Cook chicken 4-6 minutes per side until internal temp is 165°F. Let rest, then slice.",
+        "Make jalapeño ranch: blend Greek yogurt, jalapeño, olive oil, lime juice, cilantro, dill, garlic, salt, and pepper until smooth.",
+        "Assemble salads: romaine base, topped with quinoa, sliced chicken, black beans, corn, tomatoes, avocado, red onion, and crumbled cheese. Drizzle with jalapeño ranch."
+      ],
+      "nutrition_per_serving": {
+        "servings": 4,
+        "calories": 430,
+        "protein_g": 36,
+        "total_fat_g": 20,
+        "saturated_fat_g": 4,
+        "cholesterol_mg": 75,
+        "fiber_g": 10,
+        "sodium_mg": 480
+      }
+    },
+    {
+      "id": "spiced-sweet-potato-lentil-soup",
+      "title": "1-Pot Spiced Sweet Potato Lentil Soup",
+      "url": "https://minimalistbaker.com/1-pot-spiced-sweet-potato-lentil-soup/",
+      "meal": "dinner",
+      "notes": "Added chickpeas for protein boost. Use low-sodium broth to reduce sodium. Nutrition estimated.",
+      "ingredients": [
+        "1 cup brown or green lentils, rinsed",
+        "1/4 cup water (for sautéing)",
+        "1.25 cups diced red onion",
+        "4 cloves garlic, minced",
+        "1 large sweet potato, peeled and chopped",
+        "1/2 tsp sea salt",
+        "1/4 tsp black pepper",
+        "1 tbsp ground cumin",
+        "1.5 tsp ground cinnamon",
+        "1.5 tsp ground coriander",
+        "1/4 tsp ground turmeric",
+        "1 pinch cayenne pepper (optional)",
+        "5-6 cups low-sodium vegetable broth",
+        "1-2 tbsp coconut sugar",
+        "1 cup chopped green beans",
+        "1 (15 oz) can chickpeas, drained and rinsed",
+        "Fresh cilantro for serving"
+      ],
+      "steps": [
+        "Optional: soak lentils overnight for improved digestibility. Rinse and drain before using.",
+        "Heat a large pot over medium-high heat. Add water and onion, sauté 5 minutes until slightly browned.",
+        "Add garlic and sauté 1 minute. Add sweet potato, salt, pepper, cumin, cinnamon, coriander, turmeric, and cayenne. Stir and cook 4 minutes.",
+        "Add vegetable broth (start with 5 cups) and bring to a low boil. Add lentils, chickpeas, and coconut sugar. Stir to combine.",
+        "Once boiling, reduce to a simmer, loosely cover, and cook about 20 minutes until lentils are tender.",
+        "Add green beans, stir, and cover. Cook 10 more minutes. Rest 5 minutes off heat.",
+        "Taste and adjust seasonings. Serve topped with fresh cilantro."
+      ],
+      "nutrition_per_serving": {
+        "servings": 4,
+        "calories": 410,
+        "protein_g": 24,
+        "total_fat_g": 5,
+        "saturated_fat_g": 1,
+        "cholesterol_mg": 0,
+        "fiber_g": 15,
+        "sodium_mg": 650
+      }
+    },
+    {
+      "id": "lemon-garlic-herb-grilled-salmon",
+      "title": "Lemon Garlic Herb Grilled Salmon",
+      "url": "https://www.cookingclassy.com/lemon-garlic-herb-grilled-salmon/",
+      "meal": "dinner",
+      "notes": "Added quinoa side and roasted broccoli for carb and veggie. Salmon cholesterol is acceptable (omega-3 rich). Nutrition estimated.",
+      "ingredients": [
+        "4 (6-7 oz) skinless salmon fillets",
+        "1/4 cup fresh lemon juice",
+        "1/4 cup olive oil, plus more for grill",
+        "2 tbsp finely minced fresh parsley",
+        "4 tsp finely minced fresh rosemary",
+        "2 tsp finely minced fresh thyme",
+        "2 tsp minced garlic",
+        "2 tsp fresh lemon zest",
+        "1 tsp Dijon mustard",
+        "1 tsp honey",
+        "Salt and freshly ground black pepper",
+        "1 cup dry quinoa",
+        "2 cups water",
+        "1 lb broccoli florets",
+        "1 tbsp olive oil (for broccoli)",
+        "Salt and pepper (for broccoli)"
+      ],
+      "steps": [
+        "Cook quinoa: rinse, combine with 2 cups water, bring to boil, reduce heat, cover, simmer 15 minutes. Fluff and set aside.",
+        "Preheat oven to 425°F. Toss broccoli with 1 tbsp olive oil, salt, and pepper on a baking sheet. Roast 20 minutes until edges are crispy.",
+        "Whisk lemon juice, 1/4 cup olive oil, parsley, rosemary, thyme, garlic, lemon zest, Dijon, honey, 1 tsp salt, and 1/2 tsp pepper.",
+        "Place salmon in a dish, pour marinade over, cover, and refrigerate 30 minutes (turn once halfway through).",
+        "Preheat grill to medium-high. Clean and oil grates. Grill salmon 3-5 minutes per side until cooked to preference.",
+        "Serve salmon over quinoa with roasted broccoli alongside. Garnish with extra parsley."
+      ],
+      "nutrition_per_serving": {
+        "servings": 4,
+        "calories": 530,
+        "protein_g": 43,
+        "total_fat_g": 28,
+        "saturated_fat_g": 4,
+        "cholesterol_mg": 109,
+        "fiber_g": 5,
+        "sodium_mg": 350
+      }
+    },
+    {
+      "id": "custom-salad-white-bean-chicken",
+      "title": "Mixed Greens Salad with White Beans, Chicken & Dijon Vinaigrette",
+      "url": null,
+      "meal": "dinner",
+      "notes": "Swapped chicken thighs to chicken breast. Added quinoa for complex carb. Nutrition estimated.",
+      "ingredients": [
+        "1 lb boneless skinless chicken breast",
+        "Salt and pepper",
+        "1 tbsp olive oil",
+        "6 cups mixed greens",
+        "1 cup cherry tomatoes, halved",
+        "1 cucumber, sliced",
+        "1/4 cup pepitas",
+        "1 (15 oz) can white beans (cannellini), drained and rinsed",
+        "1 large avocado, sliced",
+        "1 cup dry quinoa",
+        "2 cups water",
+        "2 tbsp Dijon mustard",
+        "2 tbsp red wine vinegar",
+        "1/4 cup extra virgin olive oil",
+        "1 tsp honey",
+        "Salt and pepper to taste"
+      ],
+      "steps": [
+        "Cook quinoa: rinse, combine with 2 cups water, bring to boil, reduce heat, cover, simmer 15 minutes. Fluff and let cool slightly.",
+        "Season chicken breast with salt and pepper. Heat 1 tbsp olive oil in a skillet over medium-high heat. Cook chicken 5-6 minutes per side until internal temp is 165°F. Rest 5 minutes, then slice.",
+        "Make vinaigrette: whisk Dijon, red wine vinegar, olive oil, honey, salt, and pepper until emulsified.",
+        "Assemble salads: mixed greens base, topped with quinoa, sliced chicken, white beans, tomatoes, cucumber, avocado, and pepitas. Drizzle with Dijon vinaigrette."
+      ],
+      "nutrition_per_serving": {
+        "servings": 2,
+        "calories": 480,
+        "protein_g": 38,
+        "total_fat_g": 22,
+        "saturated_fat_g": 3,
+        "cholesterol_mg": 75,
+        "fiber_g": 10,
+        "sodium_mg": 400
+      }
+    },
+    {
+      "id": "roasted-veggie-glow-bowls",
+      "title": "Roasted Veggie Glow Bowls",
+      "url": "https://dishingouthealth.com/roasted-veggie-glow-bowls/",
+      "meal": "dinner",
+      "notes": "Added roasted tofu for protein boost per user request. Nutrition estimated.",
+      "ingredients": [
+        "1 (14 oz) block extra-firm tofu, pressed and cubed",
+        "1 medium head cauliflower, cut into florets (about 6 cups)",
+        "3 large carrots, peeled and sliced diagonally into 1-inch chunks",
+        "3 tbsp extra-virgin olive oil, divided",
+        "1 tsp smoked paprika",
+        "1 tsp garlic powder",
+        "1/2 tsp ground cumin",
+        "1/2 tsp kosher salt",
+        "1/4 tsp black pepper",
+        "1 cup dry quinoa",
+        "2 cups vegetable broth",
+        "4 packed cups chopped fresh kale",
+        "1/4 cup roasted pumpkin seeds",
+        "1 ripe avocado, sliced",
+        "Chopped fresh parsley for garnish",
+        "1/4 cup tahini",
+        "1 tbsp sherry vinegar",
+        "1 tbsp maple syrup",
+        "2 tsp chili garlic sauce",
+        "1/2 tsp curry powder",
+        "1/4 tsp ground turmeric",
+        "1/4 tsp kosher salt",
+        "3-4 tbsp water (for dressing)"
+      ],
+      "steps": [
+        "Preheat oven to 425°F. Press tofu and cut into cubes.",
+        "Add cauliflower, carrots, and tofu cubes to a large rimmed baking sheet. Toss with 2 tbsp olive oil, smoked paprika, garlic powder, cumin, salt, and pepper.",
+        "Roast 25-30 minutes, tossing once halfway through, until veggies are caramelized and tofu is crispy on edges.",
+        "Meanwhile, combine quinoa and broth in a saucepan over medium-high heat. Bring to a boil, reduce heat, cover, and simmer 15 minutes until liquid is absorbed. Remove lid, stir in kale and remaining 1 tbsp olive oil. Cover and keep warm (residual heat will wilt the kale).",
+        "Prepare golden tahini dressing: combine tahini, sherry vinegar, maple syrup, chili garlic sauce, curry powder, turmeric, and salt. Whisk in water 1 tbsp at a time until smooth and pourable.",
+        "Divide quinoa-kale mixture between 4 bowls. Top with roasted veggies and tofu. Add avocado slices, drizzle with tahini dressing, and sprinkle pumpkin seeds and parsley on top."
+      ],
+      "nutrition_per_serving": {
+        "servings": 4,
+        "calories": 620,
+        "protein_g": 28,
+        "total_fat_g": 36,
+        "saturated_fat_g": 5,
+        "cholesterol_mg": 0,
+        "fiber_g": 15,
+        "sodium_mg": 750
+      }
+    },
+    {
+      "id": "steel-cut-oats-bowl",
+      "title": "Steel-Cut Oats Bowl",
+      "url": null,
+      "meal": "breakfast",
+      "notes": "Simple high-fiber breakfast. Nutrition estimated from USDA values.",
+      "ingredients": [
+        "1/3 cup steel-cut oats (dry)",
+        "1/2 apple, diced",
+        "1 tbsp chia seeds",
+        "1 tbsp flaxseed meal",
+        "1 tbsp almonds, chopped",
+        "1 tbsp peanut butter",
+        "Coffee",
+        "1/4 cup low-fat milk"
+      ],
+      "steps": [
+        "Cook steel-cut oats according to package directions (typically 1 cup water per 1/3 cup oats, simmer 20-25 minutes).",
+        "Top with diced apple, chia seeds, flaxseed meal, almonds, and peanut butter.",
+        "Serve with coffee and low-fat milk on the side or stirred in."
+      ],
+      "nutrition_per_serving": {
+        "servings": 1,
+        "calories": 430,
+        "protein_g": 18,
+        "total_fat_g": 20,
+        "saturated_fat_g": 3,
+        "cholesterol_mg": 3,
+        "fiber_g": 12,
+        "sodium_mg": 110
+      }
+    },
+    {
+      "id": "greek-yogurt-snack",
+      "title": "Greek Yogurt Snack Bowl",
+      "url": null,
+      "meal": "snack",
+      "notes": "Quick high-protein snack. Nutrition estimated from USDA values.",
+      "ingredients": [
+        "2/3 cup plain Greek yogurt",
+        "1/2 small apple, diced",
+        "1 tbsp slivered almonds",
+        "1 tbsp peanut butter",
+        "1/4 cup Quaker Oatmeal Squares cereal"
+      ],
+      "steps": [
+        "Scoop Greek yogurt into a bowl.",
+        "Top with diced apple, slivered almonds, peanut butter, and oatmeal squares cereal."
+      ],
+      "nutrition_per_serving": {
+        "servings": 1,
+        "calories": 350,
+        "protein_g": 22,
+        "total_fat_g": 16,
+        "saturated_fat_g": 3,
+        "cholesterol_mg": 10,
+        "fiber_g": 4,
+        "sodium_mg": 180
+      }
+    },
+    {
+      "id": "cottage-cheese-snack",
+      "title": "Cottage Cheese & Mandarins Snack",
+      "url": null,
+      "meal": "snack",
+      "notes": "Simple high-protein snack. Nutrition estimated from USDA values.",
+      "ingredients": [
+        "1/2 cup low-fat cottage cheese",
+        "3 small mandarin oranges (Cuties), peeled",
+        "1 tbsp almonds"
+      ],
+      "steps": [
+        "Scoop cottage cheese into a bowl.",
+        "Peel mandarins and arrange alongside or on top.",
+        "Sprinkle almonds over the top."
+      ],
+      "nutrition_per_serving": {
+        "servings": 1,
+        "calories": 230,
+        "protein_g": 18,
+        "total_fat_g": 7,
+        "saturated_fat_g": 1.5,
+        "cholesterol_mg": 10,
+        "fiber_g": 3,
+        "sodium_mg": 370
+      }
     }
   ]
 }
