@@ -1479,6 +1479,30 @@
         "fiber_g": 15,
         "sodium_mg": 380
       }
+    },
+    {
+      "id": "kind-bar-almond-milk",
+      "title": "KIND Breakfast Bar & Almond Milk",
+      "url": null,
+      "meal": "snack",
+      "notes": "Quick grab-and-go snack. Nutrition from KIND label (2 bars/50g serving) plus 2/3 cup unsweetened almond milk.",
+      "ingredients": [
+        "1 KIND breakfast bar (2-bar pack, 50g)",
+        "2/3 cup unsweetened almond milk"
+      ],
+      "steps": [
+        "Grab a KIND bar and pour 2/3 cup almond milk into a glass."
+      ],
+      "nutrition_per_serving": {
+        "servings": 1,
+        "calories": 240,
+        "protein_g": 9,
+        "total_fat_g": 11,
+        "saturated_fat_g": 1,
+        "cholesterol_mg": 0,
+        "fiber_g": 3,
+        "sodium_mg": 230
+      }
     }
   ]
 }
