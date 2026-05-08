@@ -717,7 +717,7 @@
       "id": "egg-avocado-toast",
       "title": "Open-Faced Egg & Avocado Toast",
       "url": null,
-      "meal": "breakfast",
+      "meal": ["breakfast", "lunch"],
       "notes": "Quick high-protein breakfast. Nutrition estimated from USDA values.",
       "ingredients": [
         "1 whole egg",
@@ -750,7 +750,7 @@
       "id": "veggie-egg-scramble-toast",
       "title": "Veggie Egg Scramble + Toast",
       "url": null,
-      "meal": "breakfast",
+      "meal": ["breakfast", "lunch"],
       "notes": "High-protein veggie-packed breakfast. Nutrition estimated from USDA values.",
       "ingredients": [
         "1 whole egg",
@@ -877,6 +877,91 @@
         "cholesterol_mg": 0,
         "fiber_g": 3,
         "sodium_mg": 130
+      }
+    },
+    {
+      "id": "quinoa-chickpea-salad-hummus-dressing",
+      "title": "Quinoa Chickpea Salad with Roasted Red Pepper Hummus Dressing",
+      "url": "https://www.eatingwell.com/recipe/259996/quinoa-chickpea-salad-with-roasted-red-pepper-hummus-dressing/",
+      "meal": "lunch",
+      "notes": "Doubled chickpeas to boost protein above 20g. Single-serving recipe scaled to 2. Nutrition estimated.",
+      "ingredients": [
+        "4 cups mixed salad greens",
+        "1 cup cooked quinoa",
+        "1 (15 oz) can chickpeas, drained and rinsed",
+        "4 tbsp hummus (roasted red pepper flavor)",
+        "2 tbsp chopped roasted red pepper",
+        "2 tbsp unsalted sunflower seeds",
+        "2 tbsp chopped fresh parsley",
+        "2 tbsp lemon juice",
+        "Salt and pepper to taste"
+      ],
+      "steps": [
+        "Cook quinoa if not already prepared (1/2 cup dry quinoa with 1 cup water, simmer 15 minutes).",
+        "Divide mixed greens between 2 bowls. Top each with quinoa and chickpeas.",
+        "Whisk hummus with lemon juice until smooth and pourable (add a splash of water if needed). Drizzle over salads.",
+        "Top with roasted red pepper, sunflower seeds, and parsley. Season with salt and pepper."
+      ],
+      "nutrition_per_serving": {
+        "servings": 2,
+        "calories": 390,
+        "protein_g": 22,
+        "total_fat_g": 12,
+        "saturated_fat_g": 1,
+        "cholesterol_mg": 0,
+        "fiber_g": 12,
+        "sodium_mg": 400
+      }
+    },
+    {
+      "id": "roasted-salmon-braised-french-lentils",
+      "title": "Oven Roasted Salmon with Braised French Lentils",
+      "url": "https://www.feastingathome.com/salmon-with-braised-french-lentils/",
+      "meal": "dinner",
+      "notes": "Added roasted broccolini as vegetable side. Salmon cholesterol acceptable (omega-3 rich). Nutrition estimated.",
+      "ingredients": [
+        "1-1.5 lbs salmon (4 skinless fillets)",
+        "2-3 garlic cloves, finely minced",
+        "1 tbsp fresh thyme leaves",
+        "2 tsp whole-grain mustard",
+        "2 tsp lemon zest",
+        "3 tbsp olive oil (for marinade)",
+        "1/2 tsp salt",
+        "Pepper to taste",
+        "2 tbsp olive oil (for lentils)",
+        "1 onion, diced",
+        "1 cup diced celery",
+        "1 cup diced carrot",
+        "3-4 garlic cloves, rough chopped",
+        "1.5 cups French green lentils",
+        "1/4 cup sherry or red wine",
+        "4 cups vegetable stock",
+        "2 tsp salt",
+        "1/2 tsp whole-grain mustard",
+        "4-5 sprigs fresh thyme",
+        "2 bay leaves",
+        "1 lb broccolini",
+        "1 tbsp olive oil (for broccolini)",
+        "Salt and pepper (for broccolini)"
+      ],
+      "steps": [
+        "Preheat oven to 325°F.",
+        "Pat salmon dry. Combine garlic, thyme, mustard, lemon zest, 3 tbsp olive oil, salt, and pepper for marinade. Brush bottom of fillets, place on parchment-lined sheet pan, spoon remaining marinade over tops. Set aside.",
+        "For lentils: heat 2 tbsp olive oil in a large sauté pan over medium-high heat. Add onion, celery, and carrot; cook 8-10 minutes until softened. Add garlic and lentils, cook 2 minutes.",
+        "Add wine, let cook off 2 minutes. Pour in stock, salt, and mustard. Bring to a simmer. Add bay leaves and thyme sprigs. Cover and simmer on low 25-30 minutes until lentils are tender.",
+        "When lentils have about 12 minutes remaining, place salmon in oven. Bake 10-15 minutes depending on thickness.",
+        "Meanwhile, toss broccolini with 1 tbsp olive oil, salt, and pepper on a baking sheet. Roast at 425°F for 10-12 minutes until tender-crisp (can share oven with salmon at end, or roast separately).",
+        "Remove bay leaves and thyme sprigs from lentils. Taste and adjust salt. Serve lentils in shallow bowls, topped with salmon and broccolini alongside."
+      ],
+      "nutrition_per_serving": {
+        "servings": 4,
+        "calories": 480,
+        "protein_g": 38,
+        "total_fat_g": 18,
+        "saturated_fat_g": 3,
+        "cholesterol_mg": 58,
+        "fiber_g": 14,
+        "sodium_mg": 550
       }
     }
   ]
