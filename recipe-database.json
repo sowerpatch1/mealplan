@@ -399,7 +399,7 @@
       "id": "southwest-chicken-taco-salad",
       "title": "Healthy Southwest Chicken Taco Salad",
       "url": "https://allthehealthythings.com/healthy-chicken-taco-salad/",
-      "meal": "dinner",
+      "meal": ["lunch", "dinner"],
       "notes": "Added quinoa as complex carb. Already uses chicken breast. Nutrition estimated.",
       "ingredients": [
         "1 lb boneless skinless chicken breast",
@@ -539,7 +539,7 @@
       "id": "custom-salad-white-bean-chicken",
       "title": "Mixed Greens Salad with White Beans, Chicken & Dijon Vinaigrette",
       "url": null,
-      "meal": "dinner",
+      "meal": "lunch",
       "notes": "Swapped chicken thighs to chicken breast. Added quinoa for complex carb. Nutrition estimated.",
       "ingredients": [
         "1 lb boneless skinless chicken breast",
@@ -580,7 +580,7 @@
       "id": "roasted-veggie-glow-bowls",
       "title": "Roasted Veggie Glow Bowls",
       "url": "https://dishingouthealth.com/roasted-veggie-glow-bowls/",
-      "meal": "dinner",
+      "meal": ["lunch", "dinner"],
       "notes": "Added roasted tofu for protein boost per user request. Nutrition estimated.",
       "ingredients": [
         "1 (14 oz) block extra-firm tofu, pressed and cubed",
