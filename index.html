@@ -5,6 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Week 1 Cholesterol-Friendly Meal Plan</title>
   <style>
+    /* ── Site nav ──────────────────────────────────────────────────────────── */
+    .site-nav {
+      background: var(--forest-900);
+      display: flex;
+      align-items: center;
+      padding: 0 18px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .site-nav::-webkit-scrollbar { display: none; }
+    .site-nav a {
+      display: block;
+      color: #b3cec2;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 11px 14px;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+      letter-spacing: 0.04em;
+    }
+    .site-nav a:hover { color: #ffffff; }
+    .site-nav a.active {
+      color: #ffffff;
+      border-bottom-color: #9fd4b7;
+    }
+
     :root {
       --forest-900: #0f3527;
       --forest-800: #144130;
@@ -418,6 +445,11 @@
   </style>
 </head>
 <body>
+  <nav class="site-nav" aria-label="Site navigation">
+    <a href="index.html" class="active">📅 Meal Plan</a>
+    <a href="recipes.html">📖 Recipe Library</a>
+  </nav>
+
   <main>
     <section class="hero">
       <div class="hero-eyebrow">4-Week Program</div>
