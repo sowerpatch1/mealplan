@@ -180,7 +180,7 @@
             const allMeals = mealTypes(r);
             const nameHtml = r.url
               ? `<a href="${r.url}" target="_blank" rel="noopener noreferrer">${r.title} ↗</a>`
-              : r.title;
+              : `<a href="recipe.html?id=${r.id}">${r.title}</a>`;
             const tagsHtml = allMeals.map(m =>
               `<span class="tag tag-${m}">${MEAL_LABELS[m] || m}</span>`
             ).join("");

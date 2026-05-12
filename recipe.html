@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe — Cholesterol-Friendly Meal Plan</title>
+  <style>
+    :root {
+      --forest-900: #0f3527;
+      --forest-800: #144130;
+      --forest-700: #1b5a42;
+      --forest-600: #236a4f;
+      --sage-100: #edf4ef;
+      --surface: #f6f5f2;
+      --card: #ffffff;
+      --ink: #173126;
+      --ink-soft: #4a5a52;
+      --line: #dde6e0;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", Arial, sans-serif;
+      background: var(--surface);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    .site-nav {
+      background: var(--forest-900);
+      display: flex;
+      padding: 0 18px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .site-nav::-webkit-scrollbar { display: none; }
+    .site-nav a {
+      display: block;
+      color: #b3cec2;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 11px 14px;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+      letter-spacing: 0.04em;
+    }
+    .site-nav a:hover { color: #fff; }
+    .site-nav a.active { color: #fff; border-bottom-color: #9fd4b7; }
+
+    .hero {
+      background: linear-gradient(160deg, var(--forest-900), var(--forest-700));
+      color: #f3f7f4;
+      padding: 20px 24px 20px;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: #9fd4b7;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .back-link:hover { color: #fff; }
+    .meal-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.9);
+      border-radius: 999px;
+      padding: 3px 10px;
+      margin-bottom: 8px;
+    }
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: clamp(22px, 3.5vw, 34px);
+      font-family: Georgia, serif;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    .hero-notes {
+      margin: 6px 0 0;
+      font-size: 14px;
+      color: #c5ddd3;
+      max-width: 620px;
+    }
+
+    main {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 28px 20px 60px;
+    }
+
+    /* ── Nutrition grid ── */
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin: 28px 0 10px;
+    }
+    .section-label:first-child { margin-top: 0; }
+
+    .nutrition-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+    .nut-box {
+      background: var(--card);
+      border: 1px solid #e2ece7;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 12px;
+      color: var(--ink-soft);
+    }
+    .nut-box strong {
+      display: block;
+      font-size: 22px;
+      font-family: Georgia, serif;
+      color: var(--ink);
+      line-height: 1.1;
+      margin-top: 2px;
+    }
+    .nut-box.highlight {
+      border-color: #c4d8f5;
+      background: #eef4fd;
+    }
+    .nut-box.highlight strong { color: #1e4e92; }
+
+    .servings-note {
+      font-size: 12px;
+      color: var(--ink-soft);
+      margin-bottom: 4px;
+    }
+
+    /* ── Ingredients ── */
+    .ingredient-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid var(--line);
+    }
+    .ingredient-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 15px;
+    }
+    .ingredient-list li::before {
+      content: "·";
+      color: var(--forest-600);
+      font-weight: 700;
+      margin-right: 8px;
+    }
+
+    /* ── Steps ── */
+    .step-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      counter-reset: steps;
+    }
+    .step-list li {
+      counter-increment: steps;
+      display: flex;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 15px;
+      align-items: flex-start;
+    }
+    .step-list li::before {
+      content: counter(steps);
+      background: var(--forest-700);
+      color: #fff;
+      border-radius: 999px;
+      min-width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .not-found {
+      padding: 60px 0;
+      text-align: center;
+      color: var(--ink-soft);
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav" aria-label="Site navigation">
+    <a href="index.html">📅 Meal Plan</a>
+    <a href="recipes.html" class="active">📖 Recipe Library</a>
+  </nav>
+
+  <div class="hero" id="hero">
+    <a class="back-link" href="recipes.html">← Recipe Library</a>
+    <div id="heroBody">Loading…</div>
+  </div>
+
+  <main id="main"></main>
+
+  <script>
+    const MEAL_LABELS = { breakfast: "Breakfast", lunch: "Lunch", dinner: "Dinner", snack: "Snack" };
+
+    function mealTypes(recipe) {
+      const m = recipe.meal;
+      return (Array.isArray(m) ? m : [m]).map(s => s.toLowerCase());
+    }
+
+    const params = new URLSearchParams(location.search);
+    const targetId = params.get("id");
+
+    if (!targetId) {
+      document.getElementById("heroBody").textContent = "No recipe specified.";
+    } else {
+      fetch("recipe-database.json")
+        .then(r => r.json())
+        .then(data => {
+          const recipe = data.recipes.find(r => r.id === targetId);
+          if (!recipe) {
+            document.getElementById("heroBody").innerHTML =
+              `<p>Recipe "<strong>${targetId}</strong>" not found.</p>`;
+            return;
+          }
+
+          document.title = `${recipe.title} — Recipe Library`;
+
+          const meals = mealTypes(recipe);
+          const mealBadges = meals.map(m => `<span class="meal-tag">${MEAL_LABELS[m] || m}</span>`).join(" ");
+
+          document.getElementById("heroBody").innerHTML = `
+            <div>${mealBadges}</div>
+            <h1>${recipe.title}</h1>
+            ${recipe.notes ? `<p class="hero-notes">${recipe.notes}</p>` : ""}
+          `;
+
+          const n = recipe.nutrition_per_serving;
+          const nutritionHtml = `
+            <p class="servings-note">Per serving · makes ${n.servings}</p>
+            <div class="nutrition-grid">
+              <div class="nut-box"><span>Calories</span><strong>${n.calories}</strong></div>
+              <div class="nut-box highlight"><span>Protein</span><strong>${n.protein_g}g</strong></div>
+              <div class="nut-box"><span>Total Fat</span><strong>${n.total_fat_g}g</strong></div>
+              <div class="nut-box"><span>Saturated Fat</span><strong>${n.saturated_fat_g}g</strong></div>
+              <div class="nut-box"><span>Cholesterol</span><strong>${n.cholesterol_mg}mg</strong></div>
+              <div class="nut-box"><span>Fiber</span><strong>${n.fiber_g}g</strong></div>
+              <div class="nut-box"><span>Sodium</span><strong>${n.sodium_mg}mg</strong></div>
+            </div>
+          `;
+
+          const ingredientsHtml = `
+            <ul class="ingredient-list">
+              ${recipe.ingredients.map(i => `<li>${i}</li>`).join("")}
+            </ul>
+          `;
+
+          const stepsHtml = recipe.steps && recipe.steps.length
+            ? `<ol class="step-list">${recipe.steps.map(s => `<li><span>${s}</span></li>`).join("")}</ol>`
+            : "";
+
+          document.getElementById("main").innerHTML = `
+            <p class="section-label">Nutrition</p>
+            ${nutritionHtml}
+            <p class="section-label">Ingredients</p>
+            ${ingredientsHtml}
+            ${stepsHtml ? `<p class="section-label">Instructions</p>${stepsHtml}` : ""}
+          `;
+        })
+        .catch(err => {
+          document.getElementById("heroBody").textContent = "Could not load recipe: " + err.message;
+        });
+    }
+  </script>
+</body>
+</html>
