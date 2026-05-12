@@ -131,6 +131,14 @@
     .tag-lunch     { color: #065f46; border-color: #6ee7b7; background: #ecfdf5; }
     .tag-dinner    { color: #1b5a42; border-color: #86efac; background: #f0fdf4; }
     .tag-snack     { color: #4c1d95; border-color: #c4b5fd; background: #f5f3ff; }
+
+    .external-link {
+      font-size: 12px;
+      color: #7a9a8a;
+      text-decoration: none;
+      margin-left: 4px;
+    }
+    .external-link:hover { color: var(--forest-600); text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -178,9 +186,10 @@
 
           const rows = list.map(r => {
             const allMeals = mealTypes(r);
-            const nameHtml = r.url
-              ? `<a href="${r.url}" target="_blank" rel="noopener noreferrer">${r.title} ↗</a>`
-              : `<a href="recipe.html?id=${r.id}">${r.title}</a>`;
+            const externalLink = r.url
+              ? ` <a class="external-link" href="${r.url}" target="_blank" rel="noopener noreferrer">(recipe here ↗)</a>`
+              : "";
+            const nameHtml = `<a href="recipe.html?id=${r.id}">${r.title}</a>${externalLink}`;
             const tagsHtml = allMeals.map(m =>
               `<span class="tag tag-${m}">${MEAL_LABELS[m] || m}</span>`
             ).join("");
