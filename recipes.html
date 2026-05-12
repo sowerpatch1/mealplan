@@ -10,23 +10,11 @@
       --forest-800: #144130;
       --forest-700: #1b5a42;
       --forest-600: #236a4f;
-      --sage-100: #edf4ef;
       --surface: #f6f5f2;
       --card: #ffffff;
       --ink: #173126;
       --ink-soft: #4a5a52;
-      --chip-bg: #f0f3f1;
-      --chip-border: #d5dfd9;
       --line: #dde6e0;
-
-      --meal-breakfast: #d97706;
-      --meal-breakfast-2: #92400e;
-      --meal-lunch: #059669;
-      --meal-lunch-2: #065f46;
-      --meal-dinner: #1b5a42;
-      --meal-dinner-2: #0f3527;
-      --meal-snack: #6d28d9;
-      --meal-snack-2: #4c1d95;
     }
 
     * { box-sizing: border-box; }
@@ -39,12 +27,9 @@
       line-height: 1.5;
     }
 
-    /* ── Site nav ──────────────────────────────────────────────────────────── */
     .site-nav {
       background: var(--forest-900);
       display: flex;
-      align-items: center;
-      gap: 0;
       padding: 0 18px;
       overflow-x: auto;
       scrollbar-width: none;
@@ -61,25 +46,13 @@
       border-bottom: 3px solid transparent;
       letter-spacing: 0.04em;
     }
-    .site-nav a:hover { color: #ffffff; }
-    .site-nav a.active {
-      color: #ffffff;
-      border-bottom-color: #9fd4b7;
-    }
+    .site-nav a:hover { color: #fff; }
+    .site-nav a.active { color: #fff; border-bottom-color: #9fd4b7; }
 
-    /* ── Layout ─────────────────────────────────────────────────────────────── */
-    main {
-      max-width: 1060px;
-      margin: 0 auto;
-      padding: 0 14px 48px;
-    }
-
-    /* ── Hero ───────────────────────────────────────────────────────────────── */
     .hero {
       background: linear-gradient(160deg, var(--forest-900), var(--forest-700));
       color: #f3f7f4;
-      margin: 0 -14px;
-      padding: 26px 18px 18px;
+      padding: 26px 24px 18px;
       border-bottom: 1px solid rgba(255,255,255,0.14);
     }
     .hero-eyebrow {
@@ -91,254 +64,73 @@
     }
     .hero h1 {
       margin: 0;
-      font-size: clamp(24px, 3.6vw, 38px);
-      line-height: 1.15;
-      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(22px, 3vw, 34px);
+      font-family: Georgia, serif;
       font-weight: 600;
     }
-    .hero-sub {
-      margin: 8px 0 0;
-      color: #dbe8e0;
-      font-size: 15px;
+    .hero-sub { margin: 8px 0 0; color: #dbe8e0; font-size: 14px; }
+
+    main {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
     }
 
-    /* ── Filter tabs ─────────────────────────────────────────────────────────── */
-    .filter-tabs {
-      margin: 0 -14px;
-      display: flex;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
-      background: var(--forest-800);
-    }
-    .filter-tabs::-webkit-scrollbar { display: none; }
-    .filter-tab {
-      border: none;
-      background: transparent;
-      color: #d3e2da;
-      font-size: 14px;
-      padding: 12px 18px;
-      white-space: nowrap;
-      cursor: pointer;
-    }
-    .filter-tab.active {
-      color: #ffffff;
-      border-bottom: 3px solid #9fd4b7;
-      font-weight: 600;
-    }
-    .filter-tab .count {
-      display: inline-block;
-      background: rgba(255,255,255,0.15);
-      border-radius: 999px;
-      padding: 1px 7px;
-      font-size: 11px;
-      margin-left: 5px;
-      vertical-align: middle;
-    }
-    .filter-tab.active .count {
-      background: rgba(159,212,183,0.3);
-    }
-
-    /* ── Search ─────────────────────────────────────────────────────────────── */
-    .toolbar {
-      padding: 14px 0 0;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .search-input {
-      flex: 1;
-      max-width: 340px;
-      padding: 8px 12px;
-      border: 1px solid var(--chip-border);
-      border-radius: 999px;
-      font-size: 14px;
-      background: #fff;
-      color: var(--ink);
-      outline: none;
-    }
-    .search-input:focus { border-color: var(--forest-600); }
-    .result-count {
-      font-size: 13px;
-      color: var(--ink-soft);
-    }
-
-    /* ── Grid ───────────────────────────────────────────────────────────────── */
-    .recipe-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 16px;
-      padding-top: 16px;
-    }
-
-    /* ── Recipe card ─────────────────────────────────────────────────────────── */
-    .recipe-card {
-      background: var(--card);
-      border-radius: 16px;
-      border: 1px solid #e6ece8;
-      overflow: hidden;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-      display: flex;
-      flex-direction: column;
-      transition: box-shadow 0.15s;
-    }
-    .recipe-card:hover {
-      box-shadow: 0 4px 14px rgba(0,0,0,0.1);
-    }
-
-    .card-header {
-      padding: 22px 18px 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      position: relative;
-    }
-    .card-header.breakfast {
-      background: linear-gradient(135deg, var(--meal-breakfast), var(--meal-breakfast-2));
-    }
-    .card-header.lunch {
-      background: linear-gradient(135deg, var(--meal-lunch), var(--meal-lunch-2));
-    }
-    .card-header.dinner {
-      background: linear-gradient(135deg, var(--meal-dinner), var(--meal-dinner-2));
-    }
-    .card-header.snack {
-      background: linear-gradient(135deg, var(--meal-snack), var(--meal-snack-2));
-    }
-
-    .card-meal-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      background: rgba(255,255,255,0.2);
-      color: rgba(255,255,255,0.95);
-      border-radius: 999px;
-      padding: 3px 10px;
+    .section-heading {
+      margin: 32px 0 6px;
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      align-self: flex-start;
+      color: var(--ink-soft);
     }
-    .card-emoji {
-      font-size: 38px;
-      line-height: 1;
-      margin: 4px 0 2px;
+    .section-heading:first-of-type { margin-top: 0; }
+
+    .recipe-list {
+      list-style: none;
+      margin: 0 0 8px;
+      padding: 0;
+      border-top: 1px solid var(--line);
     }
 
-    .card-body {
-      padding: 14px 16px 16px;
-      flex: 1;
+    .recipe-row {
       display: flex;
-      flex-direction: column;
+      align-items: baseline;
       gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
     }
 
-    .card-title {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 18px;
-      font-weight: 600;
+    .recipe-name {
+      font-size: 15px;
       color: var(--ink);
-      line-height: 1.25;
-      margin: 0;
+      flex: 1;
     }
-    .card-title a {
-      color: inherit;
+    .recipe-name a {
+      color: var(--forest-700);
       text-decoration: none;
     }
-    .card-title a:hover {
-      text-decoration: underline;
-      color: var(--forest-600);
-    }
+    .recipe-name a:hover { text-decoration: underline; }
 
-    .card-nutrition {
+    .tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
+      gap: 5px;
+      flex-shrink: 0;
     }
-    .nut-chip {
-      background: var(--chip-bg);
-      border: 1px solid var(--chip-border);
-      border-radius: 999px;
-      padding: 3px 9px;
-      font-size: 12px;
-      color: #3d4f46;
+    .tag {
+      font-size: 11px;
       font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid;
       white-space: nowrap;
     }
-    .nut-chip.protein {
-      background: #e8f0fb;
-      border-color: #c4d8f5;
-      color: #1e4e92;
-    }
-
-    .card-servings {
-      font-size: 12px;
-      color: var(--ink-soft);
-    }
-
-    .card-ingredients {
-      font-size: 12.5px;
-      color: #5a6a63;
-      line-height: 1.5;
-      flex: 1;
-    }
-
-    .card-notes {
-      font-size: 11.5px;
-      color: #7a8a83;
-      background: var(--sage-100);
-      border-radius: 8px;
-      padding: 7px 9px;
-      line-height: 1.4;
-    }
-
-    .card-footer {
-      padding: 0 16px 14px;
-    }
-    .view-recipe-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      background: var(--forest-700);
-      color: #ffffff;
-      text-decoration: none;
-      border-radius: 999px;
-      padding: 7px 16px;
-      font-size: 13px;
-      font-weight: 600;
-      transition: background 0.15s;
-    }
-    .view-recipe-btn:hover { background: var(--forest-900); }
-    .no-link-label {
-      font-size: 12px;
-      color: #9aaba3;
-      padding: 7px 0;
-      display: inline-block;
-    }
-
-    /* ── Empty state ─────────────────────────────────────────────────────────── */
-    .empty-state {
-      text-align: center;
-      padding: 60px 20px;
-      color: var(--ink-soft);
-      grid-column: 1 / -1;
-    }
-    .empty-state p { font-size: 16px; margin: 8px 0 0; }
-
-    /* ── Loading ─────────────────────────────────────────────────────────────── */
-    .loading {
-      text-align: center;
-      padding: 60px 20px;
-      color: var(--ink-soft);
-      grid-column: 1 / -1;
-      font-size: 15px;
-    }
-
-    @media (max-width: 500px) {
-      .recipe-grid { grid-template-columns: 1fr; }
-    }
+    .tag-breakfast { color: #92400e; border-color: #fcd34d; background: #fffbeb; }
+    .tag-lunch     { color: #065f46; border-color: #6ee7b7; background: #ecfdf5; }
+    .tag-dinner    { color: #1b5a42; border-color: #86efac; background: #f0fdf4; }
+    .tag-snack     { color: #4c1d95; border-color: #c4b5fd; background: #f5f3ff; }
   </style>
 </head>
 <body>
@@ -347,207 +139,66 @@
     <a href="recipes.html" class="active">📖 Recipe Library</a>
   </nav>
 
-  <main>
-    <section class="hero">
-      <div class="hero-eyebrow">Cholesterol-Friendly</div>
-      <h1>Recipe Library</h1>
-      <p class="hero-sub">All approved recipes from the database — filtered, tweaked, and nutrition-estimated for heart health.</p>
-    </section>
+  <div class="hero">
+    <div class="hero-eyebrow">Cholesterol-Friendly</div>
+    <h1>Recipe Library</h1>
+    <p class="hero-sub">All approved recipes from the database, organized by meal type.</p>
+  </div>
 
-    <nav class="filter-tabs" id="filterTabs" aria-label="Filter by meal type"></nav>
-
-    <div class="toolbar">
-      <input class="search-input" id="searchInput" type="search" placeholder="Search recipes…" aria-label="Search recipes">
-      <span class="result-count" id="resultCount"></span>
-    </div>
-
-    <div class="recipe-grid" id="recipeGrid">
-      <div class="loading">Loading recipes…</div>
-    </div>
-  </main>
+  <main id="main">Loading…</main>
 
   <script>
-    const MEAL_META = {
-      breakfast: { label: "Breakfast", icon: "☀️", cssClass: "breakfast" },
-      lunch:     { label: "Lunch",     icon: "🌿", cssClass: "lunch"     },
-      dinner:    { label: "Dinner",    icon: "🌙", cssClass: "dinner"    },
-      snack:     { label: "Snack",     icon: "🥜", cssClass: "snack"     }
-    };
+    const MEAL_ORDER = ["breakfast", "lunch", "dinner", "snack"];
+    const MEAL_LABELS = { breakfast: "Breakfast", lunch: "Lunch", dinner: "Dinner", snack: "Snack" };
 
-    // Pick a fun emoji based on recipe title keywords
-    function recipeEmoji(title) {
-      const t = title.toLowerCase();
-      if (t.includes("salmon") || t.includes("tilapia") || t.includes("fish")) return "🐟";
-      if (t.includes("chicken")) return "🍗";
-      if (t.includes("turkey")) return "🦃";
-      if (t.includes("pork")) return "🥩";
-      if (t.includes("tofu")) return "🌱";
-      if (t.includes("lentil") || t.includes("dal")) return "🫘";
-      if (t.includes("chickpea") || t.includes("chana")) return "🫘";
-      if (t.includes("oat")) return "🥣";
-      if (t.includes("egg") || t.includes("scramble")) return "🍳";
-      if (t.includes("avocado")) return "🥑";
-      if (t.includes("salad")) return "🥗";
-      if (t.includes("soup") || t.includes("chili") || t.includes("stew")) return "🍲";
-      if (t.includes("bowl")) return "🥣";
-      if (t.includes("quinoa")) return "🌾";
-      if (t.includes("yogurt")) return "🫙";
-      if (t.includes("hummus")) return "🧆";
-      if (t.includes("shake") || t.includes("protein")) return "🥤";
-      if (t.includes("bar")) return "🍫";
-      if (t.includes("cottage")) return "🧀";
-      return "🍽️";
-    }
-
-    // Normalize meal field to array of lowercase strings
     function mealTypes(recipe) {
       const m = recipe.meal;
-      return Array.isArray(m) ? m.map(s => s.toLowerCase()) : [m.toLowerCase()];
+      return (Array.isArray(m) ? m : [m]).map(s => s.toLowerCase());
     }
 
-    // Primary meal type for display
-    function primaryMeal(recipe) {
-      return mealTypes(recipe)[0];
-    }
-
-    function truncate(str, max) {
-      if (!str || str.length <= max) return str;
-      return str.slice(0, max).replace(/,?\s+\S*$/, "") + "…";
-    }
-
-    function renderCard(r) {
-      const pm = primaryMeal(r);
-      const meta = MEAL_META[pm] || MEAL_META.dinner;
-      const n = r.nutrition_per_serving;
-      const allMeals = mealTypes(r);
-
-      // Multi-meal badge text
-      const badgeText = allMeals.length > 1
-        ? allMeals.map(m => MEAL_META[m]?.label || m).join(" / ")
-        : meta.label;
-
-      const ingredientPreview = truncate(r.ingredients.slice(0, 6).join(", "), 110);
-
-      const titleHtml = r.url
-        ? `<a href="${r.url}" target="_blank" rel="noopener noreferrer">${r.title}</a>`
-        : r.title;
-
-      const footerHtml = r.url
-        ? `<a class="view-recipe-btn" href="${r.url}" target="_blank" rel="noopener noreferrer">View Recipe ↗</a>`
-        : `<span class="no-link-label">No external link</span>`;
-
-      const notesHtml = r.notes
-        ? `<div class="card-notes">${r.notes}</div>`
-        : "";
-
-      return `
-        <article class="recipe-card" data-meal="${allMeals.join(" ")}" data-title="${r.title.toLowerCase()}" data-notes="${(r.notes || "").toLowerCase()}">
-          <div class="card-header ${meta.cssClass}">
-            <span class="card-meal-badge">${meta.icon} ${badgeText}</span>
-            <div class="card-emoji">${recipeEmoji(r.title)}</div>
-          </div>
-          <div class="card-body">
-            <h2 class="card-title">${titleHtml}</h2>
-            <div class="card-nutrition">
-              <span class="nut-chip">${n.calories} kcal</span>
-              <span class="nut-chip protein">${n.protein_g}g protein</span>
-              <span class="nut-chip">${n.fiber_g}g fiber</span>
-              <span class="nut-chip">${n.sodium_mg}mg sodium</span>
-            </div>
-            <div class="card-servings">Serves ${n.servings} · ${n.saturated_fat_g}g sat fat · ${n.cholesterol_mg}mg cholesterol</div>
-            <div class="card-ingredients">${ingredientPreview}</div>
-            ${notesHtml}
-          </div>
-          <div class="card-footer">${footerHtml}</div>
-        </article>
-      `;
-    }
-
-    let allRecipes = [];
-    let activeFilter = "all";
-    let searchQuery = "";
-
-    function countForFilter(filter) {
-      if (filter === "all") return allRecipes.length;
-      return allRecipes.filter(r => mealTypes(r).includes(filter)).length;
-    }
-
-    function buildTabs() {
-      const tabsEl = document.getElementById("filterTabs");
-      const filters = [
-        { key: "all",       label: "All" },
-        { key: "breakfast", label: "Breakfast" },
-        { key: "lunch",     label: "Lunch"     },
-        { key: "dinner",    label: "Dinner"    },
-        { key: "snack",     label: "Snack"     }
-      ];
-      tabsEl.innerHTML = filters.map(f => `
-        <button class="filter-tab ${f.key === activeFilter ? "active" : ""}"
-                type="button" data-filter="${f.key}">
-          ${f.label} <span class="count">${countForFilter(f.key)}</span>
-        </button>
-      `).join("");
-
-      tabsEl.querySelectorAll(".filter-tab").forEach(btn => {
-        btn.addEventListener("click", () => {
-          activeFilter = btn.dataset.filter;
-          tabsEl.querySelectorAll(".filter-tab").forEach(b => b.classList.remove("active"));
-          btn.classList.add("active");
-          renderGrid();
-        });
-      });
-    }
-
-    function renderGrid() {
-      const grid = document.getElementById("recipeGrid");
-      const countEl = document.getElementById("resultCount");
-
-      let filtered = allRecipes;
-      if (activeFilter !== "all") {
-        filtered = filtered.filter(r => mealTypes(r).includes(activeFilter));
-      }
-      if (searchQuery) {
-        filtered = filtered.filter(r =>
-          r.title.toLowerCase().includes(searchQuery) ||
-          (r.notes || "").toLowerCase().includes(searchQuery) ||
-          r.ingredients.some(i => i.toLowerCase().includes(searchQuery))
-        );
-      }
-
-      if (filtered.length === 0) {
-        grid.innerHTML = `<div class="empty-state"><div style="font-size:40px">🔍</div><p>No recipes match "${searchQuery || activeFilter}".</p></div>`;
-        countEl.textContent = "";
-        return;
-      }
-
-      grid.innerHTML = filtered.map(renderCard).join("");
-      countEl.textContent = `${filtered.length} recipe${filtered.length === 1 ? "" : "s"}`;
-    }
-
-    // Search
-    document.getElementById("searchInput").addEventListener("input", e => {
-      searchQuery = e.target.value.trim().toLowerCase();
-      renderGrid();
-    });
-
-    // Load data
     fetch("recipe-database.json")
       .then(r => r.json())
       .then(data => {
-        // Sort: by primary meal type order, then alpha
-        const mealOrder = { breakfast: 0, lunch: 1, dinner: 2, snack: 3 };
-        allRecipes = data.recipes.slice().sort((a, b) => {
-          const oa = mealOrder[primaryMeal(a)] ?? 9;
-          const ob = mealOrder[primaryMeal(b)] ?? 9;
-          if (oa !== ob) return oa - ob;
-          return a.title.localeCompare(b.title);
+        const recipes = data.recipes;
+
+        // Group by primary meal type (first in list), sort alpha within each group
+        const groups = {};
+        MEAL_ORDER.forEach(m => groups[m] = []);
+
+        recipes.forEach(r => {
+          const primary = mealTypes(r)[0];
+          if (groups[primary]) groups[primary].push(r);
         });
-        buildTabs();
-        renderGrid();
+        MEAL_ORDER.forEach(m => groups[m].sort((a, b) => a.title.localeCompare(b.title)));
+
+        const main = document.getElementById("main");
+        main.innerHTML = MEAL_ORDER.map(mealKey => {
+          const list = groups[mealKey];
+          if (!list.length) return "";
+
+          const rows = list.map(r => {
+            const allMeals = mealTypes(r);
+            const nameHtml = r.url
+              ? `<a href="${r.url}" target="_blank" rel="noopener noreferrer">${r.title} ↗</a>`
+              : r.title;
+            const tagsHtml = allMeals.map(m =>
+              `<span class="tag tag-${m}">${MEAL_LABELS[m] || m}</span>`
+            ).join("");
+
+            return `
+              <li class="recipe-row">
+                <span class="recipe-name">${nameHtml}</span>
+                <span class="tags">${tagsHtml}</span>
+              </li>`;
+          }).join("");
+
+          return `
+            <p class="section-heading">${MEAL_LABELS[mealKey]}</p>
+            <ul class="recipe-list">${rows}</ul>`;
+        }).join("");
       })
       .catch(err => {
-        document.getElementById("recipeGrid").innerHTML =
-          `<div class="empty-state"><p>Could not load recipe database. (${err.message})</p></div>`;
+        document.getElementById("main").textContent = "Could not load recipes: " + err.message;
       });
   </script>
 </body>
