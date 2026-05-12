@@ -168,13 +168,13 @@
       ],
       "nutrition_per_serving": {
         "servings": 4,
-        "calories": 440,
+        "calories": 610,
         "protein_g": 34,
-        "total_fat_g": 18,
-        "saturated_fat_g": 3,
-        "cholesterol_mg": 75,
-        "fiber_g": 5,
-        "sodium_mg": 520
+        "total_fat_g": 30,
+        "saturated_fat_g": 5,
+        "cholesterol_mg": 80,
+        "fiber_g": 7,
+        "sodium_mg": 480
       }
     },
     {
@@ -252,13 +252,13 @@
       ],
       "nutrition_per_serving": {
         "servings": 4,
-        "calories": 310,
-        "protein_g": 22,
-        "total_fat_g": 4,
+        "calories": 480,
+        "protein_g": 20,
+        "total_fat_g": 9,
         "saturated_fat_g": 1,
         "cholesterol_mg": 0,
-        "fiber_g": 9,
-        "sodium_mg": 400
+        "fiber_g": 19,
+        "sodium_mg": 420
       }
     },
     {
@@ -266,7 +266,7 @@
       "title": "Lentil Stew with Quinoa and Mushrooms",
       "url": "https://themodernproper.com/lentil-stew-with-quinoa-and-mushrooms",
       "meal": "dinner",
-      "notes": "No tweaks needed. Nutrition sourced from recipe page.",
+      "notes": "No tweaks needed. Nutrition estimated from USDA values (recipe page values had errors in protein and fiber).",
       "ingredients": [
         "3 tbsp extra-virgin olive oil",
         "1 medium yellow onion, diced",
@@ -292,13 +292,13 @@
       ],
       "nutrition_per_serving": {
         "servings": 6,
-        "calories": 409,
-        "protein_g": 26,
-        "total_fat_g": 12,
-        "saturated_fat_g": 0,
+        "calories": 340,
+        "protein_g": 14,
+        "total_fat_g": 9,
+        "saturated_fat_g": 1,
         "cholesterol_mg": 0,
-        "fiber_g": 26,
-        "sodium_mg": 672
+        "fiber_g": 11,
+        "sodium_mg": 680
       }
     },
     {
@@ -348,7 +348,7 @@
       "title": "Chicken Shawarma Quinoa Bowls",
       "url": "https://peasandcrayons.com/healthy-chicken-shawarma-quinoa-bowls/",
       "meal": "dinner",
-      "notes": "No tweaks needed. Already uses chicken breast, quinoa, and plenty of veggies. Nutrition estimated.",
+      "notes": "No tweaks needed. Already uses chicken breast, quinoa, and plenty of veggies. Scaled to 4 servings (naan + tahini + quinoa for 2 was too large per serving). Nutrition estimated.",
       "ingredients": [
         "1 cup dry quinoa",
         "1.5 cups water",
@@ -385,13 +385,13 @@
         "Assemble bowls: quinoa base, topped with veggies and sliced chicken. Drizzle with tahini sauce. Serve with warmed naan."
       ],
       "nutrition_per_serving": {
-        "servings": 2,
-        "calories": 580,
-        "protein_g": 42,
-        "total_fat_g": 28,
-        "saturated_fat_g": 4,
-        "cholesterol_mg": 85,
-        "fiber_g": 6,
+        "servings": 4,
+        "calories": 590,
+        "protein_g": 30,
+        "total_fat_g": 23,
+        "saturated_fat_g": 3,
+        "cholesterol_mg": 50,
+        "fiber_g": 5,
         "sodium_mg": 520
       }
     },
@@ -400,7 +400,7 @@
       "title": "Healthy Southwest Chicken Taco Salad",
       "url": "https://allthehealthythings.com/healthy-chicken-taco-salad/",
       "meal": ["lunch", "dinner"],
-      "notes": "Added quinoa as complex carb. Already uses chicken breast. Nutrition estimated.",
+      "notes": "Added quinoa as complex carb. Already uses chicken breast. Dressing uses 3 tbsp olive oil. Nutrition estimated.",
       "ingredients": [
         "1 lb boneless skinless chicken breast",
         "1/4 cup olive oil",
@@ -438,13 +438,13 @@
       ],
       "nutrition_per_serving": {
         "servings": 4,
-        "calories": 430,
-        "protein_g": 36,
-        "total_fat_g": 20,
+        "calories": 690,
+        "protein_g": 47,
+        "total_fat_g": 31,
         "saturated_fat_g": 4,
-        "cholesterol_mg": 75,
-        "fiber_g": 10,
-        "sodium_mg": 480
+        "cholesterol_mg": 85,
+        "fiber_g": 12,
+        "sodium_mg": 580
       }
     },
     {
@@ -540,7 +540,7 @@
       "title": "Mixed Greens Salad with White Beans, Chicken & Dijon Vinaigrette",
       "url": null,
       "meal": "lunch",
-      "notes": "Swapped chicken thighs to chicken breast. Added quinoa for complex carb. Nutrition estimated.",
+      "notes": "Swapped chicken thighs to chicken breast. Added quinoa for complex carb. Scaled to 4 servings. Dressing uses 1/4 cup olive oil. Nutrition estimated.",
       "ingredients": [
         "1 lb boneless skinless chicken breast",
         "Salt and pepper",
@@ -566,14 +566,14 @@
         "Assemble salads: mixed greens base, topped with quinoa, sliced chicken, white beans, tomatoes, cucumber, avocado, and pepitas. Drizzle with Dijon vinaigrette."
       ],
       "nutrition_per_serving": {
-        "servings": 2,
-        "calories": 480,
-        "protein_g": 38,
-        "total_fat_g": 22,
-        "saturated_fat_g": 3,
-        "cholesterol_mg": 75,
-        "fiber_g": 10,
-        "sodium_mg": 400
+        "servings": 4,
+        "calories": 780,
+        "protein_g": 51,
+        "total_fat_g": 35,
+        "saturated_fat_g": 5,
+        "cholesterol_mg": 85,
+        "fiber_g": 15,
+        "sodium_mg": 450
       }
     },
     {
@@ -770,13 +770,13 @@
       ],
       "nutrition_per_serving": {
         "servings": 1,
-        "calories": 290,
-        "protein_g": 26,
-        "total_fat_g": 14,
+        "calories": 390,
+        "protein_g": 31,
+        "total_fat_g": 17,
         "saturated_fat_g": 3,
-        "cholesterol_mg": 186,
+        "cholesterol_mg": 190,
         "fiber_g": 3,
-        "sodium_mg": 420
+        "sodium_mg": 450
       }
     },
     {
@@ -784,7 +784,7 @@
       "title": "Red Lentil Dal",
       "url": null,
       "meal": "dinner",
-      "notes": "Based on NYT recipe. Includes quinoa and roti for carbs, kale for greens, yogurt for extra protein. Nutrition estimated.",
+      "notes": "Based on NYT recipe. Includes quinoa and 2 roti per serving for carbs, kale for greens, yogurt for extra protein. Nutrition estimated.",
       "ingredients": [
         "2 tbsp vegetable oil",
         "1 cup finely chopped onion",
@@ -817,13 +817,13 @@
       ],
       "nutrition_per_serving": {
         "servings": 4,
-        "calories": 520,
-        "protein_g": 24,
-        "total_fat_g": 12,
-        "saturated_fat_g": 2,
+        "calories": 690,
+        "protein_g": 33,
+        "total_fat_g": 15,
+        "saturated_fat_g": 1,
         "cholesterol_mg": 2,
-        "fiber_g": 14,
-        "sodium_mg": 450
+        "fiber_g": 19,
+        "sodium_mg": 480
       }
     },
     {
@@ -884,7 +884,7 @@
       "title": "Quinoa Chickpea Salad with Roasted Red Pepper Hummus Dressing",
       "url": "https://www.eatingwell.com/recipe/259996/quinoa-chickpea-salad-with-roasted-red-pepper-hummus-dressing/",
       "meal": "lunch",
-      "notes": "Doubled chickpeas to boost protein above 20g. Single-serving recipe scaled to 2. Nutrition estimated.",
+      "notes": "Doubled chickpeas to boost protein above 20g. Single-serving recipe scaled to 2. Full chickpea can included in nutrition. Nutrition estimated.",
       "ingredients": [
         "4 cups mixed salad greens",
         "1 cup cooked quinoa",
@@ -904,13 +904,13 @@
       ],
       "nutrition_per_serving": {
         "servings": 2,
-        "calories": 390,
-        "protein_g": 22,
-        "total_fat_g": 12,
+        "calories": 520,
+        "protein_g": 26,
+        "total_fat_g": 11,
         "saturated_fat_g": 1,
         "cholesterol_mg": 0,
-        "fiber_g": 12,
-        "sodium_mg": 400
+        "fiber_g": 19,
+        "sodium_mg": 420
       }
     },
     {
@@ -918,7 +918,7 @@
       "title": "Oven Roasted Salmon with Braised French Lentils",
       "url": "https://www.feastingathome.com/salmon-with-braised-french-lentils/",
       "meal": "dinner",
-      "notes": "Added roasted broccolini as vegetable side. Salmon cholesterol acceptable (omega-3 rich). Nutrition estimated.",
+      "notes": "Added roasted broccolini as vegetable side. Salmon cholesterol acceptable (omega-3 rich). High protein and fiber from lentils. Nutrition estimated.",
       "ingredients": [
         "1-1.5 lbs salmon (4 skinless fillets)",
         "2-3 garlic cloves, finely minced",
@@ -955,13 +955,13 @@
       ],
       "nutrition_per_serving": {
         "servings": 4,
-        "calories": 480,
-        "protein_g": 38,
-        "total_fat_g": 18,
-        "saturated_fat_g": 3,
-        "cholesterol_mg": 58,
-        "fiber_g": 14,
-        "sodium_mg": 550
+        "calories": 730,
+        "protein_g": 59,
+        "total_fat_g": 31,
+        "saturated_fat_g": 5,
+        "cholesterol_mg": 84,
+        "fiber_g": 21,
+        "sodium_mg": 800
       }
     },
     {
@@ -969,7 +969,7 @@
       "title": "Lentil Veggie Bowls with Tahini Sauce",
       "url": "https://www.feastingathome.com/minted-lentil-veggie-bowl/",
       "meal": "lunch",
-      "notes": "Protein meets threshold at ~22g from lentils and seeds. No tweaks needed. Nutrition from recipe page (without tahini sauce).",
+      "notes": "Protein meets threshold at ~27g from lentils, seeds, and tahini. No tweaks needed. Nutrition estimated including full tahini sauce.",
       "ingredients": [
         "1.5 cups dry lentils (brown, green, or black)",
         "1/2 tsp salt",
@@ -1001,13 +1001,13 @@
       ],
       "nutrition_per_serving": {
         "servings": 4,
-        "calories": 385,
-        "protein_g": 22,
-        "total_fat_g": 13,
-        "saturated_fat_g": 2,
+        "calories": 590,
+        "protein_g": 27,
+        "total_fat_g": 31,
+        "saturated_fat_g": 4,
         "cholesterol_mg": 0,
-        "fiber_g": 22,
-        "sodium_mg": 638
+        "fiber_g": 19,
+        "sodium_mg": 640
       }
     },
     {
@@ -1042,13 +1042,13 @@
       ],
       "nutrition_per_serving": {
         "servings": 4,
-        "calories": 380,
-        "protein_g": 20,
-        "total_fat_g": 12,
-        "saturated_fat_g": 1.5,
+        "calories": 400,
+        "protein_g": 16,
+        "total_fat_g": 16,
+        "saturated_fat_g": 2,
         "cholesterol_mg": 0,
-        "fiber_g": 10,
-        "sodium_mg": 450
+        "fiber_g": 13,
+        "sodium_mg": 580
       }
     },
     {
@@ -1132,13 +1132,13 @@
       ],
       "nutrition_per_serving": {
         "servings": 4,
-        "calories": 430,
-        "protein_g": 28,
-        "total_fat_g": 18,
-        "saturated_fat_g": 4,
-        "cholesterol_mg": 96,
+        "calories": 490,
+        "protein_g": 27,
+        "total_fat_g": 19,
+        "saturated_fat_g": 3,
+        "cholesterol_mg": 85,
         "fiber_g": 6,
-        "sodium_mg": 680
+        "sodium_mg": 700
       }
     },
     {
