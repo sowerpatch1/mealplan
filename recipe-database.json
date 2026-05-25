@@ -31,11 +31,11 @@
       ],
       "steps": [
         "Cook 1 cup brown rice according to package directions.",
-        "Set oven to 425°F. Add trimmed asparagus to a lined baking sheet and top with a small splash of avocado oil, 1/2 tbsp nutritional yeast, black pepper, salt, and juice of half a lemon. Toss to coat and bake for 10-12 minutes.",
+        "Set oven to 425\u00b0F. Add trimmed asparagus to a lined baking sheet and top with a small splash of avocado oil, 1/2 tbsp nutritional yeast, black pepper, salt, and juice of half a lemon. Toss to coat and bake for 10-12 minutes.",
         "Combine cornstarch, 2 tbsp nutritional yeast, pepper, thyme, and salt in a dish. Coat tofu pieces in the mixture.",
         "Warm avocado oil in a large skillet. When hot, add tofu and cook 3-5 minutes per side until golden.",
         "While tofu cooks, combine lemon juice, zest, maple syrup, black pepper, vegetable broth, and 1 tsp cornstarch in a bowl.",
-        "Remove cooked tofu from pan. Add a teaspoon of oil and sauté garlic and red pepper flakes until fragrant. Pour in sauce and cook 2-3 minutes until slightly thickened. Add tofu back and coat with sauce.",
+        "Remove cooked tofu from pan. Add a teaspoon of oil and saut\u00e9 garlic and red pepper flakes until fragrant. Pour in sauce and cook 2-3 minutes until slightly thickened. Add tofu back and coat with sauce.",
         "Serve tofu and asparagus over brown rice."
       ],
       "nutrition_per_serving": {
@@ -46,7 +46,9 @@
         "saturated_fat_g": 2,
         "cholesterol_mg": 0,
         "fiber_g": 8,
-        "sodium_mg": 620
+        "sodium_mg": 620,
+        "carbs_g": 53,
+        "added_sugar_g": 2
       }
     },
     {
@@ -90,7 +92,9 @@
         "saturated_fat_g": 3,
         "cholesterol_mg": 0,
         "fiber_g": 9,
-        "sodium_mg": 480
+        "sodium_mg": 480,
+        "carbs_g": 38,
+        "added_sugar_g": 3
       }
     },
     {
@@ -129,7 +133,9 @@
         "saturated_fat_g": 3,
         "cholesterol_mg": 55,
         "fiber_g": 7,
-        "sodium_mg": 680
+        "sodium_mg": 680,
+        "carbs_g": 39,
+        "added_sugar_g": 1
       }
     },
     {
@@ -162,7 +168,7 @@
         "Whisk soy sauce, avocado oil, honey, ginger, and garlic for the marinade. Add pork, cover, and refrigerate 6 hours to overnight.",
         "For vinaigrette, blend lemon juice, red wine vinegar, Dijon, and peach preserves. Slowly stream in 1/3 cup olive oil to emulsify. Season with salt and pepper.",
         "Slice onion into thick rings. Brush with oil, season with salt and pepper.",
-        "Preheat grill to high (500-600°F). Grill pork and onions 7 minutes, flip, cook 6 more minutes, then turn off burners and rest with lid closed 5 minutes. Transfer to cutting board and rest 5 more minutes.",
+        "Preheat grill to high (500-600\u00b0F). Grill pork and onions 7 minutes, flip, cook 6 more minutes, then turn off burners and rest with lid closed 5 minutes. Transfer to cutting board and rest 5 more minutes.",
         "Toss warm onions, arugula, peach, and avocado with peach vinaigrette.",
         "Slice pork against the grain. Serve over farro with salad alongside."
       ],
@@ -174,7 +180,9 @@
         "saturated_fat_g": 5,
         "cholesterol_mg": 80,
         "fiber_g": 7,
-        "sodium_mg": 480
+        "sodium_mg": 480,
+        "carbs_g": 51,
+        "added_sugar_g": 9
       }
     },
     {
@@ -182,7 +190,7 @@
       "title": "Blackened Tilapia with Avocado Cucumber Salsa",
       "url": "https://www.bowlofdelicious.com/10-minute-blackened-tilapia-with-avocado-cucumber-salsa/",
       "meal": "dinner",
-      "notes": "Reduced butter to 2 tbsp. Added quinoa side and sautéed spinach. Nutrition estimated.",
+      "notes": "Reduced butter to 2 tbsp. Added quinoa side and saut\u00e9ed spinach. Nutrition estimated.",
       "ingredients": [
         "4 tilapia fillets",
         "1/4 cup blackening seasoning",
@@ -204,7 +212,7 @@
         "Melt 2 tbsp butter in skillet. Cook tilapia 2 minutes per side until cooked through and flaky.",
         "Mix avocado, cucumber, parsley, lemon juice, and salt in a small bowl for salsa.",
         "In a separate pan, heat 1 tsp olive oil over medium heat. Add spinach and cook 2-3 minutes until wilted. Season with salt.",
-        "Serve blackened tilapia over quinoa with avocado cucumber salsa and sautéed spinach alongside."
+        "Serve blackened tilapia over quinoa with avocado cucumber salsa and saut\u00e9ed spinach alongside."
       ],
       "nutrition_per_serving": {
         "servings": 4,
@@ -214,7 +222,9 @@
         "saturated_fat_g": 5,
         "cholesterol_mg": 100,
         "fiber_g": 6,
-        "sodium_mg": 350
+        "sodium_mg": 350,
+        "carbs_g": 26,
+        "added_sugar_g": 0
       }
     },
     {
@@ -258,7 +268,9 @@
         "saturated_fat_g": 1,
         "cholesterol_mg": 0,
         "fiber_g": 19,
-        "sodium_mg": 420
+        "sodium_mg": 420,
+        "carbs_g": 80,
+        "added_sugar_g": 0
       }
     },
     {
@@ -298,7 +310,9 @@
         "saturated_fat_g": 1,
         "cholesterol_mg": 0,
         "fiber_g": 11,
-        "sodium_mg": 680
+        "sodium_mg": 680,
+        "carbs_g": 51,
+        "added_sugar_g": 0
       }
     },
     {
@@ -326,7 +340,7 @@
         "Chopped fresh cilantro and lemon wedges for serving"
       ],
       "steps": [
-        "Heat oil in a large stockpot over medium-high heat. Add onion and carrot, sauté 5 minutes until onion is soft. Add garlic and sauté 1 more minute.",
+        "Heat oil in a large stockpot over medium-high heat. Add onion and carrot, saut\u00e9 5 minutes until onion is soft. Add garlic and saut\u00e9 1 more minute.",
         "Add vegetable stock, chickpeas, tomatoes, tomato paste, cumin, cinnamon, ginger, and red pepper flakes. Stir in quinoa. Bring to a simmer.",
         "Reduce heat to medium-low. Simmer 15 minutes until quinoa is cooked.",
         "Stir in kale and continue simmering 3 minutes until kale softens.",
@@ -340,7 +354,9 @@
         "saturated_fat_g": 1,
         "cholesterol_mg": 0,
         "fiber_g": 12,
-        "sodium_mg": 580
+        "sodium_mg": 580,
+        "carbs_g": 56,
+        "added_sugar_g": 0
       }
     },
     {
@@ -379,7 +395,7 @@
       "steps": [
         "Rinse quinoa. Toast in a dry saucepan a few minutes, then add 1.5 cups water and bring to a boil. Reduce to low, cover with lid slightly ajar, and simmer 12-13 minutes until fluffy.",
         "Pound chicken to 1/4-inch thickness. Combine cumin, paprika, turmeric, cayenne, lemon juice, garlic, and 1 tbsp olive oil. Coat chicken and marinate at least 10 minutes.",
-        "Season chicken with salt and pepper. Heat 1 tbsp olive oil in a pan over medium heat. Cook chicken 3-4 minutes per side until internal temp reaches 165°F. Rest, then slice.",
+        "Season chicken with salt and pepper. Heat 1 tbsp olive oil in a pan over medium heat. Cook chicken 3-4 minutes per side until internal temp reaches 165\u00b0F. Rest, then slice.",
         "Chop onion, bell pepper, cucumber, and tomatoes. Toss with lemon juice, 2 tbsp olive oil, and parsley.",
         "Make tahini sauce: whisk tahini, lemon juice, garlic, then slowly add warm water until thin and saucy. Season with salt, pepper, and paprika.",
         "Assemble bowls: quinoa base, topped with veggies and sliced chicken. Drizzle with tahini sauce. Serve with warmed naan."
@@ -392,14 +408,19 @@
         "saturated_fat_g": 3,
         "cholesterol_mg": 50,
         "fiber_g": 5,
-        "sodium_mg": 520
+        "sodium_mg": 520,
+        "carbs_g": 66,
+        "added_sugar_g": 0
       }
     },
     {
       "id": "southwest-chicken-taco-salad",
       "title": "Healthy Southwest Chicken Taco Salad",
       "url": "https://allthehealthythings.com/healthy-chicken-taco-salad/",
-      "meal": ["lunch", "dinner"],
+      "meal": [
+        "lunch",
+        "dinner"
+      ],
       "notes": "Added quinoa as complex carb. Already uses chicken breast. Dressing uses 3 tbsp olive oil. Nutrition estimated.",
       "ingredients": [
         "1 lb boneless skinless chicken breast",
@@ -421,7 +442,7 @@
         "1/4 cup finely diced red onion",
         "Cotija or feta cheese for topping",
         "1/2 cup plain Greek yogurt",
-        "1 jalapeño, seeds removed",
+        "1 jalape\u00f1o, seeds removed",
         "3 tbsp olive oil (for dressing)",
         "1/4 cup lime juice (for dressing)",
         "1/4 cup cilantro",
@@ -432,9 +453,9 @@
       "steps": [
         "Cook quinoa: rinse 1 cup quinoa, combine with 2 cups water, bring to boil, reduce heat, cover, simmer 15 minutes. Fluff and set aside.",
         "Whisk olive oil, lime juice, and all spices in a bowl. Add chicken, toss to coat, and marinate at least 20 minutes.",
-        "Heat a skillet over medium-high heat. Cook chicken 4-6 minutes per side until internal temp is 165°F. Let rest, then slice.",
-        "Make jalapeño ranch: blend Greek yogurt, jalapeño, olive oil, lime juice, cilantro, dill, garlic, salt, and pepper until smooth.",
-        "Assemble salads: romaine base, topped with quinoa, sliced chicken, black beans, corn, tomatoes, avocado, red onion, and crumbled cheese. Drizzle with jalapeño ranch."
+        "Heat a skillet over medium-high heat. Cook chicken 4-6 minutes per side until internal temp is 165\u00b0F. Let rest, then slice.",
+        "Make jalape\u00f1o ranch: blend Greek yogurt, jalape\u00f1o, olive oil, lime juice, cilantro, dill, garlic, salt, and pepper until smooth.",
+        "Assemble salads: romaine base, topped with quinoa, sliced chicken, black beans, corn, tomatoes, avocado, red onion, and crumbled cheese. Drizzle with jalape\u00f1o ranch."
       ],
       "nutrition_per_serving": {
         "servings": 4,
@@ -444,7 +465,9 @@
         "saturated_fat_g": 4,
         "cholesterol_mg": 85,
         "fiber_g": 12,
-        "sodium_mg": 580
+        "sodium_mg": 580,
+        "carbs_g": 56,
+        "added_sugar_g": 0
       }
     },
     {
@@ -455,7 +478,7 @@
       "notes": "Added chickpeas for protein boost. Use low-sodium broth to reduce sodium. Nutrition estimated.",
       "ingredients": [
         "1 cup brown or green lentils, rinsed",
-        "1/4 cup water (for sautéing)",
+        "1/4 cup water (for saut\u00e9ing)",
         "1.25 cups diced red onion",
         "4 cloves garlic, minced",
         "1 large sweet potato, peeled and chopped",
@@ -474,8 +497,8 @@
       ],
       "steps": [
         "Optional: soak lentils overnight for improved digestibility. Rinse and drain before using.",
-        "Heat a large pot over medium-high heat. Add water and onion, sauté 5 minutes until slightly browned.",
-        "Add garlic and sauté 1 minute. Add sweet potato, salt, pepper, cumin, cinnamon, coriander, turmeric, and cayenne. Stir and cook 4 minutes.",
+        "Heat a large pot over medium-high heat. Add water and onion, saut\u00e9 5 minutes until slightly browned.",
+        "Add garlic and saut\u00e9 1 minute. Add sweet potato, salt, pepper, cumin, cinnamon, coriander, turmeric, and cayenne. Stir and cook 4 minutes.",
         "Add vegetable broth (start with 5 cups) and bring to a low boil. Add lentils, chickpeas, and coconut sugar. Stir to combine.",
         "Once boiling, reduce to a simmer, loosely cover, and cook about 20 minutes until lentils are tender.",
         "Add green beans, stir, and cover. Cook 10 more minutes. Rest 5 minutes off heat.",
@@ -489,7 +512,9 @@
         "saturated_fat_g": 1,
         "cholesterol_mg": 0,
         "fiber_g": 15,
-        "sodium_mg": 650
+        "sodium_mg": 650,
+        "carbs_g": 67,
+        "added_sugar_g": 4
       }
     },
     {
@@ -518,7 +543,7 @@
       ],
       "steps": [
         "Cook farro: combine with 3 cups water and a pinch of salt, bring to boil, reduce heat, simmer 25-30 minutes until tender. Drain any excess water.",
-        "Preheat oven to 425°F. Toss asparagus with 1 tbsp olive oil, salt, and pepper on a baking sheet. Roast 12-15 minutes until tender and slightly charred.",
+        "Preheat oven to 425\u00b0F. Toss asparagus with 1 tbsp olive oil, salt, and pepper on a baking sheet. Roast 12-15 minutes until tender and slightly charred.",
         "Whisk lemon juice, 1/4 cup olive oil, parsley, rosemary, thyme, garlic, lemon zest, Dijon, honey, 1 tsp salt, and 1/2 tsp pepper.",
         "Place salmon in a dish, pour marinade over, cover, and refrigerate 30 minutes (turn once halfway through).",
         "Preheat grill to medium-high. Clean and oil grates. Grill salmon 3-5 minutes per side until cooked to preference.",
@@ -532,7 +557,9 @@
         "saturated_fat_g": 4,
         "cholesterol_mg": 109,
         "fiber_g": 6,
-        "sodium_mg": 350
+        "sodium_mg": 350,
+        "carbs_g": 28,
+        "added_sugar_g": 1
       }
     },
     {
@@ -561,7 +588,7 @@
       ],
       "steps": [
         "Cook quinoa: rinse, combine with 2 cups water, bring to boil, reduce heat, cover, simmer 15 minutes. Fluff and let cool slightly.",
-        "Season chicken breast with salt and pepper. Heat 1 tbsp olive oil in a skillet over medium-high heat. Cook chicken 5-6 minutes per side until internal temp is 165°F. Rest 5 minutes, then slice.",
+        "Season chicken breast with salt and pepper. Heat 1 tbsp olive oil in a skillet over medium-high heat. Cook chicken 5-6 minutes per side until internal temp is 165\u00b0F. Rest 5 minutes, then slice.",
         "Make vinaigrette: whisk Dijon, red wine vinegar, olive oil, honey, salt, and pepper until emulsified.",
         "Assemble salads: mixed greens base, topped with quinoa, sliced chicken, white beans, tomatoes, cucumber, avocado, and pepitas. Drizzle with Dijon vinaigrette."
       ],
@@ -573,14 +600,19 @@
         "saturated_fat_g": 5,
         "cholesterol_mg": 85,
         "fiber_g": 15,
-        "sodium_mg": 450
+        "sodium_mg": 450,
+        "carbs_g": 65,
+        "added_sugar_g": 2
       }
     },
     {
       "id": "roasted-veggie-glow-bowls",
       "title": "Roasted Veggie Glow Bowls",
       "url": "https://dishingouthealth.com/roasted-veggie-glow-bowls/",
-      "meal": ["lunch", "dinner"],
+      "meal": [
+        "lunch",
+        "dinner"
+      ],
       "notes": "Added roasted tofu for protein boost per user request. Nutrition estimated.",
       "ingredients": [
         "1 (14 oz) block extra-firm tofu, pressed and cubed",
@@ -608,7 +640,7 @@
         "3-4 tbsp water (for dressing)"
       ],
       "steps": [
-        "Preheat oven to 425°F. Press tofu and cut into cubes.",
+        "Preheat oven to 425\u00b0F. Press tofu and cut into cubes.",
         "Add cauliflower, carrots, and tofu cubes to a large rimmed baking sheet. Toss with 2 tbsp olive oil, smoked paprika, garlic powder, cumin, salt, and pepper.",
         "Roast 25-30 minutes, tossing once halfway through, until veggies are caramelized and tofu is crispy on edges.",
         "Meanwhile, combine quinoa and broth in a saucepan over medium-high heat. Bring to a boil, reduce heat, cover, and simmer 15 minutes until liquid is absorbed. Remove lid, stir in kale and remaining 1 tbsp olive oil. Cover and keep warm (residual heat will wilt the kale).",
@@ -623,7 +655,9 @@
         "saturated_fat_g": 5,
         "cholesterol_mg": 0,
         "fiber_g": 15,
-        "sodium_mg": 750
+        "sodium_mg": 750,
+        "carbs_g": 46,
+        "added_sugar_g": 3
       }
     },
     {
@@ -655,7 +689,9 @@
         "saturated_fat_g": 3,
         "cholesterol_mg": 3,
         "fiber_g": 12,
-        "sodium_mg": 110
+        "sodium_mg": 110,
+        "carbs_g": 44,
+        "added_sugar_g": 0
       }
     },
     {
@@ -683,7 +719,9 @@
         "saturated_fat_g": 3,
         "cholesterol_mg": 10,
         "fiber_g": 4,
-        "sodium_mg": 180
+        "sodium_mg": 180,
+        "carbs_g": 30,
+        "added_sugar_g": 0
       }
     },
     {
@@ -710,14 +748,19 @@
         "saturated_fat_g": 1.5,
         "cholesterol_mg": 10,
         "fiber_g": 3,
-        "sodium_mg": 370
+        "sodium_mg": 370,
+        "carbs_g": 24,
+        "added_sugar_g": 0
       }
     },
     {
       "id": "egg-avocado-toast",
       "title": "Open-Faced Egg & Avocado Toast",
       "url": null,
-      "meal": ["breakfast", "lunch"],
+      "meal": [
+        "breakfast",
+        "lunch"
+      ],
       "notes": "Quick high-protein breakfast. Nutrition estimated from USDA values.",
       "ingredients": [
         "1 whole egg",
@@ -743,14 +786,19 @@
         "saturated_fat_g": 3,
         "cholesterol_mg": 186,
         "fiber_g": 5,
-        "sodium_mg": 380
+        "sodium_mg": 380,
+        "carbs_g": 26,
+        "added_sugar_g": 0
       }
     },
     {
       "id": "veggie-egg-scramble-toast",
       "title": "Veggie Egg Scramble + Toast",
       "url": null,
-      "meal": ["breakfast", "lunch"],
+      "meal": [
+        "breakfast",
+        "lunch"
+      ],
       "notes": "High-protein veggie-packed breakfast. Nutrition estimated from USDA values.",
       "ingredients": [
         "1 whole egg",
@@ -764,7 +812,7 @@
       ],
       "steps": [
         "Heat olive oil in a nonstick skillet over medium heat.",
-        "Sauté bell pepper and mushrooms 3-4 minutes until softened.",
+        "Saut\u00e9 bell pepper and mushrooms 3-4 minutes until softened.",
         "Whisk egg and egg whites together. Pour into skillet with veggies and scramble until cooked through. Season with salt and pepper.",
         "Serve scramble with whole grain toast alongside. Enjoy with coffee and low-fat milk."
       ],
@@ -776,7 +824,9 @@
         "saturated_fat_g": 3,
         "cholesterol_mg": 190,
         "fiber_g": 3,
-        "sodium_mg": 450
+        "sodium_mg": 450,
+        "carbs_g": 28,
+        "added_sugar_g": 0
       }
     },
     {
@@ -823,7 +873,9 @@
         "saturated_fat_g": 1,
         "cholesterol_mg": 2,
         "fiber_g": 19,
-        "sodium_mg": 480
+        "sodium_mg": 480,
+        "carbs_g": 106,
+        "added_sugar_g": 0
       }
     },
     {
@@ -847,7 +899,9 @@
         "saturated_fat_g": 1,
         "cholesterol_mg": 0,
         "fiber_g": 6,
-        "sodium_mg": 320
+        "sodium_mg": 320,
+        "carbs_g": 19,
+        "added_sugar_g": 0
       }
     },
     {
@@ -876,7 +930,9 @@
         "saturated_fat_g": 1,
         "cholesterol_mg": 0,
         "fiber_g": 3,
-        "sodium_mg": 130
+        "sodium_mg": 130,
+        "carbs_g": 10,
+        "added_sugar_g": 0
       }
     },
     {
@@ -910,7 +966,9 @@
         "saturated_fat_g": 1,
         "cholesterol_mg": 0,
         "fiber_g": 19,
-        "sodium_mg": 420
+        "sodium_mg": 420,
+        "carbs_g": 79,
+        "added_sugar_g": 0
       }
     },
     {
@@ -945,12 +1003,12 @@
         "Salt and pepper (for broccolini)"
       ],
       "steps": [
-        "Preheat oven to 325°F.",
+        "Preheat oven to 325\u00b0F.",
         "Pat salmon dry. Combine garlic, thyme, mustard, lemon zest, 3 tbsp olive oil, salt, and pepper for marinade. Brush bottom of fillets, place on parchment-lined sheet pan, spoon remaining marinade over tops. Set aside.",
-        "For lentils: heat 2 tbsp olive oil in a large sauté pan over medium-high heat. Add onion, celery, and carrot; cook 8-10 minutes until softened. Add garlic and lentils, cook 2 minutes.",
+        "For lentils: heat 2 tbsp olive oil in a large saut\u00e9 pan over medium-high heat. Add onion, celery, and carrot; cook 8-10 minutes until softened. Add garlic and lentils, cook 2 minutes.",
         "Add wine, let cook off 2 minutes. Pour in stock, salt, and mustard. Bring to a simmer. Add bay leaves and thyme sprigs. Cover and simmer on low 25-30 minutes until lentils are tender.",
         "When lentils have about 12 minutes remaining, place salmon in oven. Bake 10-15 minutes depending on thickness.",
-        "Meanwhile, toss broccolini with 1 tbsp olive oil, salt, and pepper on a baking sheet. Roast at 425°F for 10-12 minutes until tender-crisp (can share oven with salmon at end, or roast separately).",
+        "Meanwhile, toss broccolini with 1 tbsp olive oil, salt, and pepper on a baking sheet. Roast at 425\u00b0F for 10-12 minutes until tender-crisp (can share oven with salmon at end, or roast separately).",
         "Remove bay leaves and thyme sprigs from lentils. Taste and adjust salt. Serve lentils in shallow bowls, topped with salmon and broccolini alongside."
       ],
       "nutrition_per_serving": {
@@ -961,7 +1019,9 @@
         "saturated_fat_g": 5,
         "cholesterol_mg": 84,
         "fiber_g": 21,
-        "sodium_mg": 800
+        "sodium_mg": 800,
+        "carbs_g": 54,
+        "added_sugar_g": 0
       }
     },
     {
@@ -994,7 +1054,7 @@
       "steps": [
         "Cook lentils in ample salted water until tender (15-25 minutes depending on size). Drain.",
         "Season lentils with olive oil, salt, cumin, chili flakes, and a squeeze of lemon.",
-        "Roast cauliflower at 400°F with olive oil, salt, and pepper for 20 minutes.",
+        "Roast cauliflower at 400\u00b0F with olive oil, salt, and pepper for 20 minutes.",
         "Make tahini sauce: whisk tahini with water, lemon juice, olive oil, garlic, salt, and pepper until smooth.",
         "Prep veggies: shred carrots, slice bell pepper, wash greens.",
         "Assemble bowls: warm lentils as base, top with roasted cauliflower, greens, veggies, and herbs. Drizzle generously with tahini sauce and sprinkle with seeds."
@@ -1007,7 +1067,9 @@
         "saturated_fat_g": 4,
         "cholesterol_mg": 0,
         "fiber_g": 19,
-        "sodium_mg": 640
+        "sodium_mg": 640,
+        "carbs_g": 51,
+        "added_sugar_g": 3
       }
     },
     {
@@ -1048,15 +1110,17 @@
         "saturated_fat_g": 2,
         "cholesterol_mg": 0,
         "fiber_g": 13,
-        "sodium_mg": 580
+        "sodium_mg": 580,
+        "carbs_g": 48,
+        "added_sugar_g": 0
       }
     },
     {
       "id": "mujadara",
-      "title": "Mujadara (Lentils and Rice)",
+      "title": "Mujadara (Lentils and Bulgur)",
       "url": "https://www.feastingathome.com/instant-pot-mujadara/",
-      "meal": "lunch",
-      "notes": "Serve with 1/4 cup Greek yogurt per serving for protein boost to ~20g. Add a simple side salad for veggies. Nutrition estimated with yogurt.",
+      "meal": "dinner",
+      "notes": "Swapped brown rice for bulgur wheat. Serve with 1/4 cup Greek yogurt per serving for protein boost to ~21g. Add a simple side salad for veggies. Nutrition estimated with yogurt.",
       "ingredients": [
         "1 cup large brown lentils",
         "1.5 tbsp olive oil",
@@ -1071,35 +1135,40 @@
         "1.5 tsp kosher salt",
         "1 tsp dried mint or parsley",
         "Lemon zest from 1 small lemon",
-        "3 cups water",
-        "1 cup brown basmati rice, rinsed",
+        "2.5 cups water",
+        "1 cup coarse bulgur wheat",
         "1 cup plain nonfat Greek yogurt (for serving)",
         "Diced tomato, avocado, fresh parsley for garnish"
       ],
       "steps": [
         "Soak lentils in hot water while prepping other ingredients.",
-        "Set Instant Pot to sauté. Cook shallots in oil 4-5 minutes until caramelized. Remove half for topping.",
-        "Add garlic, sauté 1-2 minutes. Add all spices, salt, lemon zest, and water. Stir.",
-        "Drain lentils and add with rinsed rice to the pot. Stir.",
-        "Set to High Pressure for 11 minutes. Natural release 10 minutes.",
+        "Set Instant Pot to saut\u00e9. Cook shallots in oil 4-5 minutes until caramelized. Remove half for topping.",
+        "Add garlic, saut\u00e9 1-2 minutes. Add all spices, salt, lemon zest, and water. Stir.",
+        "Drain lentils and add with bulgur to the pot. Stir.",
+        "Set to High Pressure for 8 minutes. Natural release 10 minutes.",
         "Fluff gently with a fork. Serve in bowls drizzled with olive oil, topped with reserved caramelized shallots, tomato, avocado, and a dollop of Greek yogurt."
       ],
       "nutrition_per_serving": {
         "servings": 5,
-        "calories": 460,
-        "protein_g": 20,
-        "total_fat_g": 15,
-        "saturated_fat_g": 2.5,
+        "calories": 420,
+        "protein_g": 21,
+        "total_fat_g": 14,
+        "saturated_fat_g": 2,
         "cholesterol_mg": 2,
-        "fiber_g": 10,
-        "sodium_mg": 720
+        "fiber_g": 14,
+        "sodium_mg": 720,
+        "carbs_g": 52,
+        "added_sugar_g": 0
       }
     },
     {
       "id": "chicken-cabbage-stir-fry",
       "title": "Chicken Cabbage Stir Fry",
       "url": "https://www.feastingathome.com/chicken-cabbage-stir-fry/",
-      "meal": ["lunch", "dinner"],
+      "meal": [
+        "lunch",
+        "dinner"
+      ],
       "notes": "Added brown rice as complex carb side. Uses ground chicken (lean). Nutrition estimated with rice.",
       "ingredients": [
         "1 lb ground chicken",
@@ -1126,7 +1195,7 @@
         "Whisk stir-fry sauce: soy sauce, maple syrup, Shaoxing wine, sesame oil, chili sauce, and cornstarch.",
         "Heat cast iron pan to medium-high. Add oil and ground chicken, season with salt and pepper. Break into pieces and cook 4 minutes. Set aside.",
         "In same pan, stir-fry cabbage in batches over medium-high heat, 5-10 minutes until edges are lightly charred.",
-        "Push cabbage aside, add oil, shallot, ginger, garlic, and dried chilis. Sauté 2 minutes, then mix into cabbage.",
+        "Push cabbage aside, add oil, shallot, ginger, garlic, and dried chilis. Saut\u00e9 2 minutes, then mix into cabbage.",
         "Add white parts of green onions and cooked chicken. Whisk sauce again and pour in. Cook 2-3 minutes.",
         "Serve over brown rice, garnished with green onion tops and sesame seeds."
       ],
@@ -1138,7 +1207,9 @@
         "saturated_fat_g": 3,
         "cholesterol_mg": 85,
         "fiber_g": 6,
-        "sodium_mg": 700
+        "sodium_mg": 700,
+        "carbs_g": 53,
+        "added_sugar_g": 7
       }
     },
     {
@@ -1168,7 +1239,7 @@
         "Garnishes: sour cream, avocado, lime wedges"
       ],
       "steps": [
-        "Heat oil in a large pot over medium heat. Sauté onion, garlic, and poblano peppers 8 minutes until tender.",
+        "Heat oil in a large pot over medium heat. Saut\u00e9 onion, garlic, and poblano peppers 8 minutes until tender.",
         "Add cumin, coriander, and chili powder. Toast 1 minute.",
         "Add broth, soy sauce, vinegar, oregano, and salt. Add whole chicken breasts. Bring to a boil.",
         "Cover, reduce to low, simmer 20-30 minutes until chicken shreds easily.",
@@ -1184,7 +1255,9 @@
         "saturated_fat_g": 1.5,
         "cholesterol_mg": 83,
         "fiber_g": 7,
-        "sodium_mg": 790
+        "sodium_mg": 790,
+        "carbs_g": 25,
+        "added_sugar_g": 0
       }
     },
     {
@@ -1220,7 +1293,7 @@
       ],
       "steps": [
         "Mix ground turkey with salt, pepper, sage, red pepper flakes, fennel, marjoram, and onion powder.",
-        "Heat olive oil in a large pot. Sauté onion 2-3 minutes. Add seasoned turkey, cook until browned. Add garlic, sauté 1 minute.",
+        "Heat olive oil in a large pot. Saut\u00e9 onion 2-3 minutes. Add seasoned turkey, cook until browned. Add garlic, saut\u00e9 1 minute.",
         "Add celery, carrots, cauliflower, rosemary, smoked paprika, bay leaf, salt, pepper, tomatoes, tomato paste, broth, and lentils.",
         "Bring to a boil, reduce to simmer 20-25 minutes until lentils are tender.",
         "Stir in red wine vinegar. Adjust salt and pepper. Serve garnished with parsley."
@@ -1233,7 +1306,9 @@
         "saturated_fat_g": 3,
         "cholesterol_mg": 52,
         "fiber_g": 8,
-        "sodium_mg": 544
+        "sodium_mg": 544,
+        "carbs_g": 32,
+        "added_sugar_g": 0
       }
     },
     {
@@ -1273,9 +1348,9 @@
       "steps": [
         "Cook brown rice according to package directions.",
         "Make miso dressing: blend olive oil, sesame oil, rice vinegar, maple syrup, miso paste, soy sauce, water, garlic, ginger, salt, and cayenne until smooth.",
-        "Roast shiitakes: remove stems, brush with miso dressing, roast at 450°F for 15-20 minutes.",
+        "Roast shiitakes: remove stems, brush with miso dressing, roast at 450\u00b0F for 15-20 minutes.",
         "Season salmon cubes with 5-spice, garlic powder, onion powder, ginger, pepper, cayenne, sugar, and salt.",
-        "Air fry salmon at 400°F for 3 minutes, flip, cook 2 more minutes. (Or pan-sear 3 min per side.)",
+        "Air fry salmon at 400\u00b0F for 3 minutes, flip, cook 2 more minutes. (Or pan-sear 3 min per side.)",
         "Assemble bowls: divide rice between 4 bowls, arrange shiitakes, edamame, avocado, cabbage, and salmon. Drizzle with miso dressing. Garnish with cilantro, scallions, and sesame seeds."
       ],
       "nutrition_per_serving": {
@@ -1286,7 +1361,9 @@
         "saturated_fat_g": 4,
         "cholesterol_mg": 58,
         "fiber_g": 9,
-        "sodium_mg": 575
+        "sodium_mg": 575,
+        "carbs_g": 53,
+        "added_sugar_g": 7
       }
     },
     {
@@ -1294,7 +1371,7 @@
       "title": "Chana Masala",
       "url": "https://www.feastingathome.com/chana-masala/",
       "meal": "dinner",
-      "notes": "Ghee in small amount (2-3 tbsp total for 6-8 servings) is acceptable — not a primary fat source. Serve with basmati rice and Greek yogurt for protein boost. Add spinach or side salad for greens. Nutrition estimated with rice and yogurt.",
+      "notes": "Ghee in small amount (2-3 tbsp total for 6-8 servings) is acceptable \u2014 not a primary fat source. Serve with basmati rice and Greek yogurt for protein boost. Add spinach or side salad for greens. Nutrition estimated with rice and yogurt.",
       "ingredients": [
         "1.5 cups dried chickpeas, soaked (or 4-5 cups canned, drained)",
         "2-3 tbsp ghee",
@@ -1303,7 +1380,7 @@
         "1 tsp fennel seeds",
         "2 large shallots, diced",
         "4 garlic cloves, chopped",
-        "1/2-1 jalapeño, diced",
+        "1/2-1 jalape\u00f1o, diced",
         "2 tsp fresh ginger, minced",
         "1 tsp garam masala",
         "1 tsp ground cumin",
@@ -1322,8 +1399,8 @@
       "steps": [
         "If using dry chickpeas, soak 8-12 hours. Drain.",
         "Cook basmati rice according to package directions.",
-        "Heat ghee in Instant Pot on sauté. Add bay leaves, cumin seeds, and fennel seeds, stir 2-3 minutes.",
-        "Add shallots, sauté until golden. Add garlic, ginger, and jalapeño, sauté 2-3 minutes.",
+        "Heat ghee in Instant Pot on saut\u00e9. Add bay leaves, cumin seeds, and fennel seeds, stir 2-3 minutes.",
+        "Add shallots, saut\u00e9 until golden. Add garlic, ginger, and jalape\u00f1o, saut\u00e9 2-3 minutes.",
         "Add all ground spices (garam masala, cumin, coriander, chili powder, fenugreek, turmeric). Stir.",
         "Add tomatoes, stir 3 minutes until breaking down. Add water, salt, and drained chickpeas.",
         "Pressure cook on High 25 minutes (soaked) or 6 minutes (canned). Natural release 15 min.",
@@ -1338,7 +1415,9 @@
         "saturated_fat_g": 3,
         "cholesterol_mg": 12,
         "fiber_g": 12,
-        "sodium_mg": 500
+        "sodium_mg": 500,
+        "carbs_g": 60,
+        "added_sugar_g": 1
       }
     },
     {
@@ -1364,7 +1443,7 @@
         "Fresh parsley for garnish"
       ],
       "steps": [
-        "Set Instant Pot to sauté. Add oil, onion, celery, and garlic. Sauté 5 minutes until fragrant.",
+        "Set Instant Pot to saut\u00e9. Add oil, onion, celery, and garlic. Saut\u00e9 5 minutes until fragrant.",
         "Add rosemary, bay leaf, dried beans, whole chicken breasts, stock, salt, and pepper.",
         "Set to High Pressure 30 minutes. Natural or manual release.",
         "Shred chicken with two forks. Stir in chopped kale and let wilt 3-5 minutes.",
@@ -1379,14 +1458,19 @@
         "saturated_fat_g": 2,
         "cholesterol_mg": 60,
         "fiber_g": 8,
-        "sodium_mg": 780
+        "sodium_mg": 780,
+        "carbs_g": 34,
+        "added_sugar_g": 0
       }
     },
     {
       "id": "vegan-bean-chili",
       "title": "Mind-Blowing Vegan Bean Chili",
       "url": "https://www.feastingathome.com/quick-vegan-chili/",
-      "meal": ["lunch", "dinner"],
+      "meal": [
+        "lunch",
+        "dinner"
+      ],
       "notes": "Serve over 1/2 cup cooked quinoa per serving for protein boost to ~20g. Nutrition estimated with quinoa.",
       "ingredients": [
         "3 tbsp olive oil",
@@ -1405,7 +1489,7 @@
         "1/4 tsp cayenne",
         "1/8 tsp cinnamon",
         "14 oz can diced tomatoes",
-        "3 x 14 oz cans beans (black, pinto, kidney — drained)",
+        "3 x 14 oz cans beans (black, pinto, kidney \u2014 drained)",
         "1 cup vegetable broth",
         "1 tbsp soy sauce",
         "2 tbsp tomato paste",
@@ -1417,7 +1501,7 @@
       ],
       "steps": [
         "Cook quinoa: rinse, combine with 2 cups water, bring to boil, reduce heat, cover, simmer 15 minutes. Set aside.",
-        "Sauté onion in olive oil over medium-high heat until golden. Lower heat, add carrots, celery, and garlic, sauté 5 more minutes.",
+        "Saut\u00e9 onion in olive oil over medium-high heat until golden. Lower heat, add carrots, celery, and garlic, saut\u00e9 5 more minutes.",
         "Add bell pepper and sweet potato, season with 1/2 tsp salt, cook 10 minutes until tender.",
         "Add spices (chili powder, cumin, coriander, oregano, paprika, cayenne, cinnamon). Toast 1-2 minutes.",
         "Add tomatoes, beans, and broth. Cover and simmer on medium-low 10 minutes.",
@@ -1432,7 +1516,9 @@
         "saturated_fat_g": 1.5,
         "cholesterol_mg": 0,
         "fiber_g": 14,
-        "sodium_mg": 650
+        "sodium_mg": 650,
+        "carbs_g": 52,
+        "added_sugar_g": 1
       }
     },
     {
@@ -1477,7 +1563,9 @@
         "saturated_fat_g": 2,
         "cholesterol_mg": 0,
         "fiber_g": 15,
-        "sodium_mg": 380
+        "sodium_mg": 380,
+        "carbs_g": 46,
+        "added_sugar_g": 6
       }
     },
     {
@@ -1501,7 +1589,125 @@
         "saturated_fat_g": 1,
         "cholesterol_mg": 0,
         "fiber_g": 3,
-        "sodium_mg": 230
+        "sodium_mg": 230,
+        "carbs_g": 26,
+        "added_sugar_g": 5
+      }
+    },
+    {
+      "id": "larabar-mini-banana-almond-milk",
+      "title": "Larabar Mini + Banana & Almond Milk",
+      "url": null,
+      "meal": "snack",
+      "notes": "Quick grab-and-go snack. Nutrition estimated from label (Larabar mini ~100 cal) plus USDA values.",
+      "ingredients": [
+        "1 Larabar mini",
+        "1 medium banana",
+        "8 oz unsweetened almond milk"
+      ],
+      "steps": [
+        "Grab a Larabar mini. Peel banana. Pour 8 oz unsweetened almond milk into a glass."
+      ],
+      "nutrition_per_serving": {
+        "servings": 1,
+        "calories": 235,
+        "protein_g": 4,
+        "total_fat_g": 9,
+        "saturated_fat_g": 1.5,
+        "cholesterol_mg": 0,
+        "fiber_g": 5,
+        "sodium_mg": 200,
+        "carbs_g": 34,
+        "added_sugar_g": 0
+      }
+    },
+    {
+      "id": "banana-peanut-butter-almond-milk",
+      "title": "Banana + Peanut Butter & Almond Milk",
+      "url": null,
+      "meal": "snack",
+      "notes": "Quick grab-and-go snack. Nutrition estimated from USDA values.",
+      "ingredients": [
+        "1 medium banana",
+        "1 tbsp peanut butter",
+        "8 oz unsweetened almond milk"
+      ],
+      "steps": [
+        "Peel banana and spread peanut butter on slices or eat alongside. Pour 8 oz unsweetened almond milk into a glass."
+      ],
+      "nutrition_per_serving": {
+        "servings": 1,
+        "calories": 230,
+        "protein_g": 6,
+        "total_fat_g": 11,
+        "saturated_fat_g": 1.5,
+        "cholesterol_mg": 0,
+        "fiber_g": 4,
+        "sodium_mg": 245,
+        "carbs_g": 27,
+        "added_sugar_g": 0
+      }
+    },
+    {
+      "id": "farro-salad-chicken",
+      "title": "Farro Salad with Chicken & White Beans",
+      "url": null,
+      "meal": "lunch",
+      "notes": "Light assembled salad. Nutrition estimated from USDA values.",
+      "ingredients": [
+        "1/4 cup cooked farro",
+        "2 cups mixed greens",
+        "1 medium tomato, chopped",
+        "2 tbsp red onion, diced",
+        "1/4 avocado, sliced",
+        "1 tbsp lemon vinaigrette",
+        "1/4 cup white beans (canned, drained and rinsed)",
+        "4 oz pulled chicken breast",
+        "1/2 cucumber, sliced"
+      ],
+      "steps": [
+        "Arrange mixed greens on a plate or in a bowl.",
+        "Top with cooked farro, white beans, pulled chicken, tomato, cucumber, red onion, and avocado slices.",
+        "Drizzle with lemon vinaigrette."
+      ],
+      "nutrition_per_serving": {
+        "servings": 1,
+        "calories": 420,
+        "protein_g": 35,
+        "total_fat_g": 16,
+        "saturated_fat_g": 2.5,
+        "cholesterol_mg": 73,
+        "fiber_g": 10,
+        "sodium_mg": 300,
+        "carbs_g": 34,
+        "added_sugar_g": 0
+      }
+    },
+    {
+      "id": "dark-chocolate-almonds-almond-milk",
+      "title": "Dark Chocolate, Almonds & Almond Milk",
+      "url": null,
+      "meal": "snack",
+      "notes": "Quick sweet snack. Nutrition estimated from USDA values (70% dark chocolate).",
+      "ingredients": [
+        "2 squares 70% dark chocolate (~20g)",
+        "1 tbsp almonds",
+        "1 cup unsweetened almond milk"
+      ],
+      "steps": [
+        "Pour 1 cup unsweetened almond milk into a glass. Enjoy with dark chocolate squares and almonds."
+      ],
+      "nutrition_per_serving": {
+        "servings": 1,
+        "calories": 205,
+        "protein_g": 5,
+        "total_fat_g": 16,
+        "saturated_fat_g": 5,
+        "cholesterol_mg": 0,
+        "fiber_g": 3,
+        "sodium_mg": 175,
+        "carbs_g": 13,
+        "added_sugar_g": 6
       }
     }
   ]

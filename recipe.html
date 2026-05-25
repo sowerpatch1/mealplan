@@ -91,6 +91,20 @@
       color: #c5ddd3;
       max-width: 620px;
     }
+    .recipe-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #9fd4b7;
+      text-decoration: none;
+      background: rgba(255,255,255,0.1);
+      padding: 5px 12px;
+      border-radius: 999px;
+    }
+    .recipe-link:hover { color: #fff; background: rgba(255,255,255,0.18); }
 
     main {
       max-width: 740px;
@@ -205,6 +219,7 @@
   <nav class="site-nav" aria-label="Site navigation">
     <a href="index.html">📅 Meal Plan</a>
     <a href="recipes.html" class="active">📖 Recipe Library</a>
+    <a href="tracker.html">📊 Daily Tracker</a>
   </nav>
 
   <div class="hero" id="hero">
@@ -243,10 +258,15 @@
           const meals = mealTypes(recipe);
           const mealBadges = meals.map(m => `<span class="meal-tag">${MEAL_LABELS[m] || m}</span>`).join(" ");
 
+          const recipeLinkHtml = recipe.url
+            ? `<a class="recipe-link" href="${recipe.url}" target="_blank" rel="noopener noreferrer">View original recipe ↗</a>`
+            : "";
+
           document.getElementById("heroBody").innerHTML = `
             <div>${mealBadges}</div>
             <h1>${recipe.title}</h1>
             ${recipe.notes ? `<p class="hero-notes">${recipe.notes}</p>` : ""}
+            ${recipeLinkHtml}
           `;
 
           const n = recipe.nutrition_per_serving;

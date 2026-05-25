@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Tracker — Cholesterol-Friendly Meal Plan</title>
+  <style>
+    :root {
+      --forest-900: #0f3527;
+      --forest-800: #144130;
+      --forest-700: #1b5a42;
+      --forest-600: #236a4f;
+      --sage-100: #edf4ef;
+      --surface: #f6f5f2;
+      --card: #ffffff;
+      --ink: #173126;
+      --ink-soft: #4a5a52;
+      --protein-bg: #1e4e92;
+      --protein-text: #f5f9ff;
+      --chip-bg: #f0f3f1;
+      --chip-border: #d5dfd9;
+      --line: #dde6e0;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", Arial, sans-serif;
+      background: var(--surface);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    .site-nav {
+      background: var(--forest-900);
+      display: flex;
+      padding: 0 18px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .site-nav::-webkit-scrollbar { display: none; }
+    .site-nav a {
+      display: block;
+      color: #b3cec2;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 11px 14px;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+      letter-spacing: 0.04em;
+    }
+    .site-nav a:hover { color: #fff; }
+    .site-nav a.active { color: #fff; border-bottom-color: #9fd4b7; }
+
+    .hero {
+      background: linear-gradient(160deg, var(--forest-900), var(--forest-700));
+      color: #f3f7f4;
+      padding: 26px 24px 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.14);
+    }
+    .hero-eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin-bottom: 8px;
+    }
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(22px, 3vw, 34px);
+      font-family: Georgia, serif;
+      font-weight: 600;
+    }
+    .hero-sub { margin: 8px 0 0; color: #dbe8e0; font-size: 14px; }
+
+    main {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 28px 20px 60px;
+    }
+
+    /* ── Date picker ── */
+    .date-nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .date-nav button {
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: 8px;
+      width: 36px;
+      height: 36px;
+      font-size: 18px;
+      cursor: pointer;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .date-nav button:hover { background: var(--sage-100); }
+    .date-input {
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 600;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 7px 12px;
+      background: var(--card);
+      color: var(--ink);
+      cursor: pointer;
+    }
+    .date-label {
+      font-size: 15px;
+      color: var(--ink-soft);
+      margin-left: 4px;
+    }
+
+    /* ── Meal slots ── */
+    .slot {
+      margin-bottom: 16px;
+    }
+    .slot-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .slot-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .combo-box {
+      position: relative;
+    }
+    .combo-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .combo-input {
+      width: 100%;
+      font-family: inherit;
+      font-size: 15px;
+      padding: 10px 36px 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--card);
+      color: var(--ink);
+      outline: none;
+    }
+    .combo-input:focus {
+      border-color: var(--forest-600);
+      box-shadow: 0 0 0 2px rgba(35, 106, 79, 0.15);
+    }
+    .combo-input.has-value {
+      font-weight: 600;
+    }
+    .combo-arrow {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: var(--ink-soft);
+      font-size: 10px;
+      line-height: 1;
+    }
+    .combo-clear {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      background: none;
+      color: #c0564e;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 2px 4px;
+      line-height: 1;
+      border-radius: 4px;
+    }
+    .combo-clear:hover { color: #953d36; background: #fdf0ef; }
+    .combo-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      right: 0;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.10);
+      max-height: 320px;
+      overflow-y: auto;
+      z-index: 100;
+      padding: 4px 0;
+    }
+    .combo-dropdown.open { display: block; }
+    .combo-group-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      padding: 8px 12px 4px;
+      position: sticky;
+      top: 0;
+      background: var(--card);
+    }
+    .combo-option {
+      padding: 8px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      color: var(--ink);
+    }
+    .combo-option:hover,
+    .combo-option.active {
+      background: var(--sage-100);
+    }
+    .combo-no-results {
+      padding: 12px;
+      font-size: 13px;
+      color: var(--ink-soft);
+      text-align: center;
+      font-style: italic;
+    }
+
+    .selected-card {
+      background: var(--card);
+      border: 1px solid #e6ece8;
+      border-left: 4px solid var(--forest-600);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-top: 8px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .selected-card .card-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .selected-card .card-title {
+      font-family: Georgia, serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--ink);
+      margin: 0 0 4px;
+    }
+    .selected-card .card-title a {
+      color: var(--forest-700);
+      text-decoration: none;
+    }
+    .selected-card .card-title a:hover {
+      text-decoration: underline;
+    }
+    .selected-card .card-macros {
+      font-size: 12px;
+      color: #4d5c55;
+      margin: 0;
+    }
+    .selected-card .card-macros strong {
+      color: #2d3d36;
+      font-weight: 600;
+    }
+    .remove-btn {
+      border: none;
+      background: none;
+      color: #c0564e;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 4px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .remove-btn:hover { color: #953d36; }
+
+    .empty-slot {
+      color: var(--ink-soft);
+      font-size: 13px;
+      font-style: italic;
+      margin-top: 4px;
+    }
+
+    /* ── Totals panel (matching index.html nutrition-card) ── */
+    .nutrition-card {
+      margin-top: 28px;
+      background: #ffffff;
+      border: 1px solid #e2e8e4;
+      border-radius: 14px;
+      padding: 12px;
+    }
+    .nutrition-top {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .nutrition-box {
+      background: #f5f8f6;
+      border: 1px solid #e3ebe6;
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 13px;
+      color: #587066;
+    }
+    .nutrition-box strong {
+      float: right;
+      color: #213a30;
+      font-size: 26px;
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+    .mini-heading {
+      margin: 10px 0 7px;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #587066;
+      font-weight: 700;
+    }
+    .protein-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    @media (min-width: 640px) {
+      .protein-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    .protein-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      border: 1px solid #e3ebe6;
+      background: #f8faf9;
+      border-radius: 9px;
+      padding: 6px 8px;
+      font-size: 14px;
+      color: #3b5148;
+    }
+    .metric { margin-bottom: 8px; }
+    .metric-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      color: #33453d;
+      margin-bottom: 3px;
+    }
+    .metric-bar {
+      height: 7px;
+      background: #e4e7e5;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .metric-bar span {
+      display: block;
+      height: 100%;
+      border-radius: 999px;
+    }
+    .badges {
+      margin: 10px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .goal-badge {
+      border: 1px solid #d9e4dd;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 13px;
+      color: #335047;
+      background: #f6faf7;
+    }
+    .goal-badge.warn {
+      border-color: #e8d8bf;
+      background: #fff7ea;
+      color: #7d5b2a;
+    }
+    .protein-note {
+      border: 1px solid #eadfc9;
+      background: #fffbf1;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 14px;
+      color: #5b4a2f;
+    }
+    .totals-empty {
+      text-align: center;
+      padding: 18px 0;
+      color: var(--ink-soft);
+      font-size: 14px;
+    }
+
+    /* ── Snacks section ── */
+    .snacks-section {
+      margin-top: 8px;
+      margin-bottom: 16px;
+    }
+    .snack-entry {
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .snack-entry-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+    .snack-entry-label {
+      font-size: 11px;
+      color: var(--ink-soft);
+      font-weight: 600;
+    }
+    .snack-remove-btn {
+      border: none;
+      background: none;
+      color: #c0564e;
+      font-size: 12px;
+      cursor: pointer;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    .snack-remove-btn:hover { color: #953d36; background: #fdf0ef; }
+    .add-snack-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      border: 1px dashed var(--line);
+      background: var(--card);
+      border-radius: 10px;
+      padding: 9px 16px;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--forest-600);
+      cursor: pointer;
+      font-weight: 600;
+      width: 100%;
+      justify-content: center;
+    }
+    .add-snack-btn:hover {
+      background: var(--sage-100);
+      border-color: var(--forest-600);
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav" aria-label="Site navigation">
+    <a href="index.html">📅 Meal Plan</a>
+    <a href="recipes.html">📖 Recipe Library</a>
+    <a href="tracker.html" class="active">📊 Daily Tracker</a>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-eyebrow">Cholesterol-Friendly</div>
+    <h1>Daily Tracker</h1>
+    <p class="hero-sub">Select what you ate today and see your total nutrition.</p>
+  </div>
+
+  <main>
+    <div class="date-nav">
+      <button type="button" id="prevDay" aria-label="Previous day">‹</button>
+      <input type="date" class="date-input" id="dateInput">
+      <button type="button" id="nextDay" aria-label="Next day">›</button>
+      <span class="date-label" id="dateLabel"></span>
+    </div>
+
+    <div id="slots"></div>
+    <div id="totalsPanel"></div>
+  </main>
+
+  <script>
+    const MEAL_SLOTS = [
+      { key: "breakfast", label: "Breakfast", icon: "☀️" },
+      { key: "lunch",     label: "Lunch",     icon: "🌿" },
+      { key: "dinner",    label: "Dinner",    icon: "🌙" }
+    ];
+
+    const STORAGE_KEY = "mealTracker";
+    const metricTargets = { fat: 78, satFat: 22, fiber: 35, sodium: 2300, cholesterol: 300 };
+
+    let recipes = [];
+    let currentDate = todayString();
+    let snackCounter = 0;
+
+    function todayString() {
+      const d = new Date();
+      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+    }
+
+    function formatDateLabel(dateStr) {
+      const d = new Date(dateStr + "T12:00:00");
+      const today = todayString();
+      const yesterday = (() => { const y = new Date(); y.setDate(y.getDate() - 1); return `${y.getFullYear()}-${String(y.getMonth() + 1).padStart(2, "0")}-${String(y.getDate()).padStart(2, "0")}`; })();
+      if (dateStr === today) return "Today";
+      if (dateStr === yesterday) return "Yesterday";
+      return d.toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric" });
+    }
+
+    function shiftDate(offset) {
+      const d = new Date(currentDate + "T12:00:00");
+      d.setDate(d.getDate() + offset);
+      currentDate = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+      document.getElementById("dateInput").value = currentDate;
+      document.getElementById("dateLabel").textContent = formatDateLabel(currentDate);
+      loadSelections();
+    }
+
+    // ── Persistence ──
+    function loadStore() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+      catch { return {}; }
+    }
+
+    function getSelections() {
+      return loadStore()[currentDate] || [];
+    }
+
+    function isSnackSlot(slotKey) {
+      return slotKey.startsWith("snack-");
+    }
+
+    function saveSelection(slotKey, recipeId) {
+      const store = loadStore();
+      const day = store[currentDate] || [];
+      const idx = day.findIndex(e => e.slot === slotKey);
+      if (recipeId) {
+        if (idx >= 0) day[idx].recipeId = recipeId;
+        else day.push({ slot: slotKey, recipeId });
+      } else {
+        if (idx >= 0) day.splice(idx, 1);
+      }
+      store[currentDate] = day;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+    }
+
+    function removeSnackFromStore(slotKey) {
+      const store = loadStore();
+      const day = store[currentDate] || [];
+      store[currentDate] = day.filter(e => e.slot !== slotKey);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+    }
+
+    function findRecipe(id) {
+      return recipes.find(r => r.id === id);
+    }
+
+    function mealTypes(r) {
+      const m = r.meal;
+      return (Array.isArray(m) ? m : [m]).map(s => s.toLowerCase());
+    }
+
+    // ── Formatting ──
+    const fmtP = (x) => {
+      const r = Math.round(x * 10) / 10;
+      return Number.isInteger(r) ? String(r) : r.toFixed(1);
+    };
+
+    // ── Grouped recipe list by meal type ──
+    const MEAL_ORDER = ["breakfast", "lunch", "dinner", "snack"];
+    const MEAL_LABELS = { breakfast: "Breakfast", lunch: "Lunch", dinner: "Dinner", snack: "Snack" };
+
+    function groupedRecipes(slotKey) {
+      const matchMeal = isSnackSlot(slotKey) ? "snack" : slotKey;
+      const ordered = [matchMeal, ...MEAL_ORDER.filter(m => m !== matchMeal)];
+      const groups = {};
+      ordered.forEach(m => groups[m] = []);
+      recipes.forEach(r => {
+        const primary = mealTypes(r)[0];
+        if (groups[primary]) groups[primary].push(r);
+      });
+      ordered.forEach(m => groups[m].sort((a, b) => a.title.localeCompare(b.title)));
+      return ordered.map(m => ({ meal: m, label: MEAL_LABELS[m] || m, items: groups[m] })).filter(g => g.items.length);
+    }
+
+    // ── Build meal slot UI ──
+    function buildSlots() {
+      const container = document.getElementById("slots");
+      container.innerHTML = "";
+
+      MEAL_SLOTS.forEach(slot => {
+        const div = document.createElement("div");
+        div.className = "slot";
+        div.id = `slot-${slot.key}`;
+
+        div.innerHTML = `
+          <div class="slot-header">
+            <span class="slot-label">${slot.icon} ${slot.label}</span>
+          </div>
+          <div class="combo-box" data-slot="${slot.key}">
+            <div class="combo-input-wrap">
+              <input type="text" class="combo-input" placeholder="Search recipes..." autocomplete="off">
+              <span class="combo-arrow">▼</span>
+            </div>
+            <div class="combo-dropdown"></div>
+          </div>
+          <div class="card-container" id="card-${slot.key}"></div>
+        `;
+
+        container.appendChild(div);
+        initComboBox(div.querySelector(".combo-box"), slot.key);
+      });
+
+      // Snacks section
+      const snacksDiv = document.createElement("div");
+      snacksDiv.className = "slot";
+      snacksDiv.innerHTML = `
+        <div class="slot-header">
+          <span class="slot-label">🥜 Snacks</span>
+        </div>
+        <div class="snacks-section" id="snacksList"></div>
+        <button type="button" class="add-snack-btn" id="addSnackBtn">+ Add snack</button>
+      `;
+      container.appendChild(snacksDiv);
+
+      document.getElementById("addSnackBtn").addEventListener("click", () => {
+        addSnackEntry();
+      });
+    }
+
+    function addSnackEntry(preselectedId) {
+      const list = document.getElementById("snacksList");
+      const slotKey = `snack-${snackCounter++}`;
+
+      const entry = document.createElement("div");
+      entry.className = "snack-entry";
+      entry.dataset.slotKey = slotKey;
+
+      entry.innerHTML = `
+        <div class="snack-entry-header">
+          <span class="snack-entry-label"></span>
+          <button type="button" class="snack-remove-btn" title="Remove snack">remove</button>
+        </div>
+        <div class="combo-box" data-slot="${slotKey}">
+          <div class="combo-input-wrap">
+            <input type="text" class="combo-input" placeholder="Search recipes..." autocomplete="off">
+            <span class="combo-arrow">▼</span>
+          </div>
+          <div class="combo-dropdown"></div>
+        </div>
+        <div class="card-container" id="card-${slotKey}"></div>
+      `;
+
+      entry.querySelector(".snack-remove-btn").addEventListener("click", () => {
+        removeSnackFromStore(slotKey);
+        entry.remove();
+        updateSnackLabels();
+        renderTotals();
+      });
+
+      list.appendChild(entry);
+      initComboBox(entry.querySelector(".combo-box"), slotKey);
+      updateSnackLabels();
+
+      if (preselectedId) {
+        const box = entry.querySelector(".combo-box");
+        if (box._setSelected) box._setSelected(preselectedId);
+      }
+    }
+
+    function updateSnackLabels() {
+      const entries = document.querySelectorAll("#snacksList .snack-entry");
+      entries.forEach((el, i) => {
+        el.querySelector(".snack-entry-label").textContent = `Snack ${i + 1}`;
+      });
+    }
+
+    function initComboBox(box, slotKey) {
+      const input = box.querySelector(".combo-input");
+      const dropdown = box.querySelector(".combo-dropdown");
+      const arrowEl = box.querySelector(".combo-arrow");
+      let selectedId = "";
+      let activeIdx = -1;
+      let visibleOptions = [];
+
+      function setSelected(recipeId) {
+        selectedId = recipeId;
+        const r = findRecipe(recipeId);
+        if (r) {
+          input.value = r.title;
+          input.classList.add("has-value");
+          arrowEl.style.display = "none";
+          let clearBtn = box.querySelector(".combo-clear");
+          if (!clearBtn) {
+            clearBtn = document.createElement("button");
+            clearBtn.className = "combo-clear";
+            clearBtn.type = "button";
+            clearBtn.title = "Clear";
+            clearBtn.textContent = "✕";
+            box.querySelector(".combo-input-wrap").appendChild(clearBtn);
+            clearBtn.addEventListener("mousedown", (e) => {
+              e.preventDefault();
+              clearSelection();
+            });
+          }
+        } else {
+          clearVisual();
+        }
+        saveSelection(slotKey, recipeId);
+        renderCard(slotKey, recipeId);
+        renderTotals();
+      }
+
+      function clearSelection() {
+        selectedId = "";
+        clearVisual();
+        saveSelection(slotKey, "");
+        renderCard(slotKey, "");
+        renderTotals();
+        input.focus();
+      }
+
+      function clearVisual() {
+        input.value = "";
+        input.classList.remove("has-value");
+        arrowEl.style.display = "";
+        const clearBtn = box.querySelector(".combo-clear");
+        if (clearBtn) clearBtn.remove();
+      }
+
+      function renderDropdown(filter) {
+        const groups = groupedRecipes(slotKey);
+        const query = (filter || "").toLowerCase().trim();
+        let html = "";
+        visibleOptions = [];
+
+        groups.forEach(g => {
+          const matches = query
+            ? g.items.filter(r => r.title.toLowerCase().includes(query))
+            : g.items;
+          if (!matches.length) return;
+          html += `<div class="combo-group-label">${g.label}</div>`;
+          matches.forEach(r => {
+            const idx = visibleOptions.length;
+            visibleOptions.push(r);
+            html += `<div class="combo-option" data-idx="${idx}" data-id="${r.id}">${r.title}</div>`;
+          });
+        });
+
+        if (!visibleOptions.length) {
+          html = `<div class="combo-no-results">No recipes match "${filter}"</div>`;
+        }
+        dropdown.innerHTML = html;
+        activeIdx = -1;
+      }
+
+      function openDropdown() {
+        renderDropdown(selectedId ? "" : input.value);
+        dropdown.classList.add("open");
+      }
+
+      function closeDropdown() {
+        dropdown.classList.remove("open");
+        activeIdx = -1;
+      }
+
+      function highlightIdx(idx) {
+        dropdown.querySelectorAll(".combo-option").forEach(el => el.classList.remove("active"));
+        if (idx >= 0 && idx < visibleOptions.length) {
+          activeIdx = idx;
+          const el = dropdown.querySelector(`[data-idx="${idx}"]`);
+          if (el) {
+            el.classList.add("active");
+            el.scrollIntoView({ block: "nearest" });
+          }
+        }
+      }
+
+      input.addEventListener("focus", () => {
+        if (selectedId) {
+          input.value = "";
+          input.classList.remove("has-value");
+        }
+        openDropdown();
+      });
+
+      input.addEventListener("input", () => {
+        renderDropdown(input.value);
+        if (!dropdown.classList.contains("open")) dropdown.classList.add("open");
+      });
+
+      input.addEventListener("blur", () => {
+        setTimeout(() => {
+          closeDropdown();
+          if (selectedId) {
+            const r = findRecipe(selectedId);
+            if (r) {
+              input.value = r.title;
+              input.classList.add("has-value");
+            }
+          } else {
+            input.value = "";
+          }
+        }, 150);
+      });
+
+      input.addEventListener("keydown", (e) => {
+        if (!dropdown.classList.contains("open")) {
+          if (e.key === "ArrowDown" || e.key === "ArrowUp") { openDropdown(); e.preventDefault(); }
+          return;
+        }
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          highlightIdx(Math.min(activeIdx + 1, visibleOptions.length - 1));
+        } else if (e.key === "ArrowUp") {
+          e.preventDefault();
+          highlightIdx(Math.max(activeIdx - 1, 0));
+        } else if (e.key === "Enter") {
+          e.preventDefault();
+          if (activeIdx >= 0 && activeIdx < visibleOptions.length) {
+            setSelected(visibleOptions[activeIdx].id);
+            closeDropdown();
+          }
+        } else if (e.key === "Escape") {
+          closeDropdown();
+          input.blur();
+        }
+      });
+
+      dropdown.addEventListener("mousedown", (e) => {
+        e.preventDefault();
+        const opt = e.target.closest(".combo-option");
+        if (opt) {
+          setSelected(opt.dataset.id);
+          closeDropdown();
+        }
+      });
+
+      box._setSelected = setSelected;
+      box._clearSelection = clearSelection;
+    }
+
+    function renderCard(slotKey, recipeId) {
+      const container = document.getElementById(`card-${slotKey}`);
+      if (!recipeId) {
+        container.innerHTML = "";
+        return;
+      }
+      const r = findRecipe(recipeId);
+      if (!r) { container.innerHTML = ""; return; }
+      const n = r.nutrition_per_serving;
+      container.innerHTML = `
+        <div class="selected-card">
+          <div class="card-info">
+            <p class="card-title"><a href="recipe.html?id=${r.id}">${r.title}</a></p>
+            <p class="card-macros">
+              <strong>${n.calories} kcal</strong> ·
+              ${fmtP(n.protein_g)}g protein ·
+              ${fmtP(n.total_fat_g)}g fat ·
+              ${fmtP(n.saturated_fat_g)}g sat fat ·
+              ${fmtP(n.fiber_g)}g fiber ·
+              ${Math.round(n.sodium_mg)}mg sodium ·
+              ${Math.round(n.cholesterol_mg)}mg chol
+            </p>
+          </div>
+          <button class="remove-btn" data-slot="${slotKey}" title="Remove">✕</button>
+        </div>
+      `;
+      container.querySelector(".remove-btn").addEventListener("click", () => {
+        if (isSnackSlot(slotKey)) {
+          const entry = container.closest(".snack-entry");
+          if (entry) {
+            removeSnackFromStore(slotKey);
+            entry.remove();
+            updateSnackLabels();
+            renderTotals();
+          }
+        } else {
+          const box = document.querySelector(`.combo-box[data-slot="${slotKey}"]`);
+          if (box && box._clearSelection) box._clearSelection();
+        }
+      });
+    }
+
+    function loadSelections() {
+      // Clear existing snack entries
+      const snacksList = document.getElementById("snacksList");
+      if (snacksList) snacksList.innerHTML = "";
+      snackCounter = 0;
+
+      const selections = getSelections();
+
+      // Load meal slots
+      MEAL_SLOTS.forEach(slot => {
+        const box = document.querySelector(`.combo-box[data-slot="${slot.key}"]`);
+        const entry = selections.find(e => e.slot === slot.key);
+        if (entry && findRecipe(entry.recipeId) && box._setSelected) {
+          box._setSelected(entry.recipeId);
+        } else if (box._clearSelection) {
+          box._clearSelection();
+        }
+      });
+
+      // Load snack entries
+      const snackEntries = selections.filter(e => isSnackSlot(e.slot));
+      snackEntries.forEach(e => {
+        if (findRecipe(e.recipeId)) {
+          addSnackEntry(e.recipeId);
+        }
+      });
+
+      renderTotals();
+    }
+
+    // ── Totals panel ──
+    function renderTotals() {
+      const panel = document.getElementById("totalsPanel");
+      const selections = getSelections();
+      const filled = selections.filter(e => findRecipe(e.recipeId));
+
+      if (filled.length === 0) {
+        panel.innerHTML = `<div class="nutrition-card"><p class="totals-empty">Select meals above to see daily nutrition totals.</p></div>`;
+        return;
+      }
+
+      const totals = { calories: 0, protein: 0, fat: 0, satFat: 0, fiber: 0, sodium: 0, cholesterol: 0 };
+      const proteinByMeal = { breakfast: 0, lunch: 0, dinner: 0, snacks: 0 };
+
+      filled.forEach(entry => {
+        const r = findRecipe(entry.recipeId);
+        const n = r.nutrition_per_serving;
+        totals.calories += n.calories;
+        totals.protein += n.protein_g;
+        totals.fat += n.total_fat_g;
+        totals.satFat += n.saturated_fat_g;
+        totals.fiber += n.fiber_g;
+        totals.sodium += n.sodium_mg;
+        totals.cholesterol += n.cholesterol_mg;
+        if (isSnackSlot(entry.slot)) {
+          proteinByMeal.snacks += n.protein_g;
+        } else if (proteinByMeal[entry.slot] !== undefined) {
+          proteinByMeal[entry.slot] += n.protein_g;
+        }
+      });
+
+      const proteinRows = [
+        { icon: "☀️", label: "Breakfast", key: "breakfast" },
+        { icon: "🌿", label: "Lunch", key: "lunch" },
+        { icon: "🌙", label: "Dinner", key: "dinner" },
+        { icon: "🥜", label: "Snacks", key: "snacks" }
+      ];
+
+      const metricRows = [
+        { key: "fat",         label: "Total Fat",      unit: "g",  color: "#7a5a1e" },
+        { key: "satFat",      label: "Saturated Fat",  unit: "g",  color: "#d07a2f" },
+        { key: "cholesterol", label: "Cholesterol",    unit: "mg", color: "#b05050" },
+        { key: "fiber",       label: "Fiber",          unit: "g",  color: "#4e5a9a" },
+        { key: "sodium",      label: "Sodium",         unit: "mg", color: "#8a39a9" }
+      ];
+
+      const metricsHtml = metricRows.map(m => {
+        const val = totals[m.key];
+        const displayVal = (m.unit === "mg") ? Math.round(val) : fmtP(val);
+        const pct = Math.min(100, Math.round((val / metricTargets[m.key]) * 100));
+        return `
+          <div class="metric">
+            <div class="metric-line"><span>${m.label}</span><strong>${displayVal}${m.unit}</strong></div>
+            <div class="metric-bar"><span style="width:${pct}%; background:${m.color};"></span></div>
+          </div>`;
+      }).join("");
+
+      const kcalInRange = totals.calories >= 1700 && totals.calories <= 2100;
+      const proteinInRange = totals.protein >= 80 && totals.protein <= 120;
+      const satOk = totals.satFat < 15;
+      const fiberOk = totals.fiber >= 25;
+      const sodiumOk = totals.sodium < 2300;
+      const cholOk = totals.cholesterol < 200;
+
+      panel.innerHTML = `
+        <div class="nutrition-card">
+          <div class="nutrition-top">
+            <div class="nutrition-box">Calories <strong>${Math.round(totals.calories)}</strong></div>
+            <div class="nutrition-box">Protein <strong>${fmtP(totals.protein)}g</strong></div>
+          </div>
+          <div class="mini-heading">Protein by meal</div>
+          <div class="protein-grid">
+            ${proteinRows.map(s => `<div class="protein-row"><span>${s.icon} ${s.label}</span><strong>${fmtP(proteinByMeal[s.key])}g</strong></div>`).join("")}
+          </div>
+          ${metricsHtml}
+          <div class="badges">
+            <span class="goal-badge ${kcalInRange ? "" : "warn"}">${kcalInRange ? "✓" : "!"} 1700–2100 kcal (${Math.round(totals.calories)} kcal)</span>
+            <span class="goal-badge ${proteinInRange ? "" : "warn"}">${proteinInRange ? "✓" : "!"} 80–120g protein (${fmtP(totals.protein)}g)</span>
+            <span class="goal-badge ${satOk ? "" : "warn"}">${satOk ? "✓" : "!"} Sat fat &lt;15g (${fmtP(totals.satFat)}g)</span>
+            <span class="goal-badge ${fiberOk ? "" : "warn"}">${fiberOk ? "✓" : "!"} Fiber ≥25g (${fmtP(totals.fiber)}g)</span>
+            <span class="goal-badge ${sodiumOk ? "" : "warn"}">${sodiumOk ? "✓" : "!"} Sodium &lt;2300mg (${Math.round(totals.sodium)}mg)</span>
+            <span class="goal-badge ${cholOk ? "" : "warn"}">${cholOk ? "✓" : "!"} Cholesterol &lt;200mg (${Math.round(totals.cholesterol)}mg)</span>
+          </div>
+          <div class="protein-note">ℹ️ Totals are per-serving estimates from the recipe database (USDA-style). Your actual portions and brands may differ.</div>
+        </div>
+      `;
+    }
+
+    // ── Init ──
+    document.getElementById("dateInput").value = currentDate;
+    document.getElementById("dateLabel").textContent = formatDateLabel(currentDate);
+
+    document.getElementById("prevDay").addEventListener("click", () => shiftDate(-1));
+    document.getElementById("nextDay").addEventListener("click", () => shiftDate(1));
+    document.getElementById("dateInput").addEventListener("change", (e) => {
+      currentDate = e.target.value;
+      document.getElementById("dateLabel").textContent = formatDateLabel(currentDate);
+      loadSelections();
+    });
+
+    fetch("recipe-database.json")
+      .then(r => r.json())
+      .then(data => {
+        recipes = data.recipes;
+        buildSlots();
+        loadSelections();
+      })
+      .catch(err => {
+        document.getElementById("slots").textContent = "Could not load recipes: " + err.message;
+      });
+  </script>
+</body>
+</html>
