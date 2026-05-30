@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Week 1 Cholesterol-Friendly Meal Plan</title>
+  <title>Cholesterol-Friendly Meal Plan</title>
   <style>
     /* ── Site nav ──────────────────────────────────────────────────────────── */
     .site-nav {
@@ -137,6 +137,7 @@
       font-size: 15px;
       padding: 13px 18px;
       white-space: nowrap;
+      cursor: pointer;
     }
 
     .week-tab.active,
@@ -459,7 +460,7 @@
       <div class="hero-eyebrow">4-Week Program</div>
       <h1>Week 1 Cholesterol-Friendly Meal Plan</h1>
       <p class="hero-sub">
-        Targets ~1800 kcal · ~100g protein (estimates) · USDA-style portions · two snacks · Fresh fish at dinner · Lunch &amp; dinner: cook double, eat next day (Sun pairs with Mon week 2)
+        Targets ~1800 kcal · ~100g protein (estimates) · USDA-style portions · two snacks · Fresh fish at dinner · Lunch &amp; dinner: cook double, eat next day (Sun pairs with Mon next week)
       </p>
       <div class="hero-points">
         <span>🍲 Cook double</span>
@@ -481,428 +482,405 @@
   </main>
 
   <script>
-    /**
-     * Per-meal nutrition sourced from recipe-database.json (USDA-estimated values).
-     * Carbs back-calculated from calories, protein, and fat where not listed.
-     * Breakfast oat milk coffee: 75g oat milk ≈ +35 cal, +6g carbs, +0.5g fat vs. prior low-fat milk entry.
-     */
+    // ── Breakfasts ────────────────────────────────────────────────────────────
+    const weekdayBreakfast = { name: "Steel-Cut Oats Bowl", ingredients: "1/3 cup steel-cut oats (dry), 1/2 apple diced, 1 tbsp chia seeds, 1 tbsp flaxseed meal, 1 tbsp chopped almonds, 1 tbsp peanut butter, coffee + 75g oat milk", link: null, nutrition: { calories: 436, protein: 17, carbs: 47, fat: 20, satFat: 3, fiber: 12, sodium: 110 } };
+    const satBreakfast = { name: "Veggie Egg Scramble + Toast", ingredients: "1 whole egg + 2/3 cup egg whites, 1/2 cup diced bell pepper + mushrooms, 2 tsp olive oil, 1 slice whole grain toast, coffee + 75g oat milk", link: null, nutrition: { calories: 296, protein: 24, carbs: 19, fat: 14, satFat: 3, fiber: 3, sodium: 420 } };
+    const sunBreakfast = { name: "Open-Faced Egg & Avocado Toast", ingredients: "1 whole egg + 1/2 cup egg whites, 1 slice whole grain bread, 2 tbsp mashed avocado, 1/3 tomato sliced, coffee + 75g oat milk", link: null, nutrition: { calories: 316, protein: 20, carbs: 30, fat: 13, satFat: 3, fiber: 5, sodium: 380 } };
+    const tofuScramble = { name: "Tofu Scramble", ingredients: "20 oz firm tofu, turmeric, garlic powder, paprika, nutritional yeast, green onions; served with 2 slices whole wheat toast. Coffee + 75g oat milk.", link: "https://www.feastingathome.com/vegan-tofu-scramble/", nutrition: { calories: 360, protein: 26, carbs: 20, fat: 19, satFat: 3, fiber: 4, sodium: 380 } };
 
-    // ── Weekday breakfast ────────────────────────────────────────────────────
-    // DB: steel-cut-oats-bowl (430 cal, 18g protein) adjusted for 75g oat milk swap
-    const WKOATS = { calories: 436, protein: 17, carbs: 47, fat: 20, satFat: 3, fiber: 12, sodium: 110 };
+    // ── Snacks ────────────────────────────────────────────────────────────────
+    const greekYogurt = { name: "Greek Yogurt Snack Bowl", ingredients: "2/3 cup plain Greek yogurt, 1/2 small apple, 1 tbsp slivered almonds, 1 tbsp peanut butter, 1/4 cup Quaker Oatmeal Squares", link: null, nutrition: { calories: 350, protein: 22, carbs: 30, fat: 16, satFat: 3, fiber: 4, sodium: 180 } };
+    const cottageCheese = { name: "Cottage Cheese & Mandarins", ingredients: "1/2 cup low-fat cottage cheese, 3 mandarin oranges (Cuties), 1 tbsp almonds", link: null, nutrition: { calories: 230, protein: 18, carbs: 24, fat: 7, satFat: 1.5, fiber: 3, sodium: 370 } };
+    const hummusCarrots = { name: "Hummus & Carrots", ingredients: "1/3 cup hummus, 1 cup baby carrots", link: null, nutrition: { calories: 180, protein: 6, carbs: 19, fat: 9, satFat: 1, fiber: 6, sodium: 320 } };
+    const proteinShake = { name: "Chocolate Peanut Butter Protein Shake", ingredients: "3/4 cup almond milk, 1/2 banana, 1 scoop protein powder, 1 tbsp cocoa powder, 1/4 cup frozen blueberries, 1 tbsp peanut butter", link: null, nutrition: { calories: 150, protein: 14, carbs: 10, fat: 6, satFat: 1, fiber: 3, sodium: 130 } };
+    const kindBar = { name: "KIND Breakfast Bar & Almond Milk", ingredients: "1 KIND breakfast bar pack (50g), 2/3 cup unsweetened almond milk", link: null, nutrition: { calories: 240, protein: 9, carbs: 26, fat: 11, satFat: 1, fiber: 3, sodium: 230 } };
+    const darkChocAlmonds = { name: "Dark Chocolate, Almonds & Almond Milk", ingredients: "1 oz dark chocolate (70%+), 1/4 cup almonds, 1 cup unsweetened almond milk", link: null, nutrition: { calories: 205, protein: 5, carbs: 13, fat: 16, satFat: 5, fiber: 3, sodium: 175 } };
+    const bananaPB = { name: "Banana + Peanut Butter & Almond Milk", ingredients: "1 medium banana, 1 tbsp peanut butter, 1 cup unsweetened almond milk", link: null, nutrition: { calories: 230, protein: 6, carbs: 27, fat: 11, satFat: 1.5, fiber: 4, sodium: 245 } };
 
-    const weekdayBreakfast = {
-      name: "Steel-Cut Oats Bowl",
-      ingredients: "1/3 cup steel-cut oats (dry), 1/2 apple diced, 1 tbsp chia seeds, 1 tbsp flaxseed meal, 1 tbsp chopped almonds, 1 tbsp peanut butter, coffee + 75g oat milk",
-      link: null,
-      nutrition: WKOATS
-    };
+    // ── Lunches ───────────────────────────────────────────────────────────────
+    const quinoaChickpeaSalad = { name: "Quinoa Chickpea Salad with Hummus Dressing", ingredients: "4 cups mixed greens, 1 cup cooked quinoa, 1 can chickpeas (drained), 4 tbsp roasted red pepper hummus, 2 tbsp sunflower seeds, parsley, lemon juice.", link: "https://www.eatingwell.com/recipe/259996/quinoa-chickpea-salad-with-roasted-red-pepper-hummus-dressing/", nutrition: { calories: 390, protein: 22, carbs: 49, fat: 12, satFat: 1, fiber: 12, sodium: 400 } };
+    const medLentilSalad = { name: "Mediterranean Lentil Salad", ingredients: "1 cup dry lentils + 1/2 cup dry quinoa, cherry tomatoes, cucumber, bell pepper, red onion, parsley, mint, lemon-olive oil dressing with cumin.", link: "https://www.feastingathome.com/lentil-salad/", nutrition: { calories: 380, protein: 20, carbs: 48, fat: 12, satFat: 1.5, fiber: 10, sodium: 450 } };
+    const lentilVeggieBowls = { name: "Lentil Veggie Bowls with Tahini Sauce", ingredients: "1.5 cups dry lentils, roasted cauliflower florets, shredded carrots, dark leafy greens, bell pepper, pumpkin seeds; tahini-lemon-garlic dressing.", link: "https://www.feastingathome.com/minted-lentil-veggie-bowl/", nutrition: { calories: 385, protein: 22, carbs: 45, fat: 13, satFat: 2, fiber: 22, sodium: 638 } };
+    const mujadara = { name: "Mujadara (Lentils and Rice)", ingredients: "1 cup brown lentils, 1 cup brown basmati rice, caramelized shallots, garlic, cumin + warm spices; topped with 1/4 cup Greek yogurt, diced tomato + avocado.", link: "https://www.feastingathome.com/instant-pot-mujadara/", nutrition: { calories: 460, protein: 20, carbs: 61, fat: 15, satFat: 2.5, fiber: 10, sodium: 720 } };
+    const farroChicken = { name: "Farro Salad with Chicken & White Beans", ingredients: "1 cup cooked farro, 4 oz grilled chicken breast, 1/2 cup white beans, mixed greens, cherry tomatoes, cucumber, lemon-olive oil vinaigrette.", link: null, nutrition: { calories: 420, protein: 35, carbs: 34, fat: 16, satFat: 2.5, fiber: 10, sodium: 300 } };
+    const farroEgg = { name: "Farro Salad with Hard-Boiled Eggs", ingredients: "1 cup cooked farro, 2 hard-boiled eggs, mixed greens, avocado, cherry tomatoes, sunflower seeds, red wine vinaigrette.", link: null, nutrition: { calories: 390, protein: 19, carbs: 28, fat: 23, satFat: 5, fiber: 8, sodium: 275 } };
+    const moroccanLentilSalad = { name: "Moroccan Lentil Salad", ingredients: "Lentils, roasted sweet potato, dried apricots, almonds, fresh herbs, cumin-cinnamon-lemon dressing.", link: null, nutrition: { calories: 400, protein: 22, carbs: 46, fat: 14, satFat: 2, fiber: 15, sodium: 380 } };
+    const chipotleBowls = { name: "Chipotle Chicken Burrito Bowls", ingredients: "Chipotle-marinated chicken breast, cilantro-lime brown rice, black beans, corn, pico de gallo, avocado, lime.", link: null, nutrition: { calories: 570, protein: 50, carbs: 72, fat: 9, satFat: 1, fiber: 12, sodium: 756 } };
+    const glowBowls = { name: "Roasted Veggie Glow Bowls", ingredients: "Roasted sweet potato, chickpeas, broccoli, tahini dressing; over quinoa with avocado and greens.", link: null, nutrition: { calories: 620, protein: 28, carbs: 46, fat: 36, satFat: 5, fiber: 15, sodium: 750 } };
+    const swTacoSalad = { name: "Healthy Southwest Chicken Taco Salad", ingredients: "Seasoned chicken breast, romaine, black beans, corn, tomatoes, avocado, tortilla strips, lime-cilantro dressing.", link: null, nutrition: { calories: 690, protein: 47, carbs: 56, fat: 31, satFat: 4, fiber: 12, sodium: 580 } };
 
-    // DB: veggie-egg-scramble-toast (290 cal, 26g protein) adjusted for 75g oat milk swap
-    const satBreakfast = {
-      name: "Veggie Egg Scramble + Toast",
-      ingredients: "1 whole egg + 2/3 cup egg whites, 1/2 cup diced bell pepper + mushrooms, 2 tsp olive oil, 1 slice whole grain toast, coffee + 75g oat milk",
-      link: null,
-      nutrition: { calories: 296, protein: 24, carbs: 19, fat: 14, satFat: 3, fiber: 3, sodium: 420 }
-    };
+    // ── Dinners ───────────────────────────────────────────────────────────────
+    const chickenStirFry = { name: "Chicken Cabbage Stir Fry", ingredients: "1 lb ground chicken, green cabbage, shallot, garlic, ginger, low-sodium soy sauce, sesame oil, maple syrup; served over 1/2 cup dry brown rice (cooked).", link: "https://www.feastingathome.com/chicken-cabbage-stir-fry/", nutrition: { calories: 430, protein: 28, carbs: 39, fat: 18, satFat: 4, fiber: 6, sodium: 680 } };
+    const lemonTofu = { name: "Lemon Pepper Tofu and Asparagus", ingredients: "6 oz super firm tofu, 1 lb asparagus, avocado oil, lemon juice + zest, nutritional yeast, garlic, red pepper flakes; served over 2/3 cup cooked brown rice.", link: "https://plantbasedrdblog.com/2022/02/lemon-pepper-tofu-and-asparagus/", nutrition: { calories: 450, protein: 28, carbs: 53, fat: 14, satFat: 2, fiber: 8, sodium: 620 } };
+    const grilledSalmon = { name: "Lemon Garlic Herb Grilled Salmon", ingredients: "6 oz skinless salmon fillet, lemon-herb-garlic-Dijon marinade; served over 1/2 cup farro + roasted asparagus. 🐟 Fresh fish.", link: "https://www.cookingclassy.com/lemon-garlic-herb-grilled-salmon/", nutrition: { calories: 540, protein: 44, carbs: 28, fat: 28, satFat: 4, fiber: 6, sodium: 350 } };
+    const salmonLentils = { name: "Oven Roasted Salmon with Braised French Lentils", ingredients: "6 oz salmon fillet, garlic-thyme-mustard-lemon marinade; braised French green lentils with celery, carrot, wine + herbs; roasted broccolini. 🐟 Fresh fish.", link: "https://www.feastingathome.com/salmon-with-braised-french-lentils/", nutrition: { calories: 480, protein: 38, carbs: 42, fat: 18, satFat: 3, fiber: 14, sodium: 550 } };
+    const turkeyEnchilada = { name: "Turkey Enchilada Quinoa Soup", ingredients: "Ground turkey, quinoa, black beans, corn, diced tomatoes, enchilada sauce, bell pepper, onion, garlic, cumin.", link: null, nutrition: { calories: 350, protein: 26, carbs: 39, fat: 10, satFat: 3, fiber: 7, sodium: 680 } };
+    const misoSalmon = { name: "Miso Salmon Bowls", ingredients: "6 oz salmon fillet, white miso-maple glaze; over brown rice with edamame, cucumber, avocado, pickled ginger. 🐟 Fresh fish.", link: null, nutrition: { calories: 620, protein: 39, carbs: 53, fat: 28, satFat: 4, fiber: 9, sodium: 575 } };
+    const whiteChili = { name: "White Chicken Chili", ingredients: "Chicken breast, white beans, green chiles, onion, garlic, cumin, oregano; topped with Greek yogurt, cilantro.", link: null, nutrition: { calories: 313, protein: 33, carbs: 25, fat: 9, satFat: 1.5, fiber: 7, sodium: 790 } };
+    const shawarmaBowls = { name: "Chicken Shawarma Quinoa Bowls", ingredients: "Shawarma-spiced chicken breast, quinoa, cucumber-tomato salad, pickled onions, tahini sauce, fresh herbs.", link: null, nutrition: { calories: 590, protein: 30, carbs: 66, fat: 23, satFat: 3, fiber: 5, sodium: 520 } };
+    const pozole = { name: "Mexican Pozole Verde", ingredients: "Chicken breast, hominy, tomatillo-poblano verde sauce, cilantro; topped with cabbage, radish, lime.", link: "https://www.feastingathome.com/mexican-posole-verde-soup/", nutrition: { calories: 291, protein: 28, carbs: 28, fat: 7, satFat: 1.5, fiber: 4, sodium: 580 } };
+    const tilapia = { name: "Blackened Tilapia with Avocado Cucumber Salsa", ingredients: "Blackened tilapia fillets, avocado-cucumber salsa; served with brown rice and steamed broccoli. 🐟 Fresh fish.", link: null, nutrition: { calories: 420, protein: 38, carbs: 26, fat: 18, satFat: 5, fiber: 6, sodium: 350 } };
+    const teriyakiSalmon = { name: "Teriyaki Salmon and Bok Choy", ingredients: "Teriyaki-glazed salmon, baby bok choy, brown rice, sesame seeds, scallions. 🐟 Fresh fish.", link: null, nutrition: { calories: 540, protein: 33, carbs: 55, fat: 14, satFat: 2, fiber: 6, sodium: 880 } };
+    const chanaMasala = { name: "Chana Masala", ingredients: "Chickpeas in spiced tomato sauce, garam masala, ginger, garlic; served over brown rice with naan.", link: null, nutrition: { calories: 420, protein: 22, carbs: 60, fat: 10, satFat: 3, fiber: 12, sodium: 500 } };
+    const ceviche = { name: "Ceviche Bowls", ingredients: "Fresh ocean fish cured in lime juice, edamame, tomatoes, cucumber, cilantro, jalapeño; over quinoa. 🐟 Fresh fish.", link: "https://www.feastingathome.com/easy-ceviche-recipe/", nutrition: { calories: 377, protein: 32, carbs: 40, fat: 10, satFat: 1.5, fiber: 6, sodium: 600 } };
+    const indianBowls = { name: "Indian Cauliflower, Chickpea & Tofu Bowls", ingredients: "Roasted curried cauliflower, chickpeas, baked tofu, spinach, brown rice, cilantro-mint chutney.", link: null, nutrition: { calories: 690, protein: 25, carbs: 73, fat: 33, satFat: 4, fiber: 13, sodium: 540 } };
 
-    // DB: egg-avocado-toast (310 cal, 22g protein) adjusted for 75g oat milk swap
-    const sunBreakfast = {
-      name: "Open-Faced Egg & Avocado Toast",
-      ingredients: "1 whole egg + 1/2 cup egg whites, 1 slice whole grain bread, 2 tbsp mashed avocado, 1/3 tomato sliced, coffee + 75g oat milk",
-      link: null,
-      nutrition: { calories: 316, protein: 20, carbs: 30, fat: 13, satFat: 3, fiber: 5, sodium: 380 }
-    };
+    // ── Helpers ───────────────────────────────────────────────────────────────
+    function cook(meal, target) { return { ...meal, ingredients: meal.ingredients + ` Cook double → ${target}.` }; }
+    function leftover(meal, source) { return { ...meal, name: meal.name + " (leftover)", ingredients: meal.ingredients + ` Leftover from ${source}.` }; }
 
-    // ── Mon & Tue (cook double) ───────────────────────────────────────────────
-    // DB: quinoa-chickpea-salad-hummus-dressing
-    const monLunch = {
-      name: "Quinoa Chickpea Salad with Roasted Red Pepper Hummus Dressing",
-      ingredients: "4 cups mixed greens, 1 cup cooked quinoa, 1 can chickpeas (drained), 4 tbsp roasted red pepper hummus, 2 tbsp sunflower seeds, 2 tbsp parsley, lemon juice. Cook double → Tuesday lunch.",
-      link: "https://www.eatingwell.com/recipe/259996/quinoa-chickpea-salad-with-roasted-red-pepper-hummus-dressing/",
-      nutrition: { calories: 390, protein: 22, carbs: 49, fat: 12, satFat: 1, fiber: 12, sodium: 400 }
-    };
-
-    // DB: chicken-cabbage-stir-fry
-    const monDinner = {
-      name: "Chicken Cabbage Stir Fry",
-      ingredients: "1 lb ground chicken, green cabbage, shallot, garlic, ginger, low-sodium soy sauce, sesame oil, maple syrup; served over 1/2 cup dry brown rice (cooked). Cook double → Tuesday dinner.",
-      link: "https://www.feastingathome.com/chicken-cabbage-stir-fry/",
-      nutrition: { calories: 430, protein: 28, carbs: 39, fat: 18, satFat: 4, fiber: 6, sodium: 680 }
-    };
-
-    // ── Wed & Thu (cook double) ───────────────────────────────────────────────
-    // DB: mediterranean-lentil-salad
-    const wedLunch = {
-      name: "Mediterranean Lentil Salad",
-      ingredients: "1 cup dry lentils + 1/2 cup dry quinoa, cherry tomatoes, cucumber, bell pepper, red onion, parsley, mint, lemon-olive oil dressing with cumin. Cook double → Thursday lunch.",
-      link: "https://www.feastingathome.com/lentil-salad/",
-      nutrition: { calories: 380, protein: 20, carbs: 48, fat: 12, satFat: 1.5, fiber: 10, sodium: 450 }
-    };
-
-    // DB: lemon-pepper-tofu-asparagus
-    const wedDinner = {
-      name: "Lemon Pepper Tofu and Asparagus",
-      ingredients: "6 oz super firm tofu, 1 lb asparagus, avocado oil, lemon juice + zest, nutritional yeast, garlic, red pepper flakes; served over 2/3 cup cooked brown rice. Cook double → Thursday dinner.",
-      link: "https://plantbasedrdblog.com/2022/02/lemon-pepper-tofu-and-asparagus/",
-      nutrition: { calories: 450, protein: 28, carbs: 53, fat: 14, satFat: 2, fiber: 8, sodium: 620 }
-    };
-
-    // ── Fri & Sat (cook double) ───────────────────────────────────────────────
-    // DB: lentil-veggie-bowls
-    const friLunch = {
-      name: "Lentil Veggie Bowls with Tahini Sauce",
-      ingredients: "1.5 cups dry lentils, roasted cauliflower florets, shredded carrots, dark leafy greens, bell pepper, pumpkin seeds; tahini-lemon-garlic dressing. Cook double → Saturday lunch.",
-      link: "https://www.feastingathome.com/minted-lentil-veggie-bowl/",
-      nutrition: { calories: 385, protein: 22, carbs: 45, fat: 13, satFat: 2, fiber: 22, sodium: 638 }
-    };
-
-    // DB: lemon-garlic-herb-grilled-salmon
-    const friDinner = {
-      name: "Lemon Garlic Herb Grilled Salmon",
-      ingredients: "6 oz skinless salmon fillet, lemon-herb-garlic-Dijon marinade (olive oil, parsley, rosemary, thyme); served over 1/2 cup farro + roasted asparagus. 🐟 Fresh fish. Cook double → Saturday dinner.",
-      link: "https://www.cookingclassy.com/lemon-garlic-herb-grilled-salmon/",
-      nutrition: { calories: 540, protein: 44, carbs: 28, fat: 28, satFat: 4, fiber: 6, sodium: 350 }
-    };
-
-    // ── Sun (leftovers → Mon week 2) ─────────────────────────────────────────
-    // DB: mujadara
-    const sunLunch = {
-      name: "Mujadara (Lentils and Rice)",
-      ingredients: "1 cup brown lentils, 1 cup brown basmati rice, caramelized shallots, garlic, cumin + warm spices; topped with 1/4 cup Greek yogurt, diced tomato + avocado. Cook double → Monday week 2 lunch.",
-      link: "https://www.feastingathome.com/instant-pot-mujadara/",
-      nutrition: { calories: 460, protein: 20, carbs: 61, fat: 15, satFat: 2.5, fiber: 10, sodium: 720 }
-    };
-
-    // DB: roasted-salmon-braised-french-lentils
-    const sunDinner = {
-      name: "Oven Roasted Salmon with Braised French Lentils",
-      ingredients: "6 oz salmon fillet, garlic-thyme-mustard-lemon marinade; braised French green lentils with celery, carrot, wine + herbs; roasted broccolini. 🐟 Fresh fish. Cook double → Monday week 2 dinner.",
-      link: "https://www.feastingathome.com/salmon-with-braised-french-lentils/",
-      nutrition: { calories: 480, protein: 38, carbs: 42, fat: 18, satFat: 3, fiber: 14, sodium: 550 }
-    };
-
-    // ── Snacks (from DB) ─────────────────────────────────────────────────────
-    const greekYogurt = {
-      name: "Greek Yogurt Snack Bowl",
-      ingredients: "2/3 cup plain Greek yogurt, 1/2 small apple, 1 tbsp slivered almonds, 1 tbsp peanut butter, 1/4 cup Quaker Oatmeal Squares",
-      link: null,
-      nutrition: { calories: 350, protein: 22, carbs: 30, fat: 16, satFat: 3, fiber: 4, sodium: 180 }
-    };
-    const cottageCheese = {
-      name: "Cottage Cheese & Mandarins",
-      ingredients: "1/2 cup low-fat cottage cheese, 3 mandarin oranges (Cuties), 1 tbsp almonds",
-      link: null,
-      nutrition: { calories: 230, protein: 18, carbs: 24, fat: 7, satFat: 1.5, fiber: 3, sodium: 370 }
-    };
-    const hummusCarrots = {
-      name: "Hummus & Carrots",
-      ingredients: "1/3 cup hummus, 1 cup baby carrots",
-      link: null,
-      nutrition: { calories: 180, protein: 6, carbs: 19, fat: 9, satFat: 1, fiber: 6, sodium: 320 }
-    };
-    const proteinShake = {
-      name: "Chocolate Peanut Butter Protein Shake",
-      ingredients: "3/4 cup almond milk, 1/2 banana, 1 scoop protein powder, 1 tbsp cocoa powder, 1/4 cup frozen blueberries, 1 tbsp peanut butter",
-      link: null,
-      nutrition: { calories: 150, protein: 14, carbs: 10, fat: 6, satFat: 1, fiber: 3, sodium: 130 }
-    };
-    const kindBar = {
-      name: "KIND Breakfast Bar & Almond Milk",
-      ingredients: "1 KIND breakfast bar pack (50g), 2/3 cup unsweetened almond milk",
-      link: null,
-      nutrition: { calories: 240, protein: 9, carbs: 26, fat: 11, satFat: 1, fiber: 3, sodium: 230 }
-    };
-
-    // ── Week plan ─────────────────────────────────────────────────────────────
-    // Daily totals (kcal / protein): Mon 1786/95g · Tue 1756/103g · Wed 1736/92g ·
-    //   Thu 1796/93g · Fri 1831/110g · Sat 1751/118g · Sun 1786/106g
-    const weekPlan = [
-      {
-        day: "Monday",
-        meals: [
-          { type: "Breakfast", ...weekdayBreakfast },
-          { type: "Lunch", ...monLunch },
-          { type: "Dinner", ...monDinner },
-          { type: "Snack", ...greekYogurt },
-          { type: "Snack 2", ...hummusCarrots }
-        ]
-      },
-      {
-        day: "Tuesday",
-        meals: [
-          { type: "Breakfast", ...weekdayBreakfast },
-          {
-            type: "Lunch",
-            name: "Quinoa Chickpea Salad (leftover)",
-            ingredients: "Mixed greens, cooked quinoa, chickpeas, roasted red pepper hummus dressing, sunflower seeds, parsley, lemon. Leftover from Monday.",
-            link: monLunch.link,
-            nutrition: monLunch.nutrition
-          },
-          {
-            type: "Dinner",
-            name: "Chicken Cabbage Stir Fry (leftover)",
-            ingredients: "Ground chicken, green cabbage, shallot, garlic, ginger, soy-sesame-maple sauce; over brown rice. Leftover from Monday.",
-            link: monDinner.link,
-            nutrition: monDinner.nutrition
-          },
-          { type: "Snack", ...proteinShake },
-          { type: "Snack 2", ...greekYogurt }
-        ]
-      },
-      {
-        day: "Wednesday",
-        meals: [
-          { type: "Breakfast", ...weekdayBreakfast },
-          { type: "Lunch", ...wedLunch },
-          { type: "Dinner", ...wedDinner },
-          { type: "Snack", ...cottageCheese },
-          { type: "Snack 2", ...kindBar }
-        ]
-      },
-      {
-        day: "Thursday",
-        meals: [
-          { type: "Breakfast", ...weekdayBreakfast },
-          {
-            type: "Lunch",
-            name: "Mediterranean Lentil Salad (leftover)",
-            ingredients: "Lentils, quinoa, cherry tomatoes, cucumber, bell pepper, red onion, parsley, mint, lemon-olive oil-cumin dressing. Leftover from Wednesday.",
-            link: wedLunch.link,
-            nutrition: wedLunch.nutrition
-          },
-          {
-            type: "Dinner",
-            name: "Lemon Pepper Tofu and Asparagus (leftover)",
-            ingredients: "Super firm tofu, asparagus, lemon-pepper-garlic sauce with nutritional yeast; over brown rice. Leftover from Wednesday.",
-            link: wedDinner.link,
-            nutrition: wedDinner.nutrition
-          },
-          { type: "Snack", ...greekYogurt },
-          { type: "Snack 2", ...hummusCarrots }
-        ]
-      },
-      {
-        day: "Friday",
-        meals: [
-          { type: "Breakfast", ...weekdayBreakfast },
-          { type: "Lunch", ...friLunch },
-          { type: "Dinner", ...friDinner },
-          { type: "Snack", ...cottageCheese },
-          { type: "Snack 2", ...kindBar }
-        ]
-      },
-      {
-        day: "Saturday",
-        meals: [
-          { type: "Breakfast", ...satBreakfast },
-          {
-            type: "Lunch",
-            name: "Lentil Veggie Bowls (leftover)",
-            ingredients: "Lentils, roasted cauliflower, shredded carrots, dark leafy greens, pumpkin seeds, tahini-lemon-garlic dressing. Leftover from Friday.",
-            link: friLunch.link,
-            nutrition: friLunch.nutrition
-          },
-          {
-            type: "Dinner",
-            name: "Lemon Garlic Herb Grilled Salmon (leftover)",
-            ingredients: "Grilled salmon, lemon-herb-garlic-Dijon marinade; farro + roasted asparagus. Leftover from Friday.",
-            link: friDinner.link,
-            nutrition: friDinner.nutrition
-          },
-          { type: "Snack", ...greekYogurt },
-          { type: "Snack 2", ...hummusCarrots }
-        ]
-      },
-      {
-        day: "Sunday",
-        meals: [
-          { type: "Breakfast", ...sunBreakfast },
-          { type: "Lunch", ...sunLunch },
-          { type: "Dinner", ...sunDinner },
-          { type: "Snack", ...greekYogurt },
-          { type: "Snack 2", ...hummusCarrots }
-        ]
-      }
+    // ══════════════════════════════════════════════════════════════════════════
+    // WEEK 1: Fresh Mon, Wed, Fri, Sun. Sun→Wk2 Mon.
+    // ══════════════════════════════════════════════════════════════════════════
+    const week1 = [
+      { day: "Monday", meals: [
+        { type: "Breakfast", ...weekdayBreakfast },
+        { type: "Lunch", ...cook(quinoaChickpeaSalad, "Tuesday lunch") },
+        { type: "Dinner", ...cook(chickenStirFry, "Tuesday dinner") },
+        { type: "Snack", ...greekYogurt },
+        { type: "Snack 2", ...hummusCarrots }
+      ]},
+      { day: "Tuesday", meals: [
+        { type: "Breakfast", ...weekdayBreakfast },
+        { type: "Lunch", ...leftover(quinoaChickpeaSalad, "Monday") },
+        { type: "Dinner", ...leftover(chickenStirFry, "Monday") },
+        { type: "Snack", ...proteinShake },
+        { type: "Snack 2", ...greekYogurt }
+      ]},
+      { day: "Wednesday", meals: [
+        { type: "Breakfast", ...weekdayBreakfast },
+        { type: "Lunch", ...cook(medLentilSalad, "Thursday lunch") },
+        { type: "Dinner", ...cook(lemonTofu, "Thursday dinner") },
+        { type: "Snack", ...cottageCheese },
+        { type: "Snack 2", ...kindBar }
+      ]},
+      { day: "Thursday", meals: [
+        { type: "Breakfast", ...weekdayBreakfast },
+        { type: "Lunch", ...leftover(medLentilSalad, "Wednesday") },
+        { type: "Dinner", ...leftover(lemonTofu, "Wednesday") },
+        { type: "Snack", ...greekYogurt },
+        { type: "Snack 2", ...hummusCarrots }
+      ]},
+      { day: "Friday", meals: [
+        { type: "Breakfast", ...weekdayBreakfast },
+        { type: "Lunch", ...cook(lentilVeggieBowls, "Saturday lunch") },
+        { type: "Dinner", ...cook(grilledSalmon, "Saturday dinner") },
+        { type: "Snack", ...cottageCheese },
+        { type: "Snack 2", ...kindBar }
+      ]},
+      { day: "Saturday", meals: [
+        { type: "Breakfast", ...satBreakfast },
+        { type: "Lunch", ...leftover(lentilVeggieBowls, "Friday") },
+        { type: "Dinner", ...leftover(grilledSalmon, "Friday") },
+        { type: "Snack", ...greekYogurt },
+        { type: "Snack 2", ...hummusCarrots }
+      ]},
+      { day: "Sunday", meals: [
+        { type: "Breakfast", ...sunBreakfast },
+        { type: "Lunch", ...cook(mujadara, "Monday Wk 2 lunch") },
+        { type: "Dinner", ...cook(salmonLentils, "Monday Wk 2 dinner") },
+        { type: "Snack", ...greekYogurt },
+        { type: "Snack 2", ...hummusCarrots }
+      ]}
     ];
 
-    const sumNutrition = (meals) =>
-      meals.reduce(
-        (acc, m) => ({
-          calories: acc.calories + m.nutrition.calories,
-          protein: acc.protein + m.nutrition.protein,
-          carbs: acc.carbs + m.nutrition.carbs,
-          fat: acc.fat + m.nutrition.fat,
-          satFat: acc.satFat + m.nutrition.satFat,
-          fiber: acc.fiber + m.nutrition.fiber,
-          sodium: acc.sodium + m.nutrition.sodium
-        }),
-        { calories: 0, protein: 0, carbs: 0, fat: 0, satFat: 0, fiber: 0, sodium: 0 }
-      );
+    // ══════════════════════════════════════════════════════════════════════════
+    // WEEK 2: Mon leftover from Wk1 Sun. Fresh Tue, Thu, Sat.
+    // ══════════════════════════════════════════════════════════════════════════
+    const week2 = [
+      { day: "Monday", meals: [
+        { type: "Breakfast", ...weekdayBreakfast },
+        { type: "Lunch", ...leftover(mujadara, "Sunday Wk 1") },
+        { type: "Dinner", ...leftover(salmonLentils, "Sunday Wk 1") },
+        { type: "Snack", ...cottageCheese },
+        { type: "Snack 2", ...proteinShake }
+      ]},
+      { day: "Tuesday", meals: [
+        { type: "Breakfast", ...weekdayBreakfast },
+        { type: "Lunch", ...cook(farroChicken, "Wednesday lunch") },
+        { type: "Dinner", ...cook(turkeyEnchilada, "Wednesday dinner") },
+        { type: "Snack", ...greekYogurt },
+        { type: "Snack 2", ...hummusCarrots }
+      ]},
+      { day: "Wednesday", meals: [
+        { type: "Breakfast", ...weekdayBreakfast },
+        { type: "Lunch", ...leftover(farroChicken, "Tuesday") },
+        { type: "Dinner", ...leftover(turkeyEnchilada, "Tuesday") },
+        { type: "Snack", ...proteinShake },
+        { type: "Snack 2", ...kindBar }
+      ]},
+      { day: "Thursday", meals: [
+        { type: "Breakfast", ...weekdayBreakfast },
+        { type: "Lunch", ...cook(farroEgg, "Friday lunch") },
+        { type: "Dinner", ...cook(misoSalmon, "Friday dinner") },
+        { type: "Snack", ...cottageCheese },
+        { type: "Snack 2", ...hummusCarrots }
+      ]},
+      { day: "Friday", meals: [
+        { type: "Breakfast", ...weekdayBreakfast },
+        { type: "Lunch", ...leftover(farroEgg, "Thursday") },
+        { type: "Dinner", ...leftover(misoSalmon, "Thursday") },
+        { type: "Snack", ...greekYogurt },
+        { type: "Snack 2", ...kindBar }
+      ]},
+      { day: "Saturday", meals: [
+        { type: "Breakfast", ...tofuScramble },
+        { type: "Lunch", ...cook(moroccanLentilSalad, "Sunday lunch") },
+        { type: "Dinner", ...cook(whiteChili, "Sunday dinner") },
+        { type: "Snack", ...greekYogurt },
+        { type: "Snack 2", ...hummusCarrots }
+      ]},
+      { day: "Sunday", meals: [
+        { type: "Breakfast", ...sunBreakfast },
+        { type: "Lunch", ...leftover(moroccanLentilSalad, "Saturday") },
+        { type: "Dinner", ...leftover(whiteChili, "Saturday") },
+        { type: "Snack", ...cottageCheese },
+        { type: "Snack 2", ...bananaPB }
+      ]}
+    ];
 
-    const fmtP = (x) => {
-      const r = Math.round(x * 10) / 10;
-      return Number.isInteger(r) ? String(r) : r.toFixed(1);
-    };
+    // ══════════════════════════════════════════════════════════════════════════
+    // WEEK 3: Same cadence as Wk1. Fresh Mon, Wed, Fri, Sun. Sun→Wk4 Mon.
+    // ══════════════════════════════════════════════════════════════════════════
+    const week3 = [
+      { day: "Monday", meals: [
+        { type: "Breakfast", ...weekdayBreakfast },
+        { type: "Lunch", ...cook(farroChicken, "Tuesday lunch") },
+        { type: "Dinner", ...cook(shawarmaBowls, "Tuesday dinner") },
+        { type: "Snack", ...greekYogurt },
+        { type: "Snack 2", ...hummusCarrots }
+      ]},
+      { day: "Tuesday", meals: [
+        { type: "Breakfast", ...weekdayBreakfast },
+        { type: "Lunch", ...leftover(farroChicken, "Monday") },
+        { type: "Dinner", ...leftover(shawarmaBowls, "Monday") },
+        { type: "Snack", ...proteinShake },
+        { type: "Snack 2", ...kindBar }
+      ]},
+      { day: "Wednesday", meals: [
+        { type: "Breakfast", ...weekdayBreakfast },
+        { type: "Lunch", ...cook(chipotleBowls, "Thursday lunch") },
+        { type: "Dinner", ...cook(pozole, "Thursday dinner") },
+        { type: "Snack", ...cottageCheese },
+        { type: "Snack 2", ...hummusCarrots }
+      ]},
+      { day: "Thursday", meals: [
+        { type: "Breakfast", ...weekdayBreakfast },
+        { type: "Lunch", ...leftover(chipotleBowls, "Wednesday") },
+        { type: "Dinner", ...leftover(pozole, "Wednesday") },
+        { type: "Snack", ...greekYogurt },
+        { type: "Snack 2", ...proteinShake }
+      ]},
+      { day: "Friday", meals: [
+        { type: "Breakfast", ...weekdayBreakfast },
+        { type: "Lunch", ...cook(farroEgg, "Saturday lunch") },
+        { type: "Dinner", ...cook(tilapia, "Saturday dinner") },
+        { type: "Snack", ...cottageCheese },
+        { type: "Snack 2", ...kindBar }
+      ]},
+      { day: "Saturday", meals: [
+        { type: "Breakfast", ...satBreakfast },
+        { type: "Lunch", ...leftover(farroEgg, "Friday") },
+        { type: "Dinner", ...leftover(tilapia, "Friday") },
+        { type: "Snack", ...greekYogurt },
+        { type: "Snack 2", ...hummusCarrots }
+      ]},
+      { day: "Sunday", meals: [
+        { type: "Breakfast", ...tofuScramble },
+        { type: "Lunch", ...cook(glowBowls, "Monday Wk 4 lunch") },
+        { type: "Dinner", ...cook(teriyakiSalmon, "Monday Wk 4 dinner") },
+        { type: "Snack", ...greekYogurt },
+        { type: "Snack 2", ...darkChocAlmonds }
+      ]}
+    ];
 
-    const typeIcon = {
-      Breakfast: "☀️",
-      Lunch: "🌿",
-      Dinner: "🌙",
-      Snack: "🥜",
-      "Snack 2": "🫐"
-    };
+    // ══════════════════════════════════════════════════════════════════════════
+    // WEEK 4: Mon leftover from Wk3 Sun. Fresh Tue, Thu, Sat.
+    // ══════════════════════════════════════════════════════════════════════════
+    const week4 = [
+      { day: "Monday", meals: [
+        { type: "Breakfast", ...weekdayBreakfast },
+        { type: "Lunch", ...leftover(glowBowls, "Sunday Wk 3") },
+        { type: "Dinner", ...leftover(teriyakiSalmon, "Sunday Wk 3") },
+        { type: "Snack", ...cottageCheese },
+        { type: "Snack 2", ...kindBar }
+      ]},
+      { day: "Tuesday", meals: [
+        { type: "Breakfast", ...weekdayBreakfast },
+        { type: "Lunch", ...cook(farroChicken, "Wednesday lunch") },
+        { type: "Dinner", ...cook(chanaMasala, "Wednesday dinner") },
+        { type: "Snack", ...greekYogurt },
+        { type: "Snack 2", ...hummusCarrots }
+      ]},
+      { day: "Wednesday", meals: [
+        { type: "Breakfast", ...weekdayBreakfast },
+        { type: "Lunch", ...leftover(farroChicken, "Tuesday") },
+        { type: "Dinner", ...leftover(chanaMasala, "Tuesday") },
+        { type: "Snack", ...proteinShake },
+        { type: "Snack 2", ...kindBar }
+      ]},
+      { day: "Thursday", meals: [
+        { type: "Breakfast", ...weekdayBreakfast },
+        { type: "Lunch", ...cook(swTacoSalad, "Friday lunch") },
+        { type: "Dinner", ...cook(ceviche, "Friday dinner") },
+        { type: "Snack", ...cottageCheese },
+        { type: "Snack 2", ...hummusCarrots }
+      ]},
+      { day: "Friday", meals: [
+        { type: "Breakfast", ...weekdayBreakfast },
+        { type: "Lunch", ...leftover(swTacoSalad, "Thursday") },
+        { type: "Dinner", ...leftover(ceviche, "Thursday") },
+        { type: "Snack", ...greekYogurt },
+        { type: "Snack 2", ...proteinShake }
+      ]},
+      { day: "Saturday", meals: [
+        { type: "Breakfast", ...tofuScramble },
+        { type: "Lunch", ...cook(farroEgg, "Sunday lunch") },
+        { type: "Dinner", ...cook(indianBowls, "Sunday dinner") },
+        { type: "Snack", ...greekYogurt },
+        { type: "Snack 2", ...hummusCarrots }
+      ]},
+      { day: "Sunday", meals: [
+        { type: "Breakfast", ...sunBreakfast },
+        { type: "Lunch", ...leftover(farroEgg, "Saturday") },
+        { type: "Dinner", ...leftover(indianBowls, "Saturday") },
+        { type: "Snack", ...cottageCheese },
+        { type: "Snack 2", ...bananaPB }
+      ]}
+    ];
 
-    const typeTags = {
-      Breakfast: ["Soluble fiber", "Steady energy", "Heart healthy"],
-      Lunch: ["Whole foods", "Plant protein", "Meal prep"],
-      Dinner: ["Lean protein", "High fiber", "Low sat fat"],
-      Snack: ["Protein boost", "Smart fats", "Blood sugar support"],
-      "Snack 2": ["Lean protein", "Fiber", "Portion control"]
-    };
+    // ══════════════════════════════════════════════════════════════════════════
+    // RENDERING ENGINE
+    // ══════════════════════════════════════════════════════════════════════════
+    const allWeeks = [week1, week2, week3, week4];
 
-    const shortType = {
-      Monday: "Mon",
-      Tuesday: "Tue",
-      Wednesday: "Wed",
-      Thursday: "Thu",
-      Friday: "Fri",
-      Saturday: "Sat",
-      Sunday: "Sun"
-    };
+    const sumNutrition = (meals) => meals.reduce((a, m) => ({
+      calories: a.calories + m.nutrition.calories, protein: a.protein + m.nutrition.protein,
+      carbs: a.carbs + m.nutrition.carbs, fat: a.fat + m.nutrition.fat,
+      satFat: a.satFat + m.nutrition.satFat, fiber: a.fiber + m.nutrition.fiber,
+      sodium: a.sodium + m.nutrition.sodium
+    }), { calories: 0, protein: 0, carbs: 0, fat: 0, satFat: 0, fiber: 0, sodium: 0 });
 
-    const dayTabs = document.getElementById("dayTabs");
+    const fmt = (x) => { const r = Math.round(x * 10) / 10; return Number.isInteger(r) ? String(r) : r.toFixed(1); };
+    const typeIcon = { Breakfast: "\u2600\uFE0F", Lunch: "\uD83C\uDF3F", Dinner: "\uD83C\uDF19", Snack: "\uD83E\uDD5C", "Snack 2": "\uD83E\uDED0" };
+    const typeTags = { Breakfast: ["Soluble fiber", "Steady energy", "Heart healthy"], Lunch: ["Whole foods", "Plant protein", "Meal prep"], Dinner: ["Lean protein", "High fiber", "Low sat fat"], Snack: ["Protein boost", "Smart fats", "Blood sugar support"], "Snack 2": ["Lean protein", "Fiber", "Portion control"] };
+    const shortDay = { Monday: "Mon", Tuesday: "Tue", Wednesday: "Wed", Thursday: "Thu", Friday: "Fri", Saturday: "Sat", Sunday: "Sun" };
+    const metricTargets = { carbs: 275, fat: 78, satFat: 22, fiber: 35, sodium: 2300 };
+
+    const dayTabsEl = document.getElementById("dayTabs");
     const planContainer = document.getElementById("planContainer");
-    const daySections = {};
+    const heroTitle = document.querySelector(".hero h1");
+    const weekTabEls = document.querySelectorAll(".week-tab");
 
-    const metricTargets = {
-      carbs: 275,
-      fat: 78,
-      satFat: 22,
-      fiber: 35,
-      sodium: 2300
-    };
+    function renderWeek(weekIdx) {
+      const weekPlan = allWeeks[weekIdx];
+      const weekNum = weekIdx + 1;
+      heroTitle.textContent = `Week ${weekNum} Cholesterol-Friendly Meal Plan`;
+      dayTabsEl.innerHTML = "";
+      planContainer.innerHTML = "";
+      const sections = {};
 
-    const setActiveDay = (dayId) => {
-      Object.entries(daySections).forEach(([id, section]) => {
-        const isActive = id === dayId;
-        section.classList.toggle("hidden", !isActive);
+      weekPlan.forEach((entry, idx) => {
+        const dayId = `w${weekNum}-${entry.day.toLowerCase()}`;
+        const stats = sumNutrition(entry.meals);
+
+        const tab = document.createElement("button");
+        tab.className = `day-tab${idx === 0 ? " active" : ""}`;
+        tab.type = "button";
+        tab.textContent = shortDay[entry.day];
+        tab.addEventListener("click", () => {
+          dayTabsEl.querySelectorAll(".day-tab").forEach(el => el.classList.remove("active"));
+          tab.classList.add("active");
+          Object.values(sections).forEach(s => s.classList.add("hidden"));
+          sections[dayId].classList.remove("hidden");
+        });
+        dayTabsEl.appendChild(tab);
+
+        const breakdown = {
+          breakfast: entry.meals.find(m => m.type === "Breakfast")?.nutrition.protein || 0,
+          lunch: entry.meals.find(m => m.type === "Lunch")?.nutrition.protein || 0,
+          dinner: entry.meals.find(m => m.type === "Dinner")?.nutrition.protein || 0,
+          snack: entry.meals.find(m => m.type === "Snack")?.nutrition.protein || 0,
+          snack2: entry.meals.find(m => m.type === "Snack 2")?.nutrition.protein || 0
+        };
+
+        const mealsHtml = entry.meals.map(meal => {
+          const tags = typeTags[meal.type] || [];
+          const n = meal.nutrition;
+          const title = meal.link
+            ? `<a href="${meal.link}" target="_blank" rel="noopener noreferrer">${meal.name}</a>`
+            : `<span class="meal-title-text">${meal.name}</span>`;
+          return `<article class="meal-card">
+            <div class="meal-top"><div class="meal-type">${typeIcon[meal.type] || "•"} ${meal.type}</div><div class="protein-pill">${fmt(n.protein)}g protein</div></div>
+            <div class="meal-name">${title}</div>
+            <p class="meal-ingredients">${meal.ingredients}</p>
+            <p class="meal-macros"><strong>${Math.round(n.calories)} kcal</strong> · ${fmt(n.protein)}g protein · ${fmt(n.carbs)}g carbs · ${fmt(n.fat)}g fat · ${fmt(n.satFat)}g sat. fat · ${fmt(n.fiber)}g fiber · ${Math.round(n.sodium)}mg sodium</p>
+            <div class="tags">${tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>
+          </article>`;
+        }).join("");
+
+        const metricRows = [
+          { key: "carbs", label: "Carbohydrates", unit: "g", color: "#2a7f63" },
+          { key: "fat", label: "Total Fat", unit: "g", color: "#7a5a1e" },
+          { key: "satFat", label: "Saturated Fat", unit: "g", color: "#d07a2f" },
+          { key: "fiber", label: "Fiber", unit: "g", color: "#4e5a9a" },
+          { key: "sodium", label: "Sodium", unit: "mg", color: "#8a39a9" }
+        ];
+        const metricsHtml = metricRows.map(m => {
+          const val = stats[m.key];
+          const disp = m.key === "sodium" ? Math.round(val) : fmt(val);
+          const pct = Math.min(100, Math.round((val / metricTargets[m.key]) * 100));
+          return `<div class="metric"><div class="metric-line"><span>${m.label}</span><strong>${disp}${m.unit}</strong></div><div class="metric-bar"><span style="width:${pct}%;background:${m.color}"></span></div></div>`;
+        }).join("");
+
+        const satOk = stats.satFat < 15, fiberOk = stats.fiber >= 25, sodiumOk = stats.sodium < 2300;
+        const kcalOk = stats.calories >= 1700 && stats.calories <= 2100;
+        const protOk = stats.protein >= 80 && stats.protein <= 120;
+
+        const section = document.createElement("section");
+        section.className = `day-section${idx === 0 ? "" : " hidden"}`;
+        section.id = dayId;
+        section.innerHTML = `
+          <h2 class="day-title">Week ${weekNum} · ${entry.day}</h2><hr class="day-divider">
+          ${mealsHtml}
+          <div class="nutrition-card">
+            <div class="nutrition-top">
+              <div class="nutrition-box">Calories <strong>${Math.round(stats.calories)}</strong></div>
+              <div class="nutrition-box">Protein <strong>${fmt(stats.protein)}g</strong></div>
+            </div>
+            <div class="mini-heading">Protein by meal</div>
+            <div class="protein-grid">
+              <div class="protein-row"><span>☀️ Breakfast</span><strong>${fmt(breakdown.breakfast)}g</strong></div>
+              <div class="protein-row"><span>🌿 Lunch</span><strong>${fmt(breakdown.lunch)}g</strong></div>
+              <div class="protein-row"><span>🌙 Dinner</span><strong>${fmt(breakdown.dinner)}g</strong></div>
+              <div class="protein-row"><span>🥜 Snack</span><strong>${fmt(breakdown.snack)}g</strong></div>
+              <div class="protein-row"><span>🫐 Snack 2</span><strong>${fmt(breakdown.snack2)}g</strong></div>
+            </div>
+            ${metricsHtml}
+            <div class="badges">
+              <span class="goal-badge ${kcalOk ? "" : "warn"}">${kcalOk ? "✓" : "!"} 1700–2100 kcal (${Math.round(stats.calories)} kcal)</span>
+              <span class="goal-badge ${protOk ? "" : "warn"}">${protOk ? "✓" : "!"} 80–120g protein (${fmt(stats.protein)}g)</span>
+              <span class="goal-badge ${satOk ? "" : "warn"}">${satOk ? "✓" : "!"} Sat fat &lt;15g (${fmt(stats.satFat)}g)</span>
+              <span class="goal-badge ${fiberOk ? "" : "warn"}">${fiberOk ? "✓" : "!"} Fiber ≥25g (${fmt(stats.fiber)}g)</span>
+              <span class="goal-badge ${sodiumOk ? "" : "warn"}">${sodiumOk ? "✓" : "!"} Sodium &lt;2300mg (${Math.round(stats.sodium)}mg)</span>
+            </div>
+            <div class="protein-note">ℹ️ Daily totals sum the meal rows above (USDA-style estimates). Lunch and dinner repeat the next day when marked leftover. Sunday cooks carry into Monday of the following week.</div>
+          </div>
+          <div class="section-footer">Numbers are rounded estimates from typical USDA FoodData Central values. Your brands and cooking methods will differ—check labels.</div>`;
+        planContainer.appendChild(section);
+        sections[dayId] = section;
       });
-    };
+    }
 
-    weekPlan.forEach((entry, idx) => {
-      const dayId = entry.day.toLowerCase();
-      const stats = sumNutrition(entry.meals);
-      const totalProtein = stats.protein;
-
-      const tab = document.createElement("button");
-      tab.className = `day-tab ${idx === 0 ? "active" : ""}`;
-      tab.type = "button";
-      tab.textContent = shortType[entry.day];
+    weekTabEls.forEach((tab, idx) => {
       tab.addEventListener("click", () => {
-        document.querySelectorAll(".day-tab").forEach((el) => el.classList.remove("active"));
+        weekTabEls.forEach(t => t.classList.remove("active"));
         tab.classList.add("active");
-        setActiveDay(dayId);
+        renderWeek(idx);
       });
-      dayTabs.appendChild(tab);
-
-      const section = document.createElement("section");
-      section.className = "day-section";
-      section.id = dayId;
-      const breakdown = {
-        breakfast: entry.meals.find((meal) => meal.type === "Breakfast")?.nutrition.protein || 0,
-        lunch: entry.meals.find((meal) => meal.type === "Lunch")?.nutrition.protein || 0,
-        dinner: entry.meals.find((meal) => meal.type === "Dinner")?.nutrition.protein || 0,
-        snack: entry.meals.find((meal) => meal.type === "Snack")?.nutrition.protein || 0,
-        snack2: entry.meals.find((meal) => meal.type === "Snack 2")?.nutrition.protein || 0
-      };
-      const metricRows = [
-        { key: "carbs", label: "Carbohydrates", unit: "g", color: "#2a7f63" },
-        { key: "fat", label: "Total Fat", unit: "g", color: "#7a5a1e" },
-        { key: "satFat", label: "Saturated Fat", unit: "g", color: "#d07a2f" },
-        { key: "fiber", label: "Fiber", unit: "g", color: "#4e5a9a" },
-        { key: "sodium", label: "Sodium", unit: "mg", color: "#8a39a9" }
-      ];
-
-      const mealsMarkup = entry.meals.map((meal) => {
-        const tags = typeTags[meal.type] || ["Heart healthy", "Protein support", "Whole foods"];
-        const n = meal.nutrition;
-        const titleHtml = meal.link
-          ? `<a href="${meal.link}" target="_blank" rel="noopener noreferrer">${meal.name}</a>`
-          : `<span class="meal-title-text">${meal.name}</span>`;
-        return `
-        <article class="meal-card">
-          <div class="meal-top">
-            <div class="meal-type">${typeIcon[meal.type] || "•"} ${meal.type}</div>
-            <div class="protein-pill">${fmtP(n.protein)}g protein</div>
-          </div>
-          <div class="meal-name">
-            ${titleHtml}
-          </div>
-          <p class="meal-ingredients">${meal.ingredients}</p>
-          <p class="meal-macros"><strong>${Math.round(n.calories)} kcal</strong> · ${fmtP(n.protein)}g protein · ${fmtP(n.carbs)}g carbs · ${fmtP(n.fat)}g fat · ${fmtP(n.satFat)}g sat. fat · ${fmtP(n.fiber)}g fiber · ${Math.round(n.sodium)}mg sodium</p>
-          <div class="tags">
-            ${tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
-          </div>
-        </article>
-      `;
-      }).join("");
-      const metricsMarkup = metricRows.map((metric) => {
-        const val = stats[metric.key];
-        const displayVal = metric.key === "sodium" ? Math.round(val) : Math.round(val * 10) / 10;
-        const pct = Math.min(100, Math.round((val / metricTargets[metric.key]) * 100));
-        return `
-          <div class="metric">
-            <div class="metric-line"><span>${metric.label}</span><strong>${displayVal}${metric.unit}</strong></div>
-            <div class="metric-bar"><span style="width:${pct}%; background:${metric.color};"></span></div>
-          </div>
-        `;
-      }).join("");
-      const satOk = stats.satFat < 15;
-      const fiberOk = stats.fiber >= 25;
-      const sodiumOk = stats.sodium < 2300;
-      const kcalInRange = stats.calories >= 1700 && stats.calories <= 2100;
-      const proteinInRange = stats.protein >= 80 && stats.protein <= 120;
-      const dayNote =
-        "Daily totals sum the meal rows above (same USDA-style assumptions). Lunch and dinner repeat the next calendar day when marked leftover; Sunday’s cook also supplies Monday week 2. Use nutrition labels and a scale for your exact foods.";
-
-      section.innerHTML = `
-        <h2 class="day-title">Week 1 · ${entry.day}</h2>
-        <hr class="day-divider">
-        ${mealsMarkup}
-        <div class="nutrition-card">
-          <div class="nutrition-top">
-            <div class="nutrition-box">Calories <strong>${Math.round(stats.calories)}</strong></div>
-            <div class="nutrition-box">Protein <strong>${fmtP(totalProtein)}g</strong></div>
-          </div>
-          <div class="mini-heading">Protein by meal</div>
-          <div class="protein-grid">
-            <div class="protein-row"><span>☀️ Breakfast</span><strong>${fmtP(breakdown.breakfast)}g</strong></div>
-            <div class="protein-row"><span>🌿 Lunch</span><strong>${fmtP(breakdown.lunch)}g</strong></div>
-            <div class="protein-row"><span>🌙 Dinner</span><strong>${fmtP(breakdown.dinner)}g</strong></div>
-            <div class="protein-row"><span>🥜 Snack</span><strong>${fmtP(breakdown.snack)}g</strong></div>
-            <div class="protein-row"><span>🫐 Snack 2</span><strong>${fmtP(breakdown.snack2)}g</strong></div>
-          </div>
-          ${metricsMarkup}
-          <div class="badges">
-            <span class="goal-badge ${kcalInRange ? "" : "warn"}">${kcalInRange ? "✓" : "!"} 1700–2100 kcal (${Math.round(stats.calories)} kcal)</span>
-            <span class="goal-badge ${proteinInRange ? "" : "warn"}">${proteinInRange ? "✓" : "!"} 80–120g protein (${fmtP(totalProtein)}g)</span>
-            <span class="goal-badge ${satOk ? "" : "warn"}">${satOk ? "✓" : "!"} Sat fat &lt;15g (${fmtP(stats.satFat)}g)</span>
-            <span class="goal-badge ${fiberOk ? "" : "warn"}">${fiberOk ? "✓" : "!"} Fiber ≥25g (${fmtP(stats.fiber)}g)</span>
-            <span class="goal-badge ${sodiumOk ? "" : "warn"}">${sodiumOk ? "✓" : "!"} Sodium &lt;2300mg (${Math.round(stats.sodium)}mg)</span>
-          </div>
-          <div class="protein-note">ℹ️ ${dayNote}</div>
-        </div>
-        <div class="section-footer">
-          Numbers are rounded estimates from typical USDA FoodData Central values for the portions listed (including added salt in broth, chili, and soy sauce where applicable). Your brands and cooking methods will differ—check labels.
-        </div>
-      `;
-
-      planContainer.appendChild(section);
-      daySections[dayId] = section;
     });
 
-    setActiveDay(weekPlan[0].day.toLowerCase());
+    renderWeek(0);
     setupNav();
   </script>
 </body>
