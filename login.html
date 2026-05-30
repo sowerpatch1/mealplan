@@ -149,7 +149,7 @@
   </div>
 
   <main>
-    <div class="login-card">
+    <div class="login-card" id="loginCard">
       <form id="loginForm" novalidate>
         <div class="field">
           <label for="email">Email</label>
@@ -162,6 +162,40 @@
         <button type="submit" class="btn-primary" id="submitBtn">Sign in</button>
         <div class="error-msg" id="errorMsg"></div>
       </form>
+      <p style="text-align:center;margin:16px 0 0;font-size:13px;">
+        <a href="#" id="forgotLink" style="color:var(--forest-700);text-decoration:none;font-weight:500;">Forgot password?</a>
+      </p>
+    </div>
+
+    <div class="login-card" id="forgotCard" style="display:none;">
+      <p style="font-size:14px;color:var(--ink-soft);margin:0 0 18px;">Enter your email and we'll send a reset link.</p>
+      <form id="forgotForm" novalidate>
+        <div class="field">
+          <label for="forgotEmail">Email</label>
+          <input type="email" id="forgotEmail" autocomplete="email" required placeholder="you@example.com">
+        </div>
+        <button type="submit" class="btn-primary" id="forgotBtn">Send reset link</button>
+        <div class="error-msg" id="forgotMsg"></div>
+      </form>
+      <p style="text-align:center;margin:16px 0 0;font-size:13px;">
+        <a href="#" id="backToLogin" style="color:var(--forest-700);text-decoration:none;font-weight:500;">← Back to sign in</a>
+      </p>
+    </div>
+
+    <div class="login-card" id="resetCard" style="display:none;">
+      <p style="font-size:14px;color:var(--ink-soft);margin:0 0 18px;">Choose a new password.</p>
+      <form id="resetForm" novalidate>
+        <div class="field">
+          <label for="newPassword">New password</label>
+          <input type="password" id="newPassword" autocomplete="new-password" required placeholder="••••••••">
+        </div>
+        <div class="field">
+          <label for="confirmPassword">Confirm password</label>
+          <input type="password" id="confirmPassword" autocomplete="new-password" required placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn-primary" id="resetBtn">Update password</button>
+        <div class="error-msg" id="resetMsg"></div>
+      </form>
     </div>
   </main>
 
@@ -170,16 +204,26 @@
   <script>
     const _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    // Redirect already-authenticated users immediately
-    _sb.auth.getSession().then(({ data: { session } }) => {
-      if (session) redirectAfterLogin();
-    });
-
     function redirectAfterLogin() {
       const params = new URLSearchParams(location.search);
       location.href = params.get("next") || "tracker.html";
     }
 
+    // Detect recovery flow from URL hash (Supabase appends #access_token=...&type=recovery)
+    _sb.auth.onAuthStateChange((event, session) => {
+      if (event === "PASSWORD_RECOVERY") {
+        document.getElementById("loginCard").style.display = "none";
+        document.getElementById("forgotCard").style.display = "none";
+        document.getElementById("resetCard").style.display = "";
+      } else if (event === "SIGNED_IN" && !document.getElementById("resetCard").style.display !== "none") {
+        // Normal sign-in (not mid-reset)
+        if (document.getElementById("resetCard").style.display === "none") {
+          redirectAfterLogin();
+        }
+      }
+    });
+
+    // Normal sign-in
     document.getElementById("loginForm").addEventListener("submit", async (e) => {
       e.preventDefault();
       const email    = document.getElementById("email").value.trim();
@@ -201,6 +245,91 @@
       } else {
         redirectAfterLogin();
       }
+    });
+
+    // Forgot password toggle
+    document.getElementById("forgotLink").addEventListener("click", (e) => {
+      e.preventDefault();
+      document.getElementById("loginCard").style.display = "none";
+      document.getElementById("forgotCard").style.display = "";
+    });
+    document.getElementById("backToLogin").addEventListener("click", (e) => {
+      e.preventDefault();
+      document.getElementById("forgotCard").style.display = "none";
+      document.getElementById("loginCard").style.display = "";
+    });
+
+    // Send reset email
+    document.getElementById("forgotForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email  = document.getElementById("forgotEmail").value.trim();
+      const btn    = document.getElementById("forgotBtn");
+      const msgEl  = document.getElementById("forgotMsg");
+
+      btn.disabled    = true;
+      btn.textContent = "Sending…";
+      msgEl.style.display = "none";
+
+      const { error } = await _sb.auth.resetPasswordForEmail(email, {
+        redirectTo: location.origin + location.pathname
+      });
+
+      if (error) {
+        msgEl.textContent   = error.message;
+        msgEl.style.display = "";
+        msgEl.style.background = "#fff5f5";
+        msgEl.style.borderColor = "#f5c0bf";
+        msgEl.style.color = "#8b1c1c";
+      } else {
+        msgEl.textContent   = "Check your email for the reset link.";
+        msgEl.style.display = "";
+        msgEl.style.background = "#f0faf4";
+        msgEl.style.borderColor = "#b3e6c9";
+        msgEl.style.color = "#1b5a42";
+      }
+      btn.disabled    = false;
+      btn.textContent = "Send reset link";
+    });
+
+    // Set new password
+    document.getElementById("resetForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const pw      = document.getElementById("newPassword").value;
+      const confirm = document.getElementById("confirmPassword").value;
+      const btn     = document.getElementById("resetBtn");
+      const msgEl   = document.getElementById("resetMsg");
+
+      msgEl.style.display = "none";
+
+      if (pw.length < 6) {
+        msgEl.textContent = "Password must be at least 6 characters.";
+        msgEl.style.display = "";
+        return;
+      }
+      if (pw !== confirm) {
+        msgEl.textContent = "Passwords don't match.";
+        msgEl.style.display = "";
+        return;
+      }
+
+      btn.disabled    = true;
+      btn.textContent = "Updating…";
+
+      const { error } = await _sb.auth.updateUser({ password: pw });
+
+      if (error) {
+        msgEl.textContent   = error.message;
+        msgEl.style.display = "";
+      } else {
+        msgEl.textContent   = "Password updated! Redirecting…";
+        msgEl.style.display = "";
+        msgEl.style.background = "#f0faf4";
+        msgEl.style.borderColor = "#b3e6c9";
+        msgEl.style.color = "#1b5a42";
+        setTimeout(redirectAfterLogin, 1500);
+      }
+      btn.disabled    = false;
+      btn.textContent = "Update password";
     });
   </script>
 </body>
