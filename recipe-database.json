@@ -1684,6 +1684,42 @@
       }
     },
     {
+      "id": "farro-salad-egg",
+      "title": "Farro Salad with Hard-Boiled Eggs",
+      "url": null,
+      "meal": "lunch",
+      "notes": "Egg variant of farro-salad-chicken — chicken breast and white beans swapped for 2 hard-boiled eggs. Protein is ~19g (just under 20g target); add a third egg or a small side of Greek yogurt if you want to push higher. Cholesterol is ~370mg from the eggs, so keep an eye on total daily intake. Nutrition estimated from USDA values.",
+      "ingredients": [
+        "1/4 cup cooked farro",
+        "2 cups mixed greens",
+        "1 medium tomato, chopped",
+        "2 tbsp red onion, diced",
+        "1/4 avocado, sliced",
+        "1/2 cucumber, sliced",
+        "1 tbsp lemon vinaigrette",
+        "2 large eggs, hard-boiled and halved"
+      ],
+      "steps": [
+        "Hard-boil eggs: place in a pot, cover with cold water, bring to a boil, reduce heat and simmer 10 minutes, then transfer to ice water. Peel and halve.",
+        "Arrange mixed greens on a plate or in a bowl.",
+        "Top with cooked farro, tomato, cucumber, red onion, and avocado slices.",
+        "Add halved eggs on top.",
+        "Drizzle with lemon vinaigrette."
+      ],
+      "nutrition_per_serving": {
+        "servings": 1,
+        "calories": 390,
+        "protein_g": 19,
+        "total_fat_g": 23,
+        "saturated_fat_g": 5,
+        "cholesterol_mg": 370,
+        "fiber_g": 8,
+        "sodium_mg": 275,
+        "carbs_g": 28,
+        "added_sugar_g": 0
+      }
+    },
+    {
       "id": "dark-chocolate-almonds-almond-milk",
       "title": "Dark Chocolate, Almonds & Almond Milk",
       "url": null,
@@ -1708,6 +1744,232 @@
         "sodium_mg": 175,
         "carbs_g": 13,
         "added_sugar_g": 6
+      }
+    }
+  ,
+    {
+      "id": "crispy-sesame-tempeh-bowls",
+      "title": "Crispy Sesame Tempeh Bowls",
+      "url": "https://www.feastingathome.com/crispy-tempeh-recipe/",
+      "meal": ["lunch", "dinner"],
+      "notes": "No tweaks needed. High-protein plant-based bowl. Nutrition includes brown rice and steamed broccoli. Nutrition estimated from recipe page plus USDA values for rice and broccoli.",
+      "ingredients": [
+        "8 oz organic tempeh, cut into 3/4-inch cubes",
+        "1 tbsp low-sodium soy sauce (for simmering)",
+        "1/2 tsp salt",
+        "2 tbsp olive oil",
+        "2 tbsp low-sodium soy sauce (sauce)",
+        "2 tbsp mirin",
+        "1 tbsp maple syrup",
+        "1 tbsp rice wine vinegar",
+        "1 tsp toasted sesame oil",
+        "1 tbsp garlic, finely minced",
+        "1 tsp fresh ginger, finely minced",
+        "2-4 tsp sriracha",
+        "1-2 tbsp sesame seeds",
+        "Salt and pepper to taste",
+        "1.5 cups cooked brown rice",
+        "3 cups broccoli florets",
+        "Scallions and cilantro for garnish"
+      ],
+      "steps": [
+        "Set brown rice to cook according to package directions.",
+        "Cut tempeh into 3/4-inch cubes. Place in a pot and cover with water. Add 1 tbsp soy sauce and 1/2 tsp salt. Bring to a boil, cover, and simmer on medium-low for 10 minutes.",
+        "Whisk together the sesame sauce: soy sauce, mirin, maple syrup, rice wine vinegar, sesame oil, garlic, ginger, and sriracha. Set aside.",
+        "After tempeh has simmered 10 minutes, place broccoli florets on top. Add a splash of water if needed. Cover and steam 3-4 minutes until tender-crisp. Remove broccoli and set aside. Drain tempeh and pat dry.",
+        "Heat olive oil in a large skillet over medium heat. Season with salt and pepper. Add tempeh and brown each side until deeply golden, 3-5 minutes per side.",
+        "Pour in the sesame sauce and reduce by half, 1-2 minutes, spooning sauce over tempeh. Remove from heat.",
+        "Divide rice among bowls. Top with broccoli and crispy tempeh. Sprinkle with sesame seeds, scallions, and cilantro."
+      ],
+      "nutrition_per_serving": {
+        "servings": 2,
+        "calories": 570,
+        "protein_g": 32,
+        "total_fat_g": 18,
+        "saturated_fat_g": 3,
+        "cholesterol_mg": 0,
+        "fiber_g": 17,
+        "sodium_mg": 570
+      }
+    },
+    {
+      "id": "indian-cauliflower-chickpea-tofu-bowls",
+      "title": "Indian Cauliflower, Chickpea & Tofu Bowls",
+      "url": "https://www.feastingathome.com/indian-cauliflower-with-chickpeas-and-caramelized-tofu/",
+      "meal": "dinner",
+      "notes": "Swapped coconut oil to avocado oil for pan-searing tofu. Made basmati rice standard (was optional). High fat is from 7 tbsp total oil across roasting, frying, and dressing — all unsaturated. Nutrition estimated.",
+      "ingredients": [
+        "1 head cauliflower, cut into 1-inch bite-size pieces",
+        "2 tbsp avocado oil (for roasting cauliflower)",
+        "1/2 tsp sea salt",
+        "1 (14 oz) can chickpeas, drained and rinsed",
+        "16 oz firm tofu, patted dry and cut into 3/4-inch cubes",
+        "1/2 tsp kosher salt",
+        "Black pepper to taste",
+        "2 tbsp avocado oil (for searing tofu)",
+        "2 cloves garlic, minced",
+        "1 tsp fresh ginger, grated",
+        "2 tsp coconut sugar",
+        "1 tbsp apple cider vinegar",
+        "3 tbsp olive oil (for dressing)",
+        "2 tbsp Madras curry powder",
+        "1/4 tsp sea salt",
+        "1/4 cup cilantro, chopped",
+        "1/4 cup scallions, minced",
+        "1 small apple, diced (optional)",
+        "1 cup dry basmati rice"
+      ],
+      "steps": [
+        "Preheat oven to 425°F. Cook basmati rice according to package directions.",
+        "Toss cauliflower with 2 tbsp avocado oil, salt, and pepper. Spread on a baking sheet and roast 15-20 minutes until golden. Scoot cauliflower to one side, add drained chickpeas, and return to oven 5 more minutes to warm.",
+        "Heat 2 tbsp avocado oil in a skillet over medium-high heat, seasoned with salt and pepper. Add tofu and cook undisturbed 3-5 minutes until a crust forms, then flip. After 2 more minutes, add garlic, ginger, and coconut sugar. Sauté 1-2 minutes until tofu is golden and coated. Remove from heat.",
+        "Mix dressing: whisk olive oil, apple cider vinegar, Madras curry powder, and salt into a thick paste.",
+        "In a large bowl, combine roasted cauliflower, chickpeas, and caramelized tofu. Pour dressing over and toss with cilantro, scallions, and apple if using. Taste and adjust salt and pepper.",
+        "Serve over basmati rice."
+      ],
+      "nutrition_per_serving": {
+        "servings": 4,
+        "calories": 690,
+        "protein_g": 25,
+        "total_fat_g": 33,
+        "saturated_fat_g": 4,
+        "cholesterol_mg": 0,
+        "fiber_g": 13,
+        "sodium_mg": 540
+      }
+    },
+    {
+      "id": "chipotle-chicken-burrito-bowls",
+      "title": "Chipotle Chicken Burrito Bowls",
+      "url": "https://www.feastingathome.com/chipotle-burrito-bowl/",
+      "meal": ["lunch", "dinner"],
+      "notes": "Swapped chicken thighs to chicken breasts. Added fajita veggies (bell peppers and onion) to the sheet pan as veggie component. Cholesterol is ~130mg from lean chicken breast. Nutrition estimated from recipe page adjusted for breast swap and fajita veggies.",
+      "ingredients": [
+        "2 lbs boneless skinless chicken breasts",
+        "1 lime",
+        "3 tbsp olive oil",
+        "1-2 chipotle peppers in adobo plus 3 tbsp adobo sauce",
+        "4-6 garlic cloves",
+        "1 shallot (or 1/4 cup onion), roughly chopped",
+        "1 tbsp ground cumin",
+        "2 tsp ground coriander",
+        "2 tsp chili powder",
+        "1 tsp dried oregano",
+        "2 tsp salt",
+        "2 bell peppers, sliced",
+        "1 large onion, sliced",
+        "1 tbsp olive oil (for fajita veggies)",
+        "4-6 cups cooked brown rice",
+        "2 (15 oz) cans black beans, drained and rinsed",
+        "Optional toppings: corn, diced tomatoes, diced avocado, cilantro, pickled onions, lime wedges"
+      ],
+      "steps": [
+        "Preheat oven to 425°F.",
+        "Make chipotle marinade: blend olive oil, chipotle peppers and adobo sauce, garlic, shallot, cumin, coriander, chili powder, oregano, and salt into a thick paste using a food processor.",
+        "Cut large chicken breasts in half for even thickness. Toss in marinade and marinate at least 20 minutes (overnight is ideal).",
+        "Toss sliced bell peppers and onion with 1 tbsp olive oil, salt, and pepper. Spread on one side of a parchment-lined sheet pan. Place marinated chicken on the other side.",
+        "Bake 20-30 minutes until chicken reaches 165°F. Broil 2-3 minutes to caramelize. Let chicken rest 10 minutes, then slice or shred. Squeeze lime juice over chicken.",
+        "Warm black beans in a saucepan over medium heat; season with salt and pepper.",
+        "Assemble bowls: 3/4 cup rice, topped with fajita veggies, 1/2 cup seasoned black beans, and sliced chicken. Add optional toppings."
+      ],
+      "nutrition_per_serving": {
+        "servings": 6,
+        "calories": 570,
+        "protein_g": 50,
+        "total_fat_g": 9,
+        "saturated_fat_g": 1,
+        "cholesterol_mg": 130,
+        "fiber_g": 12,
+        "sodium_mg": 756
+      }
+    },
+    {
+      "id": "teriyaki-salmon-bok-choy",
+      "title": "Teriyaki Salmon and Bok Choy",
+      "url": "https://www.feastingathome.com/sheet-pan-salmon-and-bok-choy/",
+      "meal": "dinner",
+      "notes": "Added brown rice as complex carb. Salmon cholesterol (58mg) is acceptable — omega-3 rich. Sodium is moderate-high from soy sauce. Nutrition sourced from recipe page plus USDA values for brown rice.",
+      "ingredients": [
+        "4 salmon fillets (6-8 oz each), skinless, thick-cut",
+        "8 baby bok choy, quartered",
+        "8 oz shiitake mushrooms",
+        "Pinch salt and pepper",
+        "Orange zest (optional)",
+        "1/2 cup low-sodium soy sauce",
+        "4 tbsp rice wine vinegar",
+        "4 tbsp honey or maple syrup",
+        "2 tbsp toasted sesame oil",
+        "2 tbsp olive oil",
+        "2 tsp fresh ginger, grated",
+        "2 garlic cloves, finely minced",
+        "2 cups dry brown rice",
+        "Optional garnish: toasted sesame seeds, scallions, sriracha or chili flakes"
+      ],
+      "steps": [
+        "Preheat oven to 350°F. Cook brown rice according to package directions.",
+        "Place salmon fillets, bok choy, and mushrooms on a parchment-lined sheet pan.",
+        "Whisk together soy sauce, rice wine vinegar, honey, sesame oil, olive oil, ginger, and garlic. Spoon over salmon and vegetables, coating all sides.",
+        "Sprinkle salmon with salt, pepper, and optional orange zest.",
+        "Bake 12-15 minutes, checking after 10 minutes. When salmon reaches an internal temp of 125-130°F, broil 2-3 minutes to caramelize. Timing varies with fillet thickness.",
+        "Divide rice and bok choy among bowls. Top with salmon and garnish with sesame seeds, scallions, and sriracha."
+      ],
+      "nutrition_per_serving": {
+        "servings": 4,
+        "calories": 540,
+        "protein_g": 33,
+        "total_fat_g": 14,
+        "saturated_fat_g": 2,
+        "cholesterol_mg": 58,
+        "fiber_g": 6,
+        "sodium_mg": 880
+      }
+    }
+  ,
+    {
+      "id": "miso-tofu-veggie-bowls",
+      "title": "Miso Tofu Veggie Bowls",
+      "url": "https://www.feastingathome.com/honey-miso-carrot-tofu-bowl/",
+      "meal": "dinner",
+      "notes": "Doubled tofu to 16 oz (original 8 oz was too little for 4 servings) and added 1 can chickpeas to roast on sheet pan — both changes needed to reach 20g+ protein. Added brown rice as standard carb. Recipe page sodium (69.3mg) is a data error; actual sodium is ~900mg from soy sauce and miso. Nutrition estimated.",
+      "ingredients": [
+        "16 oz extra-firm tofu, patted dry and cut into 3/4-inch slices",
+        "2-3 medium carrots, peeled and cut into 1-inch strips",
+        "1 small bunch asparagus (about 7 oz), cut into 1-2 inch pieces",
+        "1 (14 oz) can chickpeas, drained and rinsed",
+        "1 avocado, sliced",
+        "Salt, pepper, and optional chili flakes to taste",
+        "Microgreens or sprouts (optional)",
+        "1 cup beet cabbage sauerkraut or kimchi (optional)",
+        "Toasted sesame seeds, cilantro, scallions for garnish",
+        "1 cup dry brown rice",
+        "2 tbsp sesame oil",
+        "3 tbsp low-sodium soy sauce",
+        "2 tbsp white miso paste",
+        "1 tbsp fresh ginger, grated",
+        "1 garlic clove, minced",
+        "2 tbsp rice vinegar",
+        "1 tbsp maple syrup",
+        "1 tsp orange zest",
+        "1/4 cup fresh orange juice"
+      ],
+      "steps": [
+        "Preheat oven to 425°F. Cook brown rice according to package directions.",
+        "Blend all marinade ingredients (sesame oil, soy sauce, miso, ginger, garlic, rice vinegar, maple syrup, orange zest, and orange juice) in a blender until smooth.",
+        "Prep veggies and tofu: slice carrots into 1-inch strips, cut asparagus into 1-2 inch sections, and blot tofu dry and slice into 3/4-1 inch slabs.",
+        "Line a sheet pan with parchment. Toss carrots and chickpeas with 2-3 tbsp of marinade and spread on the pan. Repeat with tofu and asparagus. Spoon extra marinade over tofu and season everything with salt, pepper, and chili flakes if desired.",
+        "Bake 25-30 minutes, checking after 15 minutes — remove asparagus when tender-crisp, continue baking tofu and carrots until golden.",
+        "Build bowls: divide rice among 4 bowls. Arrange tofu, carrots, asparagus, chickpeas, and avocado on top. Add sauerkraut or kimchi if using.",
+        "Drizzle with any remaining marinade. Garnish with toasted sesame seeds, cilantro, and scallions."
+      ],
+      "nutrition_per_serving": {
+        "servings": 4,
+        "calories": 610,
+        "protein_g": 24,
+        "total_fat_g": 21,
+        "saturated_fat_g": 3,
+        "cholesterol_mg": 0,
+        "fiber_g": 16,
+        "sodium_mg": 900
       }
     }
   ]
