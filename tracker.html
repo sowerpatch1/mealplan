@@ -120,9 +120,7 @@
     }
 
     /* ── Meal slots ── */
-    .slot {
-      margin-bottom: 16px;
-    }
+    .slot { margin-bottom: 16px; }
     .slot-header {
       display: flex;
       align-items: center;
@@ -136,9 +134,7 @@
       text-transform: uppercase;
       color: var(--ink-soft);
     }
-    .combo-box {
-      position: relative;
-    }
+    .combo-box { position: relative; }
     .combo-input-wrap {
       position: relative;
       display: flex;
@@ -159,9 +155,7 @@
       border-color: var(--forest-600);
       box-shadow: 0 0 0 2px rgba(35, 106, 79, 0.15);
     }
-    .combo-input.has-value {
-      font-weight: 600;
-    }
+    .combo-input.has-value { font-weight: 600; }
     .combo-arrow {
       position: absolute;
       right: 12px;
@@ -221,9 +215,7 @@
       color: var(--ink);
     }
     .combo-option:hover,
-    .combo-option.active {
-      background: var(--sage-100);
-    }
+    .combo-option.active { background: var(--sage-100); }
     .combo-no-results {
       padding: 12px;
       font-size: 13px;
@@ -244,10 +236,7 @@
       justify-content: space-between;
       gap: 10px;
     }
-    .selected-card .card-info {
-      flex: 1;
-      min-width: 0;
-    }
+    .selected-card .card-info { flex: 1; min-width: 0; }
     .selected-card .card-title {
       font-family: Georgia, serif;
       font-size: 17px;
@@ -259,9 +248,7 @@
       color: var(--forest-700);
       text-decoration: none;
     }
-    .selected-card .card-title a:hover {
-      text-decoration: underline;
-    }
+    .selected-card .card-title a:hover { text-decoration: underline; }
     .selected-card .card-macros {
       font-size: 12px;
       color: #4d5c55;
@@ -290,7 +277,7 @@
       margin-top: 4px;
     }
 
-    /* ── Totals panel (matching index.html nutrition-card) ── */
+    /* ── Totals panel ── */
     .nutrition-card {
       margin-top: 28px;
       background: #ffffff;
@@ -401,25 +388,15 @@
     }
 
     /* ── Snacks section ── */
-    .snacks-section {
-      margin-top: 8px;
-      margin-bottom: 16px;
-    }
-    .snack-entry {
-      margin-bottom: 10px;
-      position: relative;
-    }
+    .snacks-section { margin-top: 8px; margin-bottom: 16px; }
+    .snack-entry { margin-bottom: 10px; position: relative; }
     .snack-entry-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 4px;
     }
-    .snack-entry-label {
-      font-size: 11px;
-      color: var(--ink-soft);
-      font-weight: 600;
-    }
+    .snack-entry-label { font-size: 11px; color: var(--ink-soft); font-weight: 600; }
     .snack-remove-btn {
       border: none;
       background: none;
@@ -447,10 +424,18 @@
       width: 100%;
       justify-content: center;
     }
-    .add-snack-btn:hover {
-      background: var(--sage-100);
-      border-color: var(--forest-600);
+    .add-snack-btn:hover { background: var(--sage-100); border-color: var(--forest-600); }
+
+    /* ── Save indicator ── */
+    .save-indicator {
+      font-size: 12px;
+      color: var(--ink-soft);
+      font-style: italic;
+      margin-left: 8px;
+      opacity: 0;
+      transition: opacity 0.3s;
     }
+    .save-indicator.visible { opacity: 1; }
   </style>
 </head>
 <body>
@@ -472,12 +457,16 @@
       <input type="date" class="date-input" id="dateInput">
       <button type="button" id="nextDay" aria-label="Next day">›</button>
       <span class="date-label" id="dateLabel"></span>
+      <span class="save-indicator" id="saveIndicator">Saved</span>
     </div>
 
     <div id="slots"></div>
     <div id="totalsPanel"></div>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="auth.js"></script>
   <script>
     const MEAL_SLOTS = [
       { key: "breakfast", label: "Breakfast", icon: "☀️" },
@@ -485,12 +474,13 @@
       { key: "dinner",    label: "Dinner",    icon: "🌙" }
     ];
 
-    const STORAGE_KEY = "mealTracker";
     const metricTargets = { fat: 78, satFat: 22, fiber: 35, sodium: 2300, cholesterol: 300 };
 
-    let recipes = [];
+    let recipes     = [];
+    let currentUser = null;
     let currentDate = todayString();
     let snackCounter = 0;
+    let daySelections = []; // in-memory cache for the current date
 
     function todayString() {
       const d = new Date();
@@ -500,8 +490,9 @@
     function formatDateLabel(dateStr) {
       const d = new Date(dateStr + "T12:00:00");
       const today = todayString();
-      const yesterday = (() => { const y = new Date(); y.setDate(y.getDate() - 1); return `${y.getFullYear()}-${String(y.getMonth() + 1).padStart(2, "0")}-${String(y.getDate()).padStart(2, "0")}`; })();
-      if (dateStr === today) return "Today";
+      const yDate = new Date(); yDate.setDate(yDate.getDate() - 1);
+      const yesterday = `${yDate.getFullYear()}-${String(yDate.getMonth() + 1).padStart(2, "0")}-${String(yDate.getDate()).padStart(2, "0")}`;
+      if (dateStr === today)     return "Today";
       if (dateStr === yesterday) return "Yesterday";
       return d.toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric" });
     }
@@ -515,64 +506,82 @@
       loadSelections();
     }
 
-    // ── Persistence ──
-    function loadStore() {
-      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
-      catch { return {}; }
+    // ── Supabase persistence ──────────────────────────────────────────────────
+
+    async function fetchDayFromDB() {
+      if (!currentUser) return [];
+      const { data, error } = await sb
+        .from("daily_log")
+        .select("slot, recipe_id")
+        .eq("user_id", currentUser.id)
+        .eq("date", currentDate);
+      if (error) { console.error("fetch day:", error); return []; }
+      return (data || []).map(r => ({ slot: r.slot, recipeId: r.recipe_id }));
     }
 
-    function getSelections() {
-      return loadStore()[currentDate] || [];
-    }
+    async function saveSelection(slotKey, recipeId) {
+      if (!currentUser) return;
 
-    function isSnackSlot(slotKey) {
-      return slotKey.startsWith("snack-");
-    }
-
-    function saveSelection(slotKey, recipeId) {
-      const store = loadStore();
-      const day = store[currentDate] || [];
-      const idx = day.findIndex(e => e.slot === slotKey);
       if (recipeId) {
-        if (idx >= 0) day[idx].recipeId = recipeId;
-        else day.push({ slot: slotKey, recipeId });
+        const { error } = await sb.from("daily_log").upsert({
+          user_id:   currentUser.id,
+          date:      currentDate,
+          slot:      slotKey,
+          recipe_id: recipeId
+        }, { onConflict: "user_id,date,slot" });
+        if (!error) {
+          const idx = daySelections.findIndex(e => e.slot === slotKey);
+          if (idx >= 0) daySelections[idx].recipeId = recipeId;
+          else daySelections.push({ slot: slotKey, recipeId });
+        }
       } else {
-        if (idx >= 0) day.splice(idx, 1);
+        const { error } = await sb.from("daily_log").delete()
+          .eq("user_id", currentUser.id)
+          .eq("date",    currentDate)
+          .eq("slot",    slotKey);
+        if (!error) {
+          daySelections = daySelections.filter(e => e.slot !== slotKey);
+        }
       }
-      store[currentDate] = day;
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+      flashSaved();
+      renderTotals();
     }
 
     function removeSnackFromStore(slotKey) {
-      const store = loadStore();
-      const day = store[currentDate] || [];
-      store[currentDate] = day.filter(e => e.slot !== slotKey);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+      saveSelection(slotKey, null);
     }
 
-    function findRecipe(id) {
-      return recipes.find(r => r.id === id);
+    function flashSaved() {
+      const el = document.getElementById("saveIndicator");
+      el.classList.add("visible");
+      clearTimeout(el._t);
+      el._t = setTimeout(() => el.classList.remove("visible"), 1500);
     }
+
+    // ── Helpers ───────────────────────────────────────────────────────────────
+
+    function getSelections() { return daySelections; }
+    function findRecipe(id)  { return recipes.find(r => r.id === id); }
 
     function mealTypes(r) {
       const m = r.meal;
       return (Array.isArray(m) ? m : [m]).map(s => s.toLowerCase());
     }
 
-    // ── Formatting ──
     const fmtP = (x) => {
       const r = Math.round(x * 10) / 10;
       return Number.isInteger(r) ? String(r) : r.toFixed(1);
     };
 
-    // ── Grouped recipe list by meal type ──
-    const MEAL_ORDER = ["breakfast", "lunch", "dinner", "snack"];
+    const MEAL_ORDER  = ["breakfast", "lunch", "dinner", "snack"];
     const MEAL_LABELS = { breakfast: "Breakfast", lunch: "Lunch", dinner: "Dinner", snack: "Snack" };
+
+    function isSnackSlot(slotKey) { return slotKey.startsWith("snack-"); }
 
     function groupedRecipes(slotKey) {
       const matchMeal = isSnackSlot(slotKey) ? "snack" : slotKey;
-      const ordered = [matchMeal, ...MEAL_ORDER.filter(m => m !== matchMeal)];
-      const groups = {};
+      const ordered   = [matchMeal, ...MEAL_ORDER.filter(m => m !== matchMeal)];
+      const groups    = {};
       ordered.forEach(m => groups[m] = []);
       recipes.forEach(r => {
         const primary = mealTypes(r)[0];
@@ -582,7 +591,8 @@
       return ordered.map(m => ({ meal: m, label: MEAL_LABELS[m] || m, items: groups[m] })).filter(g => g.items.length);
     }
 
-    // ── Build meal slot UI ──
+    // ── Build slot UI ─────────────────────────────────────────────────────────
+
     function buildSlots() {
       const container = document.getElementById("slots");
       container.innerHTML = "";
@@ -591,26 +601,23 @@
         const div = document.createElement("div");
         div.className = "slot";
         div.id = `slot-${slot.key}`;
-
         div.innerHTML = `
           <div class="slot-header">
             <span class="slot-label">${slot.icon} ${slot.label}</span>
           </div>
           <div class="combo-box" data-slot="${slot.key}">
             <div class="combo-input-wrap">
-              <input type="text" class="combo-input" placeholder="Search recipes..." autocomplete="off">
+              <input type="text" class="combo-input" placeholder="Search recipes…" autocomplete="off">
               <span class="combo-arrow">▼</span>
             </div>
             <div class="combo-dropdown"></div>
           </div>
           <div class="card-container" id="card-${slot.key}"></div>
         `;
-
         container.appendChild(div);
         initComboBox(div.querySelector(".combo-box"), slot.key);
       });
 
-      // Snacks section
       const snacksDiv = document.createElement("div");
       snacksDiv.className = "slot";
       snacksDiv.innerHTML = `
@@ -621,20 +628,16 @@
         <button type="button" class="add-snack-btn" id="addSnackBtn">+ Add snack</button>
       `;
       container.appendChild(snacksDiv);
-
-      document.getElementById("addSnackBtn").addEventListener("click", () => {
-        addSnackEntry();
-      });
+      document.getElementById("addSnackBtn").addEventListener("click", () => addSnackEntry());
     }
 
     function addSnackEntry(preselectedId) {
-      const list = document.getElementById("snacksList");
+      const list    = document.getElementById("snacksList");
       const slotKey = `snack-${snackCounter++}`;
 
       const entry = document.createElement("div");
-      entry.className = "snack-entry";
+      entry.className   = "snack-entry";
       entry.dataset.slotKey = slotKey;
-
       entry.innerHTML = `
         <div class="snack-entry-header">
           <span class="snack-entry-label"></span>
@@ -642,70 +645,76 @@
         </div>
         <div class="combo-box" data-slot="${slotKey}">
           <div class="combo-input-wrap">
-            <input type="text" class="combo-input" placeholder="Search recipes..." autocomplete="off">
+            <input type="text" class="combo-input" placeholder="Search recipes…" autocomplete="off">
             <span class="combo-arrow">▼</span>
           </div>
           <div class="combo-dropdown"></div>
         </div>
         <div class="card-container" id="card-${slotKey}"></div>
       `;
-
       entry.querySelector(".snack-remove-btn").addEventListener("click", () => {
         removeSnackFromStore(slotKey);
         entry.remove();
         updateSnackLabels();
         renderTotals();
       });
-
       list.appendChild(entry);
       initComboBox(entry.querySelector(".combo-box"), slotKey);
       updateSnackLabels();
 
       if (preselectedId) {
         const box = entry.querySelector(".combo-box");
-        if (box._setSelected) box._setSelected(preselectedId);
+        if (box._initSelected) box._initSelected(preselectedId);
       }
     }
 
     function updateSnackLabels() {
-      const entries = document.querySelectorAll("#snacksList .snack-entry");
-      entries.forEach((el, i) => {
+      document.querySelectorAll("#snacksList .snack-entry").forEach((el, i) => {
         el.querySelector(".snack-entry-label").textContent = `Snack ${i + 1}`;
       });
     }
 
     function initComboBox(box, slotKey) {
-      const input = box.querySelector(".combo-input");
+      const input    = box.querySelector(".combo-input");
       const dropdown = box.querySelector(".combo-dropdown");
-      const arrowEl = box.querySelector(".combo-arrow");
-      let selectedId = "";
-      let activeIdx = -1;
-      let visibleOptions = [];
+      const arrowEl  = box.querySelector(".combo-arrow");
+      let selectedId  = "";
+      let activeIdx   = -1;
+      let visibleOpts = [];
 
-      function setSelected(recipeId) {
-        selectedId = recipeId;
+      function applyVisual(recipeId) {
         const r = findRecipe(recipeId);
         if (r) {
           input.value = r.title;
           input.classList.add("has-value");
           arrowEl.style.display = "none";
-          let clearBtn = box.querySelector(".combo-clear");
-          if (!clearBtn) {
-            clearBtn = document.createElement("button");
-            clearBtn.className = "combo-clear";
-            clearBtn.type = "button";
-            clearBtn.title = "Clear";
-            clearBtn.textContent = "✕";
-            box.querySelector(".combo-input-wrap").appendChild(clearBtn);
-            clearBtn.addEventListener("mousedown", (e) => {
-              e.preventDefault();
-              clearSelection();
-            });
+          if (!box.querySelector(".combo-clear")) {
+            const btn = document.createElement("button");
+            btn.className   = "combo-clear";
+            btn.type        = "button";
+            btn.title       = "Clear";
+            btn.textContent = "✕";
+            box.querySelector(".combo-input-wrap").appendChild(btn);
+            btn.addEventListener("mousedown", (e) => { e.preventDefault(); clearSelection(); });
           }
         } else {
           clearVisual();
         }
-        saveSelection(slotKey, recipeId);
+      }
+
+      // Restores visual state only (used during initial load — no DB write)
+      function _initSelected(recipeId) {
+        selectedId = recipeId;
+        applyVisual(recipeId);
+        renderCard(slotKey, recipeId);
+        renderTotals();
+      }
+
+      // Selects a recipe and persists to DB
+      function setSelected(recipeId) {
+        selectedId = recipeId;
+        applyVisual(recipeId);
+        saveSelection(slotKey, recipeId); // async, fire-and-forget
         renderCard(slotKey, recipeId);
         renderTotals();
       }
@@ -713,7 +722,7 @@
       function clearSelection() {
         selectedId = "";
         clearVisual();
-        saveSelection(slotKey, "");
+        saveSelection(slotKey, null);
         renderCard(slotKey, "");
         renderTotals();
         input.focus();
@@ -723,32 +732,26 @@
         input.value = "";
         input.classList.remove("has-value");
         arrowEl.style.display = "";
-        const clearBtn = box.querySelector(".combo-clear");
-        if (clearBtn) clearBtn.remove();
+        const btn = box.querySelector(".combo-clear");
+        if (btn) btn.remove();
       }
 
       function renderDropdown(filter) {
         const groups = groupedRecipes(slotKey);
-        const query = (filter || "").toLowerCase().trim();
+        const query  = (filter || "").toLowerCase().trim();
         let html = "";
-        visibleOptions = [];
-
+        visibleOpts = [];
         groups.forEach(g => {
-          const matches = query
-            ? g.items.filter(r => r.title.toLowerCase().includes(query))
-            : g.items;
+          const matches = query ? g.items.filter(r => r.title.toLowerCase().includes(query)) : g.items;
           if (!matches.length) return;
           html += `<div class="combo-group-label">${g.label}</div>`;
           matches.forEach(r => {
-            const idx = visibleOptions.length;
-            visibleOptions.push(r);
+            const idx = visibleOpts.length;
+            visibleOpts.push(r);
             html += `<div class="combo-option" data-idx="${idx}" data-id="${r.id}">${r.title}</div>`;
           });
         });
-
-        if (!visibleOptions.length) {
-          html = `<div class="combo-no-results">No recipes match "${filter}"</div>`;
-        }
+        if (!visibleOpts.length) html = `<div class="combo-no-results">No recipes match "${filter}"</div>`;
         dropdown.innerHTML = html;
         activeIdx = -1;
       }
@@ -757,94 +760,61 @@
         renderDropdown(selectedId ? "" : input.value);
         dropdown.classList.add("open");
       }
-
       function closeDropdown() {
         dropdown.classList.remove("open");
         activeIdx = -1;
       }
-
       function highlightIdx(idx) {
         dropdown.querySelectorAll(".combo-option").forEach(el => el.classList.remove("active"));
-        if (idx >= 0 && idx < visibleOptions.length) {
+        if (idx >= 0 && idx < visibleOpts.length) {
           activeIdx = idx;
           const el = dropdown.querySelector(`[data-idx="${idx}"]`);
-          if (el) {
-            el.classList.add("active");
-            el.scrollIntoView({ block: "nearest" });
-          }
+          if (el) { el.classList.add("active"); el.scrollIntoView({ block: "nearest" }); }
         }
       }
 
       input.addEventListener("focus", () => {
-        if (selectedId) {
-          input.value = "";
-          input.classList.remove("has-value");
-        }
+        if (selectedId) { input.value = ""; input.classList.remove("has-value"); }
         openDropdown();
       });
-
       input.addEventListener("input", () => {
         renderDropdown(input.value);
         if (!dropdown.classList.contains("open")) dropdown.classList.add("open");
       });
-
       input.addEventListener("blur", () => {
         setTimeout(() => {
           closeDropdown();
           if (selectedId) {
             const r = findRecipe(selectedId);
-            if (r) {
-              input.value = r.title;
-              input.classList.add("has-value");
-            }
-          } else {
-            input.value = "";
-          }
+            if (r) { input.value = r.title; input.classList.add("has-value"); }
+          } else { input.value = ""; }
         }, 150);
       });
-
       input.addEventListener("keydown", (e) => {
         if (!dropdown.classList.contains("open")) {
           if (e.key === "ArrowDown" || e.key === "ArrowUp") { openDropdown(); e.preventDefault(); }
           return;
         }
-        if (e.key === "ArrowDown") {
-          e.preventDefault();
-          highlightIdx(Math.min(activeIdx + 1, visibleOptions.length - 1));
-        } else if (e.key === "ArrowUp") {
-          e.preventDefault();
-          highlightIdx(Math.max(activeIdx - 1, 0));
-        } else if (e.key === "Enter") {
-          e.preventDefault();
-          if (activeIdx >= 0 && activeIdx < visibleOptions.length) {
-            setSelected(visibleOptions[activeIdx].id);
-            closeDropdown();
-          }
-        } else if (e.key === "Escape") {
-          closeDropdown();
-          input.blur();
-        }
+        if      (e.key === "ArrowDown") { e.preventDefault(); highlightIdx(Math.min(activeIdx + 1, visibleOpts.length - 1)); }
+        else if (e.key === "ArrowUp")   { e.preventDefault(); highlightIdx(Math.max(activeIdx - 1, 0)); }
+        else if (e.key === "Enter")     { e.preventDefault(); if (activeIdx >= 0) { setSelected(visibleOpts[activeIdx].id); closeDropdown(); } }
+        else if (e.key === "Escape")    { closeDropdown(); input.blur(); }
       });
-
       dropdown.addEventListener("mousedown", (e) => {
         e.preventDefault();
         const opt = e.target.closest(".combo-option");
-        if (opt) {
-          setSelected(opt.dataset.id);
-          closeDropdown();
-        }
+        if (opt) { setSelected(opt.dataset.id); closeDropdown(); }
       });
 
-      box._setSelected = setSelected;
+      box._initSelected = _initSelected;
+      box._setSelected  = setSelected;
       box._clearSelection = clearSelection;
     }
 
     function renderCard(slotKey, recipeId) {
       const container = document.getElementById(`card-${slotKey}`);
-      if (!recipeId) {
-        container.innerHTML = "";
-        return;
-      }
+      if (!container) return;
+      if (!recipeId) { container.innerHTML = ""; return; }
       const r = findRecipe(recipeId);
       if (!r) { container.innerHTML = ""; return; }
       const n = r.nutrition_per_serving;
@@ -868,12 +838,7 @@
       container.querySelector(".remove-btn").addEventListener("click", () => {
         if (isSnackSlot(slotKey)) {
           const entry = container.closest(".snack-entry");
-          if (entry) {
-            removeSnackFromStore(slotKey);
-            entry.remove();
-            updateSnackLabels();
-            renderTotals();
-          }
+          if (entry) { removeSnackFromStore(slotKey); entry.remove(); updateSnackLabels(); renderTotals(); }
         } else {
           const box = document.querySelector(`.combo-box[data-slot="${slotKey}"]`);
           if (box && box._clearSelection) box._clearSelection();
@@ -881,86 +846,80 @@
       });
     }
 
-    function loadSelections() {
-      // Clear existing snack entries
+    async function loadSelections() {
       const snacksList = document.getElementById("snacksList");
       if (snacksList) snacksList.innerHTML = "";
-      snackCounter = 0;
+      snackCounter    = 0;
+      daySelections   = [];
 
-      const selections = getSelections();
+      daySelections = await fetchDayFromDB();
 
-      // Load meal slots
+      // Restore meal slots (visual only — no DB write)
       MEAL_SLOTS.forEach(slot => {
-        const box = document.querySelector(`.combo-box[data-slot="${slot.key}"]`);
-        const entry = selections.find(e => e.slot === slot.key);
-        if (entry && findRecipe(entry.recipeId) && box._setSelected) {
-          box._setSelected(entry.recipeId);
-        } else if (box._clearSelection) {
+        const box   = document.querySelector(`.combo-box[data-slot="${slot.key}"]`);
+        const entry = daySelections.find(e => e.slot === slot.key);
+        if (entry && findRecipe(entry.recipeId) && box._initSelected) {
+          box._initSelected(entry.recipeId);
+        } else if (box && box._clearSelection) {
           box._clearSelection();
         }
       });
 
-      // Load snack entries
-      const snackEntries = selections.filter(e => isSnackSlot(e.slot));
-      snackEntries.forEach(e => {
-        if (findRecipe(e.recipeId)) {
-          addSnackEntry(e.recipeId);
-        }
+      // Restore snacks
+      daySelections.filter(e => isSnackSlot(e.slot)).forEach(e => {
+        if (findRecipe(e.recipeId)) addSnackEntry(e.recipeId);
       });
 
       renderTotals();
     }
 
-    // ── Totals panel ──
+    // ── Totals panel ──────────────────────────────────────────────────────────
+
     function renderTotals() {
-      const panel = document.getElementById("totalsPanel");
+      const panel      = document.getElementById("totalsPanel");
       const selections = getSelections();
-      const filled = selections.filter(e => findRecipe(e.recipeId));
+      const filled     = selections.filter(e => findRecipe(e.recipeId));
 
       if (filled.length === 0) {
         panel.innerHTML = `<div class="nutrition-card"><p class="totals-empty">Select meals above to see daily nutrition totals.</p></div>`;
         return;
       }
 
-      const totals = { calories: 0, protein: 0, fat: 0, satFat: 0, fiber: 0, sodium: 0, cholesterol: 0 };
-      const proteinByMeal = { breakfast: 0, lunch: 0, dinner: 0, snacks: 0 };
+      const totals         = { calories: 0, protein: 0, fat: 0, satFat: 0, fiber: 0, sodium: 0, cholesterol: 0 };
+      const proteinByMeal  = { breakfast: 0, lunch: 0, dinner: 0, snacks: 0 };
 
       filled.forEach(entry => {
         const r = findRecipe(entry.recipeId);
         const n = r.nutrition_per_serving;
-        totals.calories += n.calories;
-        totals.protein += n.protein_g;
-        totals.fat += n.total_fat_g;
-        totals.satFat += n.saturated_fat_g;
-        totals.fiber += n.fiber_g;
-        totals.sodium += n.sodium_mg;
+        totals.calories    += n.calories;
+        totals.protein     += n.protein_g;
+        totals.fat         += n.total_fat_g;
+        totals.satFat      += n.saturated_fat_g;
+        totals.fiber       += n.fiber_g;
+        totals.sodium      += n.sodium_mg;
         totals.cholesterol += n.cholesterol_mg;
-        if (isSnackSlot(entry.slot)) {
-          proteinByMeal.snacks += n.protein_g;
-        } else if (proteinByMeal[entry.slot] !== undefined) {
-          proteinByMeal[entry.slot] += n.protein_g;
-        }
+        if (isSnackSlot(entry.slot)) proteinByMeal.snacks += n.protein_g;
+        else if (proteinByMeal[entry.slot] !== undefined) proteinByMeal[entry.slot] += n.protein_g;
       });
 
       const proteinRows = [
         { icon: "☀️", label: "Breakfast", key: "breakfast" },
-        { icon: "🌿", label: "Lunch", key: "lunch" },
-        { icon: "🌙", label: "Dinner", key: "dinner" },
-        { icon: "🥜", label: "Snacks", key: "snacks" }
+        { icon: "🌿", label: "Lunch",     key: "lunch"      },
+        { icon: "🌙", label: "Dinner",    key: "dinner"     },
+        { icon: "🥜", label: "Snacks",    key: "snacks"     }
       ];
-
       const metricRows = [
-        { key: "fat",         label: "Total Fat",      unit: "g",  color: "#7a5a1e" },
-        { key: "satFat",      label: "Saturated Fat",  unit: "g",  color: "#d07a2f" },
-        { key: "cholesterol", label: "Cholesterol",    unit: "mg", color: "#b05050" },
-        { key: "fiber",       label: "Fiber",          unit: "g",  color: "#4e5a9a" },
-        { key: "sodium",      label: "Sodium",         unit: "mg", color: "#8a39a9" }
+        { key: "fat",         label: "Total Fat",     unit: "g",  color: "#7a5a1e" },
+        { key: "satFat",      label: "Saturated Fat", unit: "g",  color: "#d07a2f" },
+        { key: "cholesterol", label: "Cholesterol",   unit: "mg", color: "#b05050" },
+        { key: "fiber",       label: "Fiber",         unit: "g",  color: "#4e5a9a" },
+        { key: "sodium",      label: "Sodium",        unit: "mg", color: "#8a39a9" }
       ];
 
       const metricsHtml = metricRows.map(m => {
-        const val = totals[m.key];
+        const val        = totals[m.key];
         const displayVal = (m.unit === "mg") ? Math.round(val) : fmtP(val);
-        const pct = Math.min(100, Math.round((val / metricTargets[m.key]) * 100));
+        const pct        = Math.min(100, Math.round((val / metricTargets[m.key]) * 100));
         return `
           <div class="metric">
             <div class="metric-line"><span>${m.label}</span><strong>${displayVal}${m.unit}</strong></div>
@@ -968,12 +927,12 @@
           </div>`;
       }).join("");
 
-      const kcalInRange = totals.calories >= 1700 && totals.calories <= 2100;
-      const proteinInRange = totals.protein >= 80 && totals.protein <= 120;
-      const satOk = totals.satFat < 15;
-      const fiberOk = totals.fiber >= 25;
-      const sodiumOk = totals.sodium < 2300;
-      const cholOk = totals.cholesterol < 200;
+      const kcalInRange  = totals.calories >= 1700 && totals.calories <= 2100;
+      const proteinOk    = totals.protein >= 80 && totals.protein <= 120;
+      const satOk        = totals.satFat < 15;
+      const fiberOk      = totals.fiber >= 25;
+      const sodiumOk     = totals.sodium < 2300;
+      const cholOk       = totals.cholesterol < 200;
 
       panel.innerHTML = `
         <div class="nutrition-card">
@@ -988,39 +947,53 @@
           ${metricsHtml}
           <div class="badges">
             <span class="goal-badge ${kcalInRange ? "" : "warn"}">${kcalInRange ? "✓" : "!"} 1700–2100 kcal (${Math.round(totals.calories)} kcal)</span>
-            <span class="goal-badge ${proteinInRange ? "" : "warn"}">${proteinInRange ? "✓" : "!"} 80–120g protein (${fmtP(totals.protein)}g)</span>
-            <span class="goal-badge ${satOk ? "" : "warn"}">${satOk ? "✓" : "!"} Sat fat &lt;15g (${fmtP(totals.satFat)}g)</span>
-            <span class="goal-badge ${fiberOk ? "" : "warn"}">${fiberOk ? "✓" : "!"} Fiber ≥25g (${fmtP(totals.fiber)}g)</span>
-            <span class="goal-badge ${sodiumOk ? "" : "warn"}">${sodiumOk ? "✓" : "!"} Sodium &lt;2300mg (${Math.round(totals.sodium)}mg)</span>
-            <span class="goal-badge ${cholOk ? "" : "warn"}">${cholOk ? "✓" : "!"} Cholesterol &lt;200mg (${Math.round(totals.cholesterol)}mg)</span>
+            <span class="goal-badge ${proteinOk   ? "" : "warn"}">${proteinOk   ? "✓" : "!"} 80–120g protein (${fmtP(totals.protein)}g)</span>
+            <span class="goal-badge ${satOk       ? "" : "warn"}">${satOk       ? "✓" : "!"} Sat fat &lt;15g (${fmtP(totals.satFat)}g)</span>
+            <span class="goal-badge ${fiberOk     ? "" : "warn"}">${fiberOk     ? "✓" : "!"} Fiber ≥25g (${fmtP(totals.fiber)}g)</span>
+            <span class="goal-badge ${sodiumOk    ? "" : "warn"}">${sodiumOk    ? "✓" : "!"} Sodium &lt;2300mg (${Math.round(totals.sodium)}mg)</span>
+            <span class="goal-badge ${cholOk      ? "" : "warn"}">${cholOk      ? "✓" : "!"} Cholesterol &lt;200mg (${Math.round(totals.cholesterol)}mg)</span>
           </div>
-          <div class="protein-note">ℹ️ Totals are per-serving estimates from the recipe database (USDA-style). Your actual portions and brands may differ.</div>
+          <div class="protein-note">ℹ️ Totals are per-serving estimates from the recipe database. Your actual portions and brands may differ.</div>
         </div>
       `;
     }
 
-    // ── Init ──
-    document.getElementById("dateInput").value = currentDate;
-    document.getElementById("dateLabel").textContent = formatDateLabel(currentDate);
+    // ── Init ──────────────────────────────────────────────────────────────────
 
-    document.getElementById("prevDay").addEventListener("click", () => shiftDate(-1));
-    document.getElementById("nextDay").addEventListener("click", () => shiftDate(1));
-    document.getElementById("dateInput").addEventListener("change", (e) => {
-      currentDate = e.target.value;
+    (async () => {
+      setupNav();
+
+      const session = await requireAuth();
+      if (!session) return; // requireAuth redirects to login.html if no session
+      currentUser = session.user;
+
+      document.getElementById("dateInput").value = currentDate;
       document.getElementById("dateLabel").textContent = formatDateLabel(currentDate);
-      loadSelections();
-    });
 
-    fetch("recipe-database.json")
-      .then(r => r.json())
-      .then(data => {
-        recipes = data.recipes;
-        buildSlots();
+      document.getElementById("prevDay").addEventListener("click", () => shiftDate(-1));
+      document.getElementById("nextDay").addEventListener("click", () => shiftDate(1));
+      document.getElementById("dateInput").addEventListener("change", (e) => {
+        currentDate = e.target.value;
+        document.getElementById("dateLabel").textContent = formatDateLabel(currentDate);
         loadSelections();
-      })
-      .catch(err => {
-        document.getElementById("slots").textContent = "Could not load recipes: " + err.message;
       });
+
+      // Load recipes from Supabase
+      const { data, error } = await sb
+        .from("recipes")
+        .select("id, title, meal, url, nutrition_per_serving")
+        .eq("status", "published")
+        .order("title");
+
+      if (error) {
+        document.getElementById("slots").textContent = "Could not load recipes: " + error.message;
+        return;
+      }
+
+      recipes = data || [];
+      buildSlots();
+      loadSelections();
+    })();
   </script>
 </body>
 </html>

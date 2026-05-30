@@ -16,9 +16,7 @@
       --ink-soft: #4a5a52;
       --line: #dde6e0;
     }
-
     * { box-sizing: border-box; }
-
     body {
       margin: 0;
       font-family: "Inter", "Segoe UI", Arial, sans-serif;
@@ -26,7 +24,6 @@
       color: var(--ink);
       line-height: 1.5;
     }
-
     .site-nav {
       background: var(--forest-900);
       display: flex;
@@ -70,6 +67,27 @@
     }
     .hero-sub { margin: 8px 0 0; color: #dbe8e0; font-size: 14px; }
 
+    .hero-actions {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(255,255,255,0.12);
+      color: #9fd4b7;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(159,212,183,0.35);
+    }
+    .btn-submit:hover { background: rgba(255,255,255,0.20); color: #fff; }
+
     main {
       max-width: 740px;
       margin: 0 auto;
@@ -92,7 +110,6 @@
       padding: 0;
       border-top: 1px solid var(--line);
     }
-
     .recipe-row {
       display: flex;
       align-items: baseline;
@@ -100,24 +117,11 @@
       padding: 10px 0;
       border-bottom: 1px solid var(--line);
     }
-
-    .recipe-name {
-      font-size: 15px;
-      color: var(--ink);
-      flex: 1;
-    }
-    .recipe-name a {
-      color: var(--forest-700);
-      text-decoration: none;
-    }
+    .recipe-name { font-size: 15px; color: var(--ink); flex: 1; }
+    .recipe-name a { color: var(--forest-700); text-decoration: none; }
     .recipe-name a:hover { text-decoration: underline; }
 
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-      flex-shrink: 0;
-    }
+    .tags { display: flex; flex-wrap: wrap; gap: 5px; flex-shrink: 0; }
     .tag {
       font-size: 11px;
       font-weight: 600;
@@ -152,12 +156,18 @@
     <div class="hero-eyebrow">Cholesterol-Friendly</div>
     <h1>Recipe Library</h1>
     <p class="hero-sub">All approved recipes from the database, organized by meal type.</p>
+    <div class="hero-actions">
+      <a href="submit.html" class="btn-submit">+ Submit a recipe</a>
+    </div>
   </div>
 
   <main id="main">Loading…</main>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="auth.js"></script>
   <script>
-    const MEAL_ORDER = ["breakfast", "lunch", "dinner", "snack"];
+    const MEAL_ORDER  = ["breakfast", "lunch", "dinner", "snack"];
     const MEAL_LABELS = { breakfast: "Breakfast", lunch: "Lunch", dinner: "Dinner", snack: "Snack" };
 
     function mealTypes(recipe) {
@@ -165,51 +175,55 @@
       return (Array.isArray(m) ? m : [m]).map(s => s.toLowerCase());
     }
 
-    fetch("recipe-database.json")
-      .then(r => r.json())
-      .then(data => {
-        const recipes = data.recipes;
+    (async () => {
+      setupNav();
 
-        // Group by primary meal type (first in list), sort alpha within each group
-        const groups = {};
-        MEAL_ORDER.forEach(m => groups[m] = []);
+      const { data: recipes, error } = await sb
+        .from("recipes")
+        .select("id, title, url, meal")
+        .eq("status", "published")
+        .order("title");
 
-        recipes.forEach(r => {
-          const primary = mealTypes(r)[0];
-          if (groups[primary]) groups[primary].push(r);
-        });
-        MEAL_ORDER.forEach(m => groups[m].sort((a, b) => a.title.localeCompare(b.title)));
+      const main = document.getElementById("main");
 
-        const main = document.getElementById("main");
-        main.innerHTML = MEAL_ORDER.map(mealKey => {
-          const list = groups[mealKey];
-          if (!list.length) return "";
+      if (error) {
+        main.textContent = "Could not load recipes: " + error.message;
+        return;
+      }
 
-          const rows = list.map(r => {
-            const allMeals = mealTypes(r);
-            const externalLink = r.url
-              ? ` <a class="external-link" href="${r.url}" target="_blank" rel="noopener noreferrer">(recipe here ↗)</a>`
-              : "";
-            const nameHtml = `<a href="recipe.html?id=${r.id}">${r.title}</a>${externalLink}`;
-            const tagsHtml = allMeals.map(m =>
-              `<span class="tag tag-${m}">${MEAL_LABELS[m] || m}</span>`
-            ).join("");
+      const groups = {};
+      MEAL_ORDER.forEach(m => groups[m] = []);
+      recipes.forEach(r => {
+        const primary = mealTypes(r)[0];
+        if (groups[primary]) groups[primary].push(r);
+      });
 
-            return `
-              <li class="recipe-row">
-                <span class="recipe-name">${nameHtml}</span>
-                <span class="tags">${tagsHtml}</span>
-              </li>`;
-          }).join("");
+      main.innerHTML = MEAL_ORDER.map(mealKey => {
+        const list = groups[mealKey];
+        if (!list.length) return "";
+
+        const rows = list.map(r => {
+          const allMeals    = mealTypes(r);
+          const externalLink = r.url
+            ? ` <a class="external-link" href="${r.url}" target="_blank" rel="noopener noreferrer">(recipe here ↗)</a>`
+            : "";
+          const nameHtml = `<a href="recipe.html?id=${r.id}">${r.title}</a>${externalLink}`;
+          const tagsHtml = allMeals.map(m =>
+            `<span class="tag tag-${m}">${MEAL_LABELS[m] || m}</span>`
+          ).join("");
 
           return `
-            <p class="section-heading">${MEAL_LABELS[mealKey]}</p>
-            <ul class="recipe-list">${rows}</ul>`;
+            <li class="recipe-row">
+              <span class="recipe-name">${nameHtml}</span>
+              <span class="tags">${tagsHtml}</span>
+            </li>`;
         }).join("");
-      })
-      .catch(err => {
-        document.getElementById("main").textContent = "Could not load recipes: " + err.message;
-      });
+
+        return `
+          <p class="section-heading">${MEAL_LABELS[mealKey]}</p>
+          <ul class="recipe-list">${rows}</ul>`;
+      }).join("");
+    })();
   </script>
 </body>
 </html>

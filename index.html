@@ -443,6 +443,9 @@
       }
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="auth.js"></script>
 </head>
 <body>
   <nav class="site-nav" aria-label="Site navigation">
@@ -900,6 +903,7 @@
     });
 
     setActiveDay(weekPlan[0].day.toLowerCase());
+    setupNav();
   </script>
 </body>
 </html>

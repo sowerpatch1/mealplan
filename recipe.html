@@ -17,9 +17,7 @@
       --ink-soft: #4a5a52;
       --line: #dde6e0;
     }
-
     * { box-sizing: border-box; }
-
     body {
       margin: 0;
       font-family: "Inter", "Segoe UI", Arial, sans-serif;
@@ -27,7 +25,6 @@
       color: var(--ink);
       line-height: 1.6;
     }
-
     .site-nav {
       background: var(--forest-900);
       display: flex;
@@ -85,12 +82,7 @@
       font-weight: 600;
       line-height: 1.2;
     }
-    .hero-notes {
-      margin: 6px 0 0;
-      font-size: 14px;
-      color: #c5ddd3;
-      max-width: 620px;
-    }
+    .hero-notes { margin: 6px 0 0; font-size: 14px; color: #c5ddd3; max-width: 620px; }
     .recipe-link {
       display: inline-flex;
       align-items: center;
@@ -112,7 +104,6 @@
       padding: 28px 20px 60px;
     }
 
-    /* ── Nutrition grid ── */
     .section-label {
       font-size: 11px;
       font-weight: 700;
@@ -145,25 +136,12 @@
       line-height: 1.1;
       margin-top: 2px;
     }
-    .nut-box.highlight {
-      border-color: #c4d8f5;
-      background: #eef4fd;
-    }
+    .nut-box.highlight { border-color: #c4d8f5; background: #eef4fd; }
     .nut-box.highlight strong { color: #1e4e92; }
 
-    .servings-note {
-      font-size: 12px;
-      color: var(--ink-soft);
-      margin-bottom: 4px;
-    }
+    .servings-note { font-size: 12px; color: var(--ink-soft); margin-bottom: 4px; }
 
-    /* ── Ingredients ── */
-    .ingredient-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      border-top: 1px solid var(--line);
-    }
+    .ingredient-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
     .ingredient-list li {
       padding: 8px 0;
       border-bottom: 1px solid var(--line);
@@ -176,13 +154,7 @@
       margin-right: 8px;
     }
 
-    /* ── Steps ── */
-    .step-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      counter-reset: steps;
-    }
+    .step-list { list-style: none; margin: 0; padding: 0; counter-reset: steps; }
     .step-list li {
       counter-increment: steps;
       display: flex;
@@ -208,11 +180,7 @@
       margin-top: 1px;
     }
 
-    .not-found {
-      padding: 60px 0;
-      text-align: center;
-      color: var(--ink-soft);
-    }
+    .not-found { padding: 60px 0; text-align: center; color: var(--ink-soft); }
   </style>
 </head>
 <body>
@@ -229,6 +197,9 @@
 
   <main id="main"></main>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="auth.js"></script>
   <script>
     const MEAL_LABELS = { breakfast: "Breakfast", lunch: "Lunch", dinner: "Dinner", snack: "Snack" };
 
@@ -237,74 +208,78 @@
       return (Array.isArray(m) ? m : [m]).map(s => s.toLowerCase());
     }
 
-    const params = new URLSearchParams(location.search);
+    const params   = new URLSearchParams(location.search);
     const targetId = params.get("id");
 
-    if (!targetId) {
-      document.getElementById("heroBody").textContent = "No recipe specified.";
-    } else {
-      fetch("recipe-database.json")
-        .then(r => r.json())
-        .then(data => {
-          const recipe = data.recipes.find(r => r.id === targetId);
-          if (!recipe) {
-            document.getElementById("heroBody").innerHTML =
-              `<p>Recipe "<strong>${targetId}</strong>" not found.</p>`;
-            return;
-          }
+    (async () => {
+      setupNav();
 
-          document.title = `${recipe.title} — Recipe Library`;
+      if (!targetId) {
+        document.getElementById("heroBody").textContent = "No recipe specified.";
+        return;
+      }
 
-          const meals = mealTypes(recipe);
-          const mealBadges = meals.map(m => `<span class="meal-tag">${MEAL_LABELS[m] || m}</span>`).join(" ");
+      const { data, error } = await sb
+        .from("recipes")
+        .select("*")
+        .eq("id", targetId)
+        .eq("status", "published")
+        .single();
 
-          const recipeLinkHtml = recipe.url
-            ? `<a class="recipe-link" href="${recipe.url}" target="_blank" rel="noopener noreferrer">View original recipe ↗</a>`
-            : "";
+      if (error || !data) {
+        document.getElementById("heroBody").innerHTML =
+          `<p>Recipe "<strong>${targetId}</strong>" not found.</p>`;
+        return;
+      }
 
-          document.getElementById("heroBody").innerHTML = `
-            <div>${mealBadges}</div>
-            <h1>${recipe.title}</h1>
-            ${recipe.notes ? `<p class="hero-notes">${recipe.notes}</p>` : ""}
-            ${recipeLinkHtml}
-          `;
+      const recipe = data;
+      document.title = `${recipe.title} — Recipe Library`;
 
-          const n = recipe.nutrition_per_serving;
-          const nutritionHtml = `
-            <p class="servings-note">Per serving · makes ${n.servings}</p>
-            <div class="nutrition-grid">
-              <div class="nut-box"><span>Calories</span><strong>${n.calories}</strong></div>
-              <div class="nut-box highlight"><span>Protein</span><strong>${n.protein_g}g</strong></div>
-              <div class="nut-box"><span>Total Fat</span><strong>${n.total_fat_g}g</strong></div>
-              <div class="nut-box"><span>Saturated Fat</span><strong>${n.saturated_fat_g}g</strong></div>
-              <div class="nut-box"><span>Cholesterol</span><strong>${n.cholesterol_mg}mg</strong></div>
-              <div class="nut-box"><span>Fiber</span><strong>${n.fiber_g}g</strong></div>
-              <div class="nut-box"><span>Sodium</span><strong>${n.sodium_mg}mg</strong></div>
-            </div>
-          `;
+      const meals      = mealTypes(recipe);
+      const mealBadges = meals.map(m => `<span class="meal-tag">${MEAL_LABELS[m] || m}</span>`).join(" ");
+      const linkHtml   = recipe.url
+        ? `<a class="recipe-link" href="${recipe.url}" target="_blank" rel="noopener noreferrer">View original recipe ↗</a>`
+        : "";
 
-          const ingredientsHtml = `
-            <ul class="ingredient-list">
-              ${recipe.ingredients.map(i => `<li>${i}</li>`).join("")}
-            </ul>
-          `;
+      document.getElementById("heroBody").innerHTML = `
+        <div>${mealBadges}</div>
+        <h1>${recipe.title}</h1>
+        ${recipe.notes ? `<p class="hero-notes">${recipe.notes}</p>` : ""}
+        ${linkHtml}
+      `;
 
-          const stepsHtml = recipe.steps && recipe.steps.length
-            ? `<ol class="step-list">${recipe.steps.map(s => `<li><span>${s}</span></li>`).join("")}</ol>`
-            : "";
+      const n = recipe.nutrition_per_serving;
+      const nutritionHtml = n ? `
+        <p class="servings-note">Per serving · makes ${n.servings}</p>
+        <div class="nutrition-grid">
+          <div class="nut-box"><span>Calories</span><strong>${n.calories}</strong></div>
+          <div class="nut-box highlight"><span>Protein</span><strong>${n.protein_g}g</strong></div>
+          <div class="nut-box"><span>Total Fat</span><strong>${n.total_fat_g}g</strong></div>
+          <div class="nut-box"><span>Saturated Fat</span><strong>${n.saturated_fat_g}g</strong></div>
+          <div class="nut-box"><span>Cholesterol</span><strong>${n.cholesterol_mg}mg</strong></div>
+          <div class="nut-box"><span>Fiber</span><strong>${n.fiber_g}g</strong></div>
+          <div class="nut-box"><span>Sodium</span><strong>${n.sodium_mg}mg</strong></div>
+        </div>
+      ` : "";
 
-          document.getElementById("main").innerHTML = `
-            <p class="section-label">Nutrition</p>
-            ${nutritionHtml}
-            <p class="section-label">Ingredients</p>
-            ${ingredientsHtml}
-            ${stepsHtml ? `<p class="section-label">Instructions</p>${stepsHtml}` : ""}
-          `;
-        })
-        .catch(err => {
-          document.getElementById("heroBody").textContent = "Could not load recipe: " + err.message;
-        });
-    }
+      const ingredients = Array.isArray(recipe.ingredients) ? recipe.ingredients : [];
+      const steps       = Array.isArray(recipe.steps) ? recipe.steps : [];
+
+      const ingredientsHtml = `
+        <ul class="ingredient-list">
+          ${ingredients.map(i => `<li>${i}</li>`).join("")}
+        </ul>
+      `;
+      const stepsHtml = steps.length
+        ? `<ol class="step-list">${steps.map(s => `<li><span>${s}</span></li>`).join("")}</ol>`
+        : "";
+
+      document.getElementById("main").innerHTML = `
+        ${nutritionHtml ? `<p class="section-label">Nutrition</p>${nutritionHtml}` : ""}
+        ${ingredients.length ? `<p class="section-label">Ingredients</p>${ingredientsHtml}` : ""}
+        ${stepsHtml ? `<p class="section-label">Instructions</p>${stepsHtml}` : ""}
+      `;
+    })();
   </script>
 </body>
 </html>

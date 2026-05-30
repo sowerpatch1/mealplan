@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In — Cholesterol-Friendly Meal Plan</title>
+  <style>
+    :root {
+      --forest-900: #0f3527;
+      --forest-700: #1b5a42;
+      --forest-600: #236a4f;
+      --sage-100:   #edf4ef;
+      --surface:    #f6f5f2;
+      --card:       #ffffff;
+      --ink:        #173126;
+      --ink-soft:   #4a5a52;
+      --line:       #dde6e0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", Arial, sans-serif;
+      background: var(--surface);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+    .site-nav {
+      background: var(--forest-900);
+      display: flex;
+      padding: 0 18px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .site-nav::-webkit-scrollbar { display: none; }
+    .site-nav a {
+      display: block;
+      color: #b3cec2;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 11px 14px;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+      letter-spacing: 0.04em;
+    }
+    .site-nav a:hover { color: #fff; }
+
+    .hero {
+      background: linear-gradient(160deg, var(--forest-900), var(--forest-700));
+      color: #f3f7f4;
+      padding: 26px 24px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.14);
+    }
+    .hero-eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin-bottom: 8px;
+    }
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(22px, 3vw, 34px);
+      font-family: Georgia, serif;
+      font-weight: 600;
+    }
+    .hero-sub { margin: 8px 0 0; color: #dbe8e0; font-size: 14px; }
+
+    main {
+      max-width: 400px;
+      margin: 48px auto;
+      padding: 0 20px 60px;
+    }
+
+    .login-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 32px;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-soft);
+      margin-bottom: 6px;
+      letter-spacing: 0.04em;
+    }
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      font-family: inherit;
+      font-size: 15px;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--surface);
+      color: var(--ink);
+      outline: none;
+    }
+    input:focus {
+      border-color: var(--forest-600);
+      box-shadow: 0 0 0 2px rgba(35,106,79,0.15);
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 12px;
+      background: var(--forest-700);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 4px;
+    }
+    .btn-primary:hover { background: var(--forest-900); }
+    .btn-primary:disabled { opacity: 0.6; cursor: default; }
+
+    .error-msg {
+      display: none;
+      margin-top: 14px;
+      padding: 10px 14px;
+      background: #fff5f5;
+      border: 1px solid #f5c0bf;
+      border-radius: 8px;
+      color: #8b1c1c;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav" aria-label="Site navigation">
+    <a href="index.html">📅 Meal Plan</a>
+    <a href="recipes.html">📖 Recipe Library</a>
+    <a href="tracker.html">📊 Daily Tracker</a>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-eyebrow">Cholesterol-Friendly</div>
+    <h1>Sign In</h1>
+    <p class="hero-sub">Sign in to access the daily tracker and submit recipes.</p>
+  </div>
+
+  <main>
+    <div class="login-card">
+      <form id="loginForm" novalidate>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" autocomplete="email" required placeholder="you@example.com">
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" autocomplete="current-password" required placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn-primary" id="submitBtn">Sign in</button>
+        <div class="error-msg" id="errorMsg"></div>
+      </form>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script>
+    const _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // Redirect already-authenticated users immediately
+    _sb.auth.getSession().then(({ data: { session } }) => {
+      if (session) redirectAfterLogin();
+    });
+
+    function redirectAfterLogin() {
+      const params = new URLSearchParams(location.search);
+      location.href = params.get("next") || "tracker.html";
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email    = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const btn      = document.getElementById("submitBtn");
+      const errEl    = document.getElementById("errorMsg");
+
+      btn.disabled    = true;
+      btn.textContent = "Signing in…";
+      errEl.style.display = "none";
+
+      const { error } = await _sb.auth.signInWithPassword({ email, password });
+
+      if (error) {
+        errEl.textContent    = error.message;
+        errEl.style.display  = "";
+        btn.disabled         = false;
+        btn.textContent      = "Sign in";
+      } else {
+        redirectAfterLogin();
+      }
+    });
+  </script>
+</body>
+</html>
