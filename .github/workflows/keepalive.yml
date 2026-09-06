@@ -1,0 +1,22 @@
+name: Supabase keep-alive
+
+# Pings the public Supabase REST API on a schedule so the free-tier project
+# doesn't auto-pause after ~7 days of inactivity. Uses the public anon key
+# (same one committed in supabase-config.js) — no secrets required.
+
+on:
+  schedule:
+    - cron: "0 12 */3 * *"  # every 3 days at 12:00 UTC
+  workflow_dispatch:         # allow manual runs from the Actions tab
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase REST
+        run: |
+          code=$(curl -s -o /dev/null -w "%{http_code}" \
+            "https://ulwastvcwajkfzhnblqs.supabase.co/rest/v1/recipes?select=id&limit=1" \
+            -H "apikey: sb_publishable_Vz2Fzc9QRoUtwUI41rL_2A_5WM9XWO4")
+          echo "HTTP $code"
+          test "$code" = "200"
