@@ -112,10 +112,18 @@
     }
     .recipe-row {
       display: flex;
-      align-items: baseline;
-      gap: 10px;
+      align-items: center;
+      gap: 12px;
       padding: 10px 0;
       border-bottom: 1px solid var(--line);
+    }
+    .recipe-thumb {
+      width: 54px;
+      height: 54px;
+      border-radius: 9px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #e8efe9;
     }
     .recipe-name { font-size: 15px; color: var(--ink); flex: 1; }
     .recipe-name a { color: var(--forest-700); text-decoration: none; }
@@ -180,7 +188,7 @@
 
       const { data: recipes, error } = await sb
         .from("recipes")
-        .select("id, title, url, meal")
+        .select("id, title, url, meal, image_url")
         .eq("status", "published")
         .order("title");
 
@@ -211,9 +219,13 @@
           const tagsHtml = allMeals.map(m =>
             `<span class="tag tag-${m}">${MEAL_LABELS[m] || m}</span>`
           ).join("");
+          const thumbHtml = r.image_url
+            ? `<a href="recipe.html?id=${r.id}"><img class="recipe-thumb" src="${r.image_url}" alt="" loading="lazy"></a>`
+            : `<span class="recipe-thumb"></span>`;
 
           return `
             <li class="recipe-row">
+              ${thumbHtml}
               <span class="recipe-name">${nameHtml}</span>
               <span class="tags">${tagsHtml}</span>
             </li>`;

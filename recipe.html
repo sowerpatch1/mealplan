@@ -180,6 +180,16 @@
       margin-top: 1px;
     }
 
+    .recipe-photo {
+      width: 100%;
+      max-height: 360px;
+      object-fit: cover;
+      border-radius: 14px;
+      display: block;
+      margin-bottom: 8px;
+      background: var(--sage-100);
+    }
+
     .not-found { padding: 60px 0; text-align: center; color: var(--ink-soft); }
   </style>
 </head>
@@ -274,7 +284,12 @@
         ? `<ol class="step-list">${steps.map(s => `<li><span>${s}</span></li>`).join("")}</ol>`
         : "";
 
+      const photoHtml = recipe.image_url
+        ? `<img class="recipe-photo" src="${recipe.image_url}" alt="${recipe.title}">`
+        : "";
+
       document.getElementById("main").innerHTML = `
+        ${photoHtml}
         ${nutritionHtml ? `<p class="section-label">Nutrition</p>${nutritionHtml}` : ""}
         ${ingredients.length ? `<p class="section-label">Ingredients</p>${ingredientsHtml}` : ""}
         ${stepsHtml ? `<p class="section-label">Instructions</p>${stepsHtml}` : ""}
